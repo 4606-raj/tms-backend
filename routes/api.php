@@ -36,3 +36,7 @@ JsonApiRoute::server('v2')->prefix('v2')->resources(function (ResourceRegistrar 
     Route::get('me', [MeController::class, 'readProfile']);
     Route::patch('me', [MeController::class, 'updateProfile']);
 });
+
+Route::get('test', function() {
+    return \Response::json(['status' => true]);
+});

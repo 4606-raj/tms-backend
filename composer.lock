@@ -7871,7 +7871,7 @@
             },
             "autoload": {
                 "files": [
-                    "./src/Adapters/Phpunit/Autoload.php"
+                    "./Adapters/Phpunit/Autoload.php"
                 ],
                 "psr-4": {
                     "NunoMaduro\\Collision\\": "src/"
