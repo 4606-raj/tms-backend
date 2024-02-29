@@ -1,76 +1,58 @@
 <template>
   <footer class="py-3 footer">
     <div class="container-fluid">
-      <div class="row align-items-center justify-content-lg-between">
-        <div class="mb-4 col-lg-6 mb-lg-0">
-          <div
-            class="text-sm text-center copyright text-muted"
-            :class="this.$store.state.isRTL ? 'text-lg-end' : 'text-lg-start'"
-          >
-            ©
-            {{ new Date().getFullYear() }}, made with
-            <i class="fa fa-heart"></i> by
-            <a
-              href="https://www.creative-tim.com"
-              class="font-weight-bold"
-              target="_blank"
-              >Creative Tim</a
+      <div class="row align-items-center justify-content-lg-center">
+        <div class="col-lg-12">
+          <div  class="text-sm text-center"
             >
-            and
-            <a
-              href="https://updivision.com/"
-              class="font-weight-bold"
-              target="_blank"
-              >UPDIVISION</a
-            >
-            for a better web.
+            Content Owned by Mera Parivar Pehchan Authority (MPPA), service for Haryana.
           </div>
         </div>
-        <div class="col-lg-6">
+      </div>
+      <div class="row align-items-left justify-content-lg-between">
+        <div class="mb-4 col-lg-4 mb-lg-0">
+          <div
+            class="text-sm text-left copyright text-muted"
+            :class="this.$store.state.isRTL ? 'text-sm-end' : 'text-sm-start'"
+          >
+            ©
+            {{ new Date().getFullYear() }}
+            <a
+              href="#"
+              class="font-weight-bold"
+              target="_blank"
+              >Ticket Tool</a
+            >
+            All rights reserved.
+            
+          </div>
+        </div>
+        <div class="col-lg-8">
           <ul
-            class="nav nav-footer justify-content-center justify-content-lg-end"
+            class="nav nav-footer justify-content-end justify-content-lg-end"
           >
             <li class="nav-item">
-              <a
-                href="https://www.creative-tim.com"
-                class="nav-link text-muted"
-                target="_blank"
-                >Creative Tim</a
-              >
+              <img
+                      src="../assets/img/logos/swaran.png"
+                      class="avatar avatar-sm rounded-circle me-2"
+                      alt="spotify"
+                    />
             </li>
             <li class="nav-item">
-              <a
-                href="https://updivision.com/"
-                class="nav-link text-muted"
-                target="_blank"
-                >UPDIVISION</a
-              >
+              <img
+                      src="../assets/img/logos/swachh-bharat-abhiyan-logo-vector-file.png"
+                      class="avatar avatar-sm rounded-circle me-2"
+                      alt="spotify"
+                    />
             </li>
             <li class="nav-item">
-              <a
-                href="https://www.creative-tim.com/presentation"
-                class="nav-link text-muted"
-                target="_blank"
-                >About Us</a
-              >
+              <img
+                      src="../assets/img/logos/beti.png"
+                      class="avatar avatar-sm rounded-circle me-2"
+                      alt="spotify"
+                    />
             </li>
-            <li class="nav-item">
-              <a
-                href="https://www.creative-tim.com/blog"
-                class="nav-link text-muted"
-                target="_blank"
-                >Blog</a
-              >
-            </li>
-            <li class="nav-item">
-              <a
-                href="https://www.creative-tim.com/license"
-                class="nav-link pe-0 text-muted"
-                target="_blank"
-                >License</a
-              >
-            </li>
-          </ul>
+          </ul> 
         </div>
       </div>
     </div>

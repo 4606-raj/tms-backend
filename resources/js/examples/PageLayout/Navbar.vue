@@ -11,7 +11,7 @@
         v-bind="$attrs"
         :class="isBlur ? 'text-dark' : 'text-white'"
       >
-        Soft UI Dashboard
+        Ticketing Tool
       </router-link>
       <button
         class="navbar-toggler shadow-none ms-2"
@@ -61,7 +61,7 @@
                 aria-hidden="true"
                 :class="isBlur ? 'text-dark' : 'text-white'"
               ></i>
-              Sign Up
+             Contact Us
             </router-link>
           </li>
           <li class="nav-item">
@@ -73,16 +73,6 @@
               ></i>
               Sign In
             </router-link>
-          </li>
-        </ul>
-        <ul class="navbar-nav d-lg-block d-none">
-          <li class="nav-item">
-            <a
-              href="https://www.creative-tim.com/product/vue-soft-ui-dashboard-laravel"
-              class="btn btn-sm btn-round mb-0 me-1"
-              :class="isBlur ? 'bg-gradient-dark' : 'bg-gradient-success'"
-              >Free download</a
-            >
           </li>
         </ul>
       </div>

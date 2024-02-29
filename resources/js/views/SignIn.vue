@@ -18,8 +18,8 @@
             <div class="mx-auto col-xl-4 col-lg-5 col-md-6 d-flex flex-column">
               <div class="mt-8 card card-plain">
                 <div class="pb-0 card-header text-start">
-                  <h3 class="font-weight-bolder text-success text-gradient">
-                    Welcome back
+                  <h3 class="font-weight-bolder text-warning text-gradient">
+                    Login to the support portal
                   </h3>
                   <p class="mb-0">Enter your email and password to sign in</p>
                 </div>
@@ -46,7 +46,7 @@
                       <soft-button
                         class="my-4 mb-2"
                         variant="gradient"
-                        color="success"
+                        color="warning"
                         full-width
                         >Sign in
                       </soft-button>
@@ -58,7 +58,7 @@
                     Don't have an account?
                     <router-link
                       :to="{ name: 'Sign Up' }"
-                      class="text-success text-gradient font-weight-bold"
+                      class="text-warning text-gradient font-weight-bold"
                       >Sign up</router-link
                     >
                   </p>
@@ -90,7 +90,7 @@ import SoftSwitch from "@/components/SoftSwitch.vue";
 import SoftButton from "@/components/SoftButton.vue";
 const body = document.getElementsByTagName("body")[0];
 import { mapMutations } from "vuex";
-import curvedImage from '@/assets/img/curved-images/curved9.jpg';
+import curvedImage from '@/assets/img/curved-images/ticket.svg';
 
 export default {
   name: "SignIn",

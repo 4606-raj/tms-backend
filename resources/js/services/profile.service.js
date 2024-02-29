@@ -4,7 +4,7 @@ import Jsona from "jsona";
 const dataFormatter = new Jsona();
 
 // const API_URL = process.env.VUE_APP_API_BASE_URL + '/';
-const API_URL = 'http://127.0.0.1:8000/api/';
+const API_URL = 'http://127.0.0.1:8001/api/';
 
 export default {
   async getProfile() {

@@ -4,12 +4,19 @@
     id="sidenav-collapse-main"
   >
     <ul class="navbar-nav">
+      <li class="nav-item">
+        <sidenav-collapse navText="Dashboard" :to="{ name: 'Dashboard' }">
+          <template #icon>
+            <shop />
+          </template>
+        </sidenav-collapse>
+      </li>
       <li class="mt-3 nav-item">
         <h6
           class="text-xs ps-4 text-uppercase font-weight-bolder opacity-6"
           :class="this.$store.state.isRTL ? 'me-4' : 'ms-2'"
         >
-          EXAMPLES (API)
+         Users
         </h6>
       </li>
       <!-- <li class="nav-item">
@@ -40,21 +47,30 @@
           </template>
         </sidenav-collapse>
       </li>
-      <li class="mt-3 nav-item">
+      <!-- <li class="mt-3 nav-item">
         <h6
           class="text-xs ps-4 text-uppercase font-weight-bolder opacity-6"
           :class="this.$store.state.isRTL ? 'me-4' : 'ms-2'"
         >
           TEMPLATES
         </h6>
+      </li> -->
+      <li class="mt-3 nav-item">
+        <h6
+          class="text-xs ps-4 text-uppercase font-weight-bolder opacity-6"
+          :class="this.$store.state.isRTL ? 'me-4' : 'ms-2'"
+        >
+         Tickets
+        </h6>
       </li>
       <li class="nav-item">
-        <sidenav-collapse navText="Dashboard" :to="{ name: 'Dashboard' }">
+        <sidenav-collapse navText="Create Ticket" :to="{ name: 'Profile' }">
           <template #icon>
-            <shop />
+            <customer-support />
           </template>
         </sidenav-collapse>
       </li>
+      
       <li class="nav-item">
         <sidenav-collapse navText="Tables" :to="{ name: 'Tables' }">
           <template #icon>
@@ -62,7 +78,7 @@
           </template>
         </sidenav-collapse>
       </li>
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <sidenav-collapse navText="Billing" :to="{ name: 'Billing' }">
           <template #icon>
             <credit-card />
@@ -86,7 +102,7 @@
             <settings />
           </template>
         </sidenav-collapse>
-      </li>
+      </li> -->
       <li class="nav-item">
         <sidenav-collapse navText="Profile" :to="{ name: 'ProfileTemplate' }">
           <template #icon>
@@ -119,12 +135,7 @@
       label="Documentation"
       icon="ni ni-diamond"
     />
-    <a
-      class="btn bg-gradient-success mt-4 w-100"
-      href="https://www.creative-tim.com/product/vue-soft-ui-dashboard-laravel-pro?ref=vsud"
-      type="button"
-      >Upgrade to pro</a
-    >
+    
   </div>
 </template>
 <script>
