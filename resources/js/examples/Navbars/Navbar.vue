@@ -12,7 +12,7 @@
         :class="this.$store.state.isRTL ? 'px-0' : 'me-sm-4'"
         id="navbar"
       >
-        <div
+        <!-- <div
           class="pe-md-3 d-flex align-items-center"
           :class="this.$store.state.isRTL ? 'me-md-auto' : 'ms-md-auto'"
         >
@@ -28,9 +28,9 @@
               "
             />
           </div>
-        </div>
+        </div> -->
         <ul class="navbar-nav justify-content-end">
-          <li class="nav-item d-flex align-items-center">
+          <!-- <li class="nav-item d-flex align-items-center">
             <router-link
               v-if="!loggedIn"
               :to="{ name: 'Login' }"
@@ -63,7 +63,7 @@
               >
               <span v-else class="d-sm-inline d-none">Sign Out </span>
             </a>
-          </li>
+          </li> -->
           <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
             <a
               href="#"

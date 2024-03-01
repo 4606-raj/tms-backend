@@ -34,7 +34,7 @@
         </sidenav-collapse>
       </li> -->
       <li class="nav-item">
-        <sidenav-collapse navText="User Profile" :to="{ name: 'Profile' }">
+        <sidenav-collapse navText="Add User" :to="{ name: 'Profile' }">
           <template #icon>
             <customer-support />
           </template>
@@ -64,7 +64,7 @@
         </h6>
       </li>
       <li class="nav-item">
-        <sidenav-collapse navText="Create Ticket" :to="{ name: 'Profile' }">
+        <sidenav-collapse navText="Create Ticket" :to="{ name: 'CreateTicket' }">
           <template #icon>
             <customer-support />
           </template>
@@ -103,13 +103,13 @@
           </template>
         </sidenav-collapse>
       </li> -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <sidenav-collapse navText="Profile" :to="{ name: 'ProfileTemplate' }">
           <template #icon>
             <customer-support />
           </template>
         </sidenav-collapse>
-      </li>
+      </li> -->
       <li class="nav-item">
         <sidenav-collapse navText="Sign In" :to="{ name: 'Sign In' }">
           <template #icon>
@@ -158,7 +158,7 @@ export default {
   },
   data() {
     return {
-      title: "Soft UI Dashboard PRO",
+      title: "Ticket Tool",
       controls: "dashboardsExamples",
       isActive: "active",
     };

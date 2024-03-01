@@ -17,7 +17,7 @@
               </div>
               <div class="my-auto mt-4 ms-auto mt-lg-0">
                 <div class="my-auto ms-auto">
-                  <a @click="alert" class="mb-0 btn bg-gradient-success btn-sm"
+                  <a @click="alert" class="mb-0 btn bg-gradient-warning btn-sm"
                     >+&nbsp; New User</a
                   >
                 </div>
@@ -31,7 +31,11 @@
                   <tr>
                     <th>Name</th>
                     <th>Email</th>
+                    <th>Mobile</th>
+                    <th>Service</th>
+                    <th>Profile</th>
                     <th>Created At</th>
+                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
@@ -39,7 +43,11 @@
                   <tr>
                     <td>Admin</td>
                     <td>admin@jsonapi.com</td>
+                    <td>6785986666</td>
+                    <td>XYZ</td>
+                    <td>Role_set</td>
                     <td>2023-01-16</td>
+                    <td>Active</td>
                     <td>
                       <a
                         @click="alert"

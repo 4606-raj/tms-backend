@@ -31,43 +31,23 @@
       <div class="col-6">
         <div id="basic-info" class="card mt-4">
           <div class="card-header">
-            <h5>Basic Info</h5>
+            <h5>User Info</h5>
           </div>
 
           <div class="card-body pt-0">
             <div class="row mb-3">
-              <label class="form-label">Login</label>
+              <label class="form-label">Applicant Name</label>
               <soft-model-input
                 id="name"
-                v-model="profileChange.login"
+                v-model="profileChange.name"
                 type="text"
                 placeholder="Alec"
               />
-              <validation-error :errors="apiValidationErrors.login" />
-            </div>
-            <div class="row mb-3">
-              <label class="form-label">First Name</label>
-              <soft-model-input
-                id="name"
-                v-model="profileChange.Firstname"
-                type="text"
-                placeholder="Alec"
-              />
-              <validation-error :errors="apiValidationErrors.Firstname" />
-            </div>
-            <div class="row mb-3">
-              <label class="form-label">Last Name</label>
-              <soft-model-input
-                id="name"
-                v-model="profileChange.lastname"
-                type="text"
-                placeholder="Alec"
-              />
-              <validation-error :errors="apiValidationErrors.lastname" />
+              <validation-error :errors="apiValidationErrors.name" />
             </div>
 
             <div class="row mb-3">
-              <label class="form-label mt-2">Email</label>
+              <label class="form-label mt-2">Applicant Email</label>
               <soft-model-input
                 id="email"
                 v-model="profileChange.email"
@@ -77,46 +57,46 @@
               <validation-error :errors="apiValidationErrors.email" />
             </div>
             <div class="row mb-3">
-              <label class="form-label">Mobile</label>
+              <label class="form-label mt-2">Applicant Mobile</label>
               <soft-model-input
-                id="mobile"
-                v-model="profileChange.mobile"
+                id="email"
+                v-model="profileChange.moblie"
                 type="text"
-                placeholder="Alec"
+                placeholder="6789534687"
               />
-              <validation-error :errors="apiValidationErrors.moble" />
+              <validation-error :errors="apiValidationErrors.mobile" />
+            </div> 
+            <div class="row mb-3">
+              <label class="form-label mt-2">Applicant FamilyId</label>
+              <soft-model-input
+                id="email"
+                v-model="profileChange.familyId"
+                type="text"
+                placeholder="7865RT66"
+              />
+              <validation-error :errors="apiValidationErrors.familyId" />
             </div>
             <div class="row mb-3">
-              <label class="form-label">Profile</label>
-              <select v-model="selected">
-              <option disabled value="">Please select profile</option>
-              <option value="Role1">Role1</option>
-              <option value="Role2">Role2</option>
-              <option value="Role3">Role3</option>
-            </select>
-            </div>
-            <div class="row mb-3">
-              <label class="form-label">Choose service</label>
+              <label class="form-label">District</label>
               <select v-model="selected">
               <option disabled value="">Please select one</option>
               <option>Accv</option>
-              
+              <option>Bvvv</option>
+              <option>Cvv</option>
             </select>
             </div>
+            <div class="row mb-3">
+              <label class="form-label" for="checkbox">Close</label>
+              <input
+                type="checkbox"
+                v-model="toggle"
+                true-value="yes"
+                false-value="no" />
+              
+              
+            </div>
 
-            <soft-button
-              class="float-end mt-6 mb-0"
-              color="warning"
-              variant="gradient"
-              size="sm"
-              :is-disabled="loading2 ? true : false"
-              @click="handleProfileChange"
-              ><span
-                v-if="loading2"
-                class="spinner-border spinner-border-sm"
-              ></span
-              ><span v-else>Save</span></soft-button
-            >
+           
           </div>
         </div>
       </div>
@@ -124,56 +104,101 @@
       <div class="col-6">
         <div id="password" class="card mt-4">
           <div class="card-header">
-            <h5>Change Password</h5>
+            <h5>Basic Info</h5>
           </div>
+          
 
           <div class="card-body pt-0">
             <div class="row mb-3">
-              <label class="form-label">Current password</label>
-              <soft-model-input
-                id="currentPassword"
-                v-model="passChange.password"
-                type="password"
-                placeholder="Current Password"
-              />
-              <validation-error :errors="apiValidationErrors.currentpassword" />
+              <label class="form-label">Type:</label>
+              <select v-model="selected">
+              <option disabled value="">Please select one</option>
+              <option>All</option>
+              <option>Query</option>
+              <option>Modification</option>
+            </select>
             </div>
             <div class="row mb-3">
-              <label class="form-label">New password</label>
-              <soft-model-input
-                id="newPassword"
-                v-model="passChange.password"
-                type="password"
-                placeholder="New Password"
-              />
-              <validation-error :errors="apiValidationErrors.password" />
+              <label class="form-label">Source</label>
+              <select v-model="selected">
+              <option disabled value="">Please select one</option>
+              <option>Accv</option>
+              <option>Bvvv</option>
+              <option>Cvv</option>
+            </select>
             </div>
 
             <div class="row mb-3">
-              <label class="form-label">Confirm new password</label>
-              <soft-model-input
-                id="confirmPassword"
-                v-model="passChange.password_confirmation"
-                type="password"
-                placeholder="Confirm password"
-              />
+              <label class="form-label">Channel</label>
+              <select v-model="selected">
+              <option disabled value="">Please select one</option>
+              <option>Accv</option>
+              <option>Bvvv</option>
+              <option>Cvv</option>
+            </select>
             </div>
+            <div class="row mb-3">
+              <label class="form-label">Category</label>
+              <select v-model="selected">
+              <option disabled value="">Please select one</option>
+              <option>Accv</option>
+              <option>Bvvv</option>
+              <option>Cvv</option>
+            </select>
+            </div>
+            <div class="row mb-3">
+              <label class="form-label">SubCategory</label>
+              <select v-model="selected">
+              <option disabled value="">Please select one</option>
+              <option>Accv</option>
+              <option>Bvvv</option>
+              <option>Cvv</option>
+            </select>
+            </div>
+            <div class="row mb-3">
+              <label class="form-label">ChildSubCAtegory</label>
+              <select v-model="selected">
+              <option disabled value="">Please select one</option>
+              <option>Accv</option>
+              <option>Bvvv</option>
+              <option>Cvv</option>
+            </select>
+            </div>
+            
+            <div class="card-body pt-0">
+            <label class="form-label">Attachment</label><br />
+            <soft-image-input id="pfp" ref="pfp" @added-image="addedImage" />
 
             <soft-button
-              color="warning"
-              variant="gradient"
-              class="float-end mt-6 mb-0"
+              v-if="!file"
               size="sm"
-              :is-disabled="loading ? true : false"
-              @click="handlePassChange"
-              ><span
-                v-if="loading"
-                class="spinner-border spinner-border-sm"
-              ></span>
-              <span v-else>Update password</span></soft-button
-            >
+              color="warning"
+              @click="$refs.pfp.click()"
+              >Select</soft-button>
+            <validation-error :errors="apiValidationErrors.profile_image" />
+          </div>
           </div>
         </div>
+      </div>
+      <div class="row">
+              <label class="form-label">Description</label>
+            <textarea placeholder="add desciption" ></textarea>
+            <input type="hidden" value="random_number" name="ticket_number">
+          </div>
+      <div>
+        <soft-button
+          class="float-end mt-6 mb-0"
+          color="warning"
+          variant="gradient"
+          size="sm"
+          :is-disabled="loading2 ? true : false"
+          @click="handleProfileChange"
+          ><span
+            v-if="loading2"
+            class="spinner-border spinner-border-sm"
+          ></span
+          ><span v-else>Save</span></soft-button
+        >
       </div>
     </div>
   </div>
