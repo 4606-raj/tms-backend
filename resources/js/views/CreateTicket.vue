@@ -180,7 +180,7 @@
           </div>
         </div>
       </div>
-      <div class="row">
+      <div class="row container-fluid">
               <label class="form-label">Description</label>
             <textarea placeholder="add desciption" ></textarea>
             <input type="hidden" value="random_number" name="ticket_number">
