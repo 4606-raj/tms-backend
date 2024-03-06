@@ -4,6 +4,8 @@ namespace Database\Seeders;
 use App\Models\District;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class DistrictSeeder extends Seeder
 {
@@ -13,7 +15,8 @@ class DistrictSeeder extends Seeder
     public function run(): void
     {
         DB::table('districts')->truncate();
-        District::create([
+        $districts = [
+        [
             'name' => 'AMBALA',
             'state_id' => 13,
             'status' => '1',
@@ -146,6 +149,7 @@ class DistrictSeeder extends Seeder
             
         ],
 
-        );
+    ];
+    DB::table('districts')->insert($districts);
     }
 }

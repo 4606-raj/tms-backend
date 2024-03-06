@@ -4,6 +4,8 @@ namespace Database\Seeders;
 use App\Models\Source;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class SourceSeeder extends Seeder
 {
@@ -13,7 +15,8 @@ class SourceSeeder extends Seeder
     public function run(): void
     {
         DB::table('sources')->truncate();
-        Source::create([
+        $source = [
+        [
             'name' => 'Citizen',
             'status' => '1',
             
@@ -33,7 +36,7 @@ class SourceSeeder extends Seeder
             'status' => '1',
             
         ],
-        );
- 
+    ];
+    DB::table('sources')->insert($source);
     }
 }

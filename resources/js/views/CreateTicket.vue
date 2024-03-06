@@ -86,12 +86,15 @@
             </select>
             </div>
             <div class="row mb-3">
-              <label class="form-label" for="checkbox">Close</label>
-              <input
-                type="checkbox"
-                v-model="toggle"
-                true-value="yes"
-                false-value="no" />
+              <soft-checkbox
+                id="flexCheckDefault"
+                name="flexCheckDefault"
+                class="font-weight-light"
+                checked
+              >
+               Close
+                >
+              </soft-checkbox>
               
               
             </div>

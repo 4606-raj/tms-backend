@@ -11,18 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
         Schema::create('categories', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->string('name');
             $table->integer('cat_id')->default('0');
-            $table->enum('status')->default('1')->comment('1= active,2=deactive');
+            $table->enum('status',['1','2'])->default('1')->comment('1= active,2=deactive');
             $table->softDeletes();
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**

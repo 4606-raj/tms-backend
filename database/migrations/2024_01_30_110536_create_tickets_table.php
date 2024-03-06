@@ -11,10 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
-        Schema::create('ticket', function (Blueprint $table) {
-            $table->integer('id')->primary();
+        Schema::create('tickets', function (Blueprint $table) {
+            $table->integer('id');
             $table->string('type')->index()->nullable();
             $table->string('email')->nullable();
             $table->string('name')->nullable();
@@ -23,26 +21,26 @@ return new class extends Migration
             $table->string('family_id')->index()->nullable();
             $table->string('source')->index()->nullable();
             $table->string('channel')->nullable();
-            $table->integer('category_id')->index()->nullable();
+            $table->bigInteger('user_id')->unsigned()->nullable();
+            $table->foreign('user_id')->references('id')->on('users');
+            $table->bigInteger('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');
-            $table->integer('sub_category_id')->index()->nullable();
-            $table->foreign('sub_category_id')->references('id')->on('sub_categories');
-            $table->integer('new_sub_category_id')->index()->nullable();
-            $table->foreign('new_sub_category_id')->references('id')->on('new_sub_categories');
+            $table->unsignedBigInteger('sub_category_id');
+            $table->foreign('sub_category_id')->references('id')->on('categories');
+            $table->unsignedBigInteger('new_sub_category_id');
+            $table->foreign('new_sub_category_id')->references('id')->on('categories');
             $table->bigInteger('assign_by')->nullable();
             $table->string('attachment')->nullable();
-            $table->enum('auto_close')->default('0')->comment('1=yes,0=no');
+            $table->enum('auto_close',['0', '1'])->default('0')->comment('0=no,1=yes');
             $table->string('ticket_number');
             $table->integer('assign_to');
             $table->dateTime('resloved_at');
             $table->longText('description')->nullable();
-            $table->enum('priority')->default('0')->comment('0=low,1=medium,2=high');
+            $table->enum('priority',['0', '1','2'])->default('0')->comment('0=low,1=medium,2=high');
             $table->string('remark')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**
@@ -50,6 +48,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ticketit');
+        Schema::dropIfExists('tickets');
     }
 };

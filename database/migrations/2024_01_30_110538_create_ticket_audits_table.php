@@ -12,19 +12,19 @@ return new class extends Migration
     public function up(): void
     {
         Schema::disableForeignKeyConstraints();
-
+        Schema::enableForeignKeyConstraints();
+        
         Schema::create('ticket_audits', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->text('operation');
-            $table->integer('user_id');
+            $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('ticket_id');
-            $table->foreign('ticket_id')->references('id')->on('ticket');
+            $table->unsignedBigInteger('ticket_id');
             $table->softDeletes();
             $table->timestamps();
         });
 
-        Schema::enableForeignKeyConstraints();
+       
     }
 
     /**

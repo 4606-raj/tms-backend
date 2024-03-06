@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sources', function (Blueprint $table) {
             $table->id();
             $table->string('name')->nullable();
-            $table->enum('status')->default('1')->comment('1= active,2=deactive');
+            $table->enum('status',['1','2'])->default('1')->comment('1= active,2=deactive');
             $table->softDeletes();
             $table->timestamps();
         });

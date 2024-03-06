@@ -11,19 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::disableForeignKeyConstraints();
-
         Schema::create('sub_categories', function (Blueprint $table) {
             $table->id();
-            $table->bigInteger('category_id');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->integer('category_id');
             $table->string('name')->nullable();
             $table->softDeletes();
             $table->timestamps();
 
         });
-
-        Schema::enableForeignKeyConstraints();
     }
 
     /**

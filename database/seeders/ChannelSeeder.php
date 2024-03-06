@@ -1,9 +1,10 @@
 <?php
-
 namespace Database\Seeders;
 use App\Models\Channel;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
 
 class ChannelSeeder extends Seeder
 {
@@ -13,7 +14,7 @@ class ChannelSeeder extends Seeder
     public function run(): void
     {
         DB::table('channels')->truncate();
-        Channel::create([
+        $channels = [[
             'name' => 'Helpline',
             'status' => '1',
             
@@ -53,6 +54,7 @@ class ChannelSeeder extends Seeder
             'status' => '1',
             
         ],
-        );
+    ];
+    DB::table('channels')->insert($channels);
     }
 }

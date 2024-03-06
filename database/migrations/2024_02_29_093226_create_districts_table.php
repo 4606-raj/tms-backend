@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->integer('state_id')->default('13');
-            $table->enum('status')->default('1')->comment('1= active,2=deactive');
+            $table->enum('status',['1','2'])->default('1')->comment('1= active,2=deactive');
             $table->softDeletes();
             $table->timestamps();
         });

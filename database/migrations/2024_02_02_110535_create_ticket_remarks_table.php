@@ -12,22 +12,22 @@ return new class extends Migration
     public function up(): void
     {
         Schema::disableForeignKeyConstraints();
+        Schema::enableForeignKeyConstraints();
 
         Schema::create('ticket_remarks', function (Blueprint $table) {
-            $table->integer('id')->primary();
+            $table->id();
             $table->text('remark');
-            $table->integer('user_id')->index();
+            $table->bigInteger('user_id')->unsigned()->nullable();
             $table->foreign('user_id')->references('id')->on('users');
-            $table->integer('ticket_id')->index();
-            $table->foreign('ticket_id')->references('id')->on('ticket');
+            $table->unsignedBigInteger('ticket_id')->nullable();
             $table->integer('assign_to');
             $table->string('action')->nullable();
-            $table->integer('status')->nullable();
+            $table->enum('status',['1','2'])->default('1')->comment('1= active,2=deactive');
             $table->softDeletes();
             $table->timestamps();
         });
 
-        Schema::enableForeignKeyConstraints();
+      
     }
 
     /**

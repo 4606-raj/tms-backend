@@ -8,7 +8,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
-class UsersSeeder extends Seeder
+class CategoriesSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -17,145 +17,39 @@ class UsersSeeder extends Seeder
      */
     public function run()
     {
+        
         Schema::disableForeignKeyConstraints();
         DB::table('categories')->truncate();
         Schema::enableForeignKeyConstraints();
 
-        Category::create([
-            'name' => 'Management',
-            'cat_id' => 0,
-            'status' => 1
-        ],
-        [
-            'name' => 'Technical',
-            'cat_id' => 0,
-            'status' => 1
-        ],
-        [
-            'name' => 'Aayushman Card',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Add Related',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Bank Account And IFSCn',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'CasteCategory',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Change of HOF',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Covid Related',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Delete Related',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'DOB',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Engagement',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Exclusion',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Family address related',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Gender',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Income Related',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'IsDivyang',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Marital Status',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Mark as Alive',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Mark as Dead',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Member Merge to other state related',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Merge Family Related',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Mobile No',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Name',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Operator ID related',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Others',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'PAN Card No',
-            'cat_id' => 1,
-            'status' => 1
-        ],
-        [
-            'name' => 'Pension Related',
-            'cat_id' => 1,
-            'status' => 1
-        ],
+        $categories = [
+        [ 'name' => 'Management','cat_id' => 0,'status' => 1],
+        ['name' => 'Technical','cat_id' => 0,'status' => 1],
+        ['name' => 'Aayushman Card','cat_id' => 1,'status' => 1],
+        ['name' => 'Add Related','cat_id' => 1,'status' => 1 ],
+        ['name' => 'Bank Account And IFSCn','cat_id' => 1,'status' => 1],
+        ['name' => 'CasteCategory','cat_id' => 1,'status' => 1],
+        ['name' => 'Change of HOF','cat_id' => 1,'status' => 1],
+        ['name' => 'Covid Related','cat_id' => 1,'status' => 1],
+        ['name' => 'Delete Related','cat_id' => 1,'status' => 1 ],
+        ['name' => 'DOB','cat_id' => 1,'status' => 1],
+        ['name' => 'Engagement','cat_id' => 1,'status' => 1],
+        ['name' => 'Exclusion','cat_id' => 1,'status' => 1],
+        ['name' => 'Family address related','cat_id' => 1,'status' => 1],
+        ['name' => 'Gender','cat_id' => 1,'status' => 1],
+        ['name' => 'Income Related','cat_id' => 1,'status' => 1],
+        ['name' => 'IsDivyang','cat_id' => 1,'status' => 1],
+        ['name' => 'Marital Status','cat_id' => 1,'status' => 1],
+        ['name' => 'Mark as Alive','cat_id' => 1,'status' => 1],
+        ['name' => 'Mark as Dead','cat_id' => 1,'status' => 1],
+        ['name' => 'Member Merge to other state related','cat_id' => 1,'status' => 1],
+        ['name' => 'Merge Family Related','cat_id' => 1,'status' => 1],
+        ['name' => 'Mobile No','cat_id' => 1,'status' => 1],
+        ['name' => 'Name','cat_id' => 1,'status' => 1],
+        ['name' => 'Operator ID related','cat_id' => 1,'status' => 1],
+        ['name' => 'Others','cat_id' => 1,'status' => 1],
+        [ 'name' => 'PAN Card No','cat_id' => 1,'status' => 1],
+        ['name' => 'Pension Related','cat_id' => 1, 'status' => 1],
         [
             'name' => 'PPP ID creation/Updation related',
             'cat_id' => 1,
@@ -530,7 +424,9 @@ class UsersSeeder extends Seeder
             'name' => 'VoterID No',
             'cat_id' => 35,
             'status' => 1
-        ],
-    );
+        ]
+        ];
+    // Insert the categories into the database
+    DB::table('categories')->insert($categories);
     }
 }
