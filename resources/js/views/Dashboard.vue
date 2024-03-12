@@ -62,7 +62,7 @@
         />
       </div>
     </div>
-    <div class="mt-4 row">
+    <!-- <div class="mt-4 row">
       <div class="mb-4 col-lg-5 mb-lg-0">
         <div class="card z-index-2">
           <div class="p-3 card-body">
@@ -118,7 +118,7 @@
       </div>
       <div class="col-lg-7">
         <!-- line chart -->
-        <div class="card z-index-2">
+        <!----<div class="card z-index-2">
           <gradient-line-chart
             id="chart-line"
             title="Gradient Line Chart"
@@ -150,7 +150,7 @@
           />
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="row my-4">
       <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
         <projects-card />

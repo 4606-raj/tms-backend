@@ -91,10 +91,7 @@
                 name="flexCheckDefault"
                 class="font-weight-light"
                 checked
-              >
-               Close
-                >
-              </soft-checkbox>
+              >Close </soft-checkbox>
               
               
             </div>
@@ -216,6 +213,7 @@ import ValidationError from "@/components/ValidationError.vue";
 import formMixin from "../mixins/form-mixin.js";
 import img from "@/assets/img/bruce-mars.jpg";
 import showSwal from "@/mixins/showSwal.js";
+import SoftCheckbox from "@/components/SoftCheckbox.vue";
 
 export default {
   name: "Profile",
@@ -225,6 +223,7 @@ export default {
     SoftAvatar,
     SoftModelInput,
     ValidationError,
+    SoftCheckbox,
   },
   mixins: [formMixin],
   data() {
