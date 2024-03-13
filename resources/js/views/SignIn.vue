@@ -24,13 +24,14 @@
                   <p class="mb-0">Enter your email and password to sign in</p>
                 </div>
                 <div class="card-body">
-                  <form role="form" class="text-start">
+                  <form role="form" class="text-start" @submit.prevent="submitForm">
                     <label>Email</label>
                     <soft-input
                       id="email"
                       type="email"
                       placeholder="Email"
                       name="email"
+                      v-model="formData.email"
                     />
                     <label>Password</label>
                     <soft-input
@@ -38,6 +39,7 @@
                       type="password"
                       placeholder="Password"
                       name="password"
+                      v-model="formData.password"
                     />
                     <soft-switch id="rememberMe" name="rememberMe" checked>
                       Remember me
@@ -91,6 +93,7 @@ import SoftButton from "@/components/SoftButton.vue";
 const body = document.getElementsByTagName("body")[0];
 import { mapMutations } from "vuex";
 import curvedImage from '@/assets/img/curved-images/ticket.svg';
+import axios from '@/axios-config';
 
 export default {
   name: "SignIn",
@@ -104,6 +107,10 @@ export default {
   data() {
     return {
       curvedImage,
+      formData: {
+        email: '',
+        password: ''
+      }
     };
   },
   created() {
@@ -118,6 +125,11 @@ export default {
   },
   methods: {
     ...mapMutations(["toggleEveryDisplay", "toggleHideConfig"]),
+    async submitForm() {
+      
+      const response = await this.$store.dispatch('auth/login', this.formData)
+      
+    }
   },
 };
 </script>

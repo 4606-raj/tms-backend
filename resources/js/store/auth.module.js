@@ -7,7 +7,7 @@ export const auth = {
   namespaced: true,
   state: initialState,
   actions: {
-    async login({ commit }, userData) {
+    async login({ commit }, userData) {      
       await authService.login(userData);
       commit("logMeIn");
     },

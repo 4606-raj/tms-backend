@@ -10,9 +10,10 @@
         class="form-control"
         :class="getClasses(size, success, error)"
         :name="name"
-        :value="value"
+        :value="inputValue"
         :placeholder="placeholder"
         :isRequired="isRequired"
+        @input="handleInput"
       />
       <span v-if="iconDir === 'right'" class="input-group-text">
         <i :class="getIcon(icon)"></i>
@@ -70,6 +71,18 @@ export default {
       default: false,
     },
   },
+  data() {
+    return {
+      inputValue: this.value
+    }
+  },
+  watch: {
+    value(newValue) {
+      console.log(newValue, 'newValue');
+      this.inputValue = newValue;
+    }
+  },
+
   methods: {
     getClasses: (size, success, error) => {
       let sizeValue, isValidValue;
@@ -88,6 +101,11 @@ export default {
     },
     getIcon: (icon) => (icon ? icon : null),
     hasIcon: (icon) => (icon ? "input-group" : null),
+    handleInput(event) {
+      this.inputValue = event.target.value;
+      this.$emit('update:modelValue', event.target.value);
+    },
+
   },
 };
 </script>

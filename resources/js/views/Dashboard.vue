@@ -262,7 +262,7 @@ export default {
     };
   },
   mounted() {
-    fetch('http://127.0.0.1:8001/api/test');
+    // fetch('http://127.0.0.1:8001/api/test');
   },
   components: {
     MiniStatisticsCard,

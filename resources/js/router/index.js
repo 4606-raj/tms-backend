@@ -38,6 +38,9 @@ const routes = [
     path: "/",
     name: "/",
     redirect: "/dashboard",
+    meta: {
+      middleware: [auth],
+    },
   },
   {
     path: "/dashboard",
@@ -73,6 +76,9 @@ const routes = [
     path: "/sign-in",
     name: "Sign In",
     component: SignIn,
+    meta: {
+      middleware: [guest],
+    },
   },
   {
     path: "/sign-up",
@@ -143,14 +149,18 @@ router.beforeEach((to, from, next) => {
     store,
   };
 
+  // If the route does not have any middleware defined,
+  // directly call the auth function and proceed to the next route.
   if (!to.meta.middleware) {
-    auth({ ...context, next: next });
+    auth({ ...context, next }); // Simplified to just pass next
+    return next(); // Call next() to proceed to the next route
   }
-  const middleware = to.meta.middleware;
 
+  // If middleware is defined for the route, execute the first middleware
+  const middleware = to.meta.middleware;
   return middleware[0]({
     ...context,
-    next: middlewarePipeline(context, middleware, 1),
+    next: middlewarePipeline(context, middleware, 1), // Call middlewarePipeline with updated next
   });
 });
 
