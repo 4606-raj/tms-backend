@@ -3,6 +3,7 @@ import bootstrap from "bootstrap/dist/js/bootstrap.min.js";
 import { auth } from "./auth.module";
 import { reset } from "./reset.module";
 import { profile } from "./profile.module";
+import { tickets } from "./tickets.module";
 
 export default createStore({
   state: {
@@ -28,6 +29,7 @@ export default createStore({
     auth,
     reset,
     profile,
+    tickets,
   },
   mutations: {
     toggleConfigurator(state) {

@@ -110,19 +110,32 @@
           </template>
         </sidenav-collapse>
       </li> -->
-      <li class="nav-item">
+      <li class="nav-item" v-if="!loggedIn">
         <sidenav-collapse navText="Sign In" :to="{ name: 'Sign In' }">
           <template #icon>
             <document />
           </template>
         </sidenav-collapse>
       </li>
-      <li class="nav-item">
+      <li class="nav-item" v-if="!loggedIn">
         <sidenav-collapse navText="Sign Up" :to="{ name: 'Sign Up' }">
           <template #icon>
             <spaceship />
           </template>
         </sidenav-collapse>
+      </li>
+
+      <li class="nav-item d-flex justify-content-center" v-if="loggedIn">
+        <soft-button
+          class="float-end mt-6 mb-0"
+          color="warning"
+          variant="gradient"
+          size="sm"
+          @click="handleLogout"
+        >
+          <span>Logout</span>
+        </soft-button
+        >
       </li>
     </ul>
   </div>
@@ -150,6 +163,7 @@ import Switches from "../../components/Icon/Switches.vue";
 import Document from "../../components/Icon/Document.vue";
 import Spaceship from "../../components/Icon/Spaceship.vue";
 import Settings from "../../components/Icon/Settings.vue";
+import SoftButton from "@/components/SoftButton.vue";
 
 export default {
   name: "SidenavList",
@@ -175,12 +189,25 @@ export default {
     Document,
     Spaceship,
     Settings,
+    SoftButton,
+  },
+  computed: {
+    loggedIn() {
+      return this.$store.getters["auth/loggedIn"];
+    },
   },
   methods: {
     getRoute() {
       const routeArr = this.$route.path.split("/");
       return routeArr[1];
     },
+    async handleLogout() {
+      try {
+        await this.$store.dispatch("auth/logout");
+      } finally {
+        this.$router.push("/sign-in");
+      }
+    }
   },
 };
 </script>

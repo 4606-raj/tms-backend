@@ -76,10 +76,10 @@
               />
               <validation-error :errors="apiValidationErrors.familyId" />
             </div>
-            <div class="row mb-3">
+            <div class="mb-3">
               <label class="form-label">District</label>
-              <select v-model="selected">
-              <option disabled value="">Please select one</option>
+              <select class="form-select">
+              <option disabled selected value="">Please select one</option>
               <option>Accv</option>
               <option>Bvvv</option>
               <option>Cvv</option>
@@ -91,7 +91,7 @@
                 name="flexCheckDefault"
                 class="font-weight-light"
                 checked
-              >Close </soft-checkbox>
+              >Auto Close </soft-checkbox>
               
               
             </div>
@@ -109,56 +109,56 @@
           
 
           <div class="card-body pt-0">
-            <div class="row mb-3">
+            <div class="mb-3">
               <label class="form-label">Type:</label>
-              <select v-model="selected">
-              <option disabled value="">Please select one</option>
+              <select class="form-select">
+              <option disabled selected value="">Please select one</option>
               <option>All</option>
               <option>Query</option>
               <option>Modification</option>
             </select>
             </div>
-            <div class="row mb-3">
+            <div class="mb-3">
               <label class="form-label">Source</label>
-              <select v-model="selected">
-              <option disabled value="">Please select one</option>
+              <select class="form-select">
+              <option disabled selected value="">Please select one</option>
               <option>Accv</option>
               <option>Bvvv</option>
               <option>Cvv</option>
             </select>
             </div>
 
-            <div class="row mb-3">
+            <div class="mb-3">
               <label class="form-label">Channel</label>
-              <select v-model="selected">
-              <option disabled value="">Please select one</option>
+              <select class="form-select">
+              <option disabled selected value="">Please select one</option>
               <option>Accv</option>
               <option>Bvvv</option>
               <option>Cvv</option>
             </select>
             </div>
-            <div class="row mb-3">
+            <div class="mb-3">
               <label class="form-label">Category</label>
-              <select v-model="selected">
-              <option disabled value="">Please select one</option>
+              <select class="form-select">
+              <option disabled selected value="">Please select one</option>
               <option>Accv</option>
               <option>Bvvv</option>
               <option>Cvv</option>
             </select>
             </div>
-            <div class="row mb-3">
+            <div class="mb-3">
               <label class="form-label">SubCategory</label>
-              <select v-model="selected">
-              <option disabled value="">Please select one</option>
+              <select class="form-select">
+              <option disabled selected value="">Please select one</option>
               <option>Accv</option>
               <option>Bvvv</option>
               <option>Cvv</option>
             </select>
             </div>
-            <div class="row mb-3">
+            <div class="mb-3">
               <label class="form-label">ChildSubCAtegory</label>
-              <select v-model="selected">
-              <option disabled value="">Please select one</option>
+              <select class="form-select">
+              <option disabled selected value="">Please select one</option>
               <option>Accv</option>
               <option>Bvvv</option>
               <option>Cvv</option>
@@ -183,7 +183,7 @@
       <div class="row container-fluid">
               <label class="form-label">Description</label>
             <textarea placeholder="add desciption" ></textarea>
-            <input type="hidden" value="random_number" name="ticket_number">
+            <!-- <input type="hidden" value="random_number" name="ticket_number"> -->
           </div>
       <div>
         <soft-button
@@ -210,7 +210,7 @@ import SoftSwitch from "@/components/SoftSwitch.vue";
 import SoftAvatar from "@/components/SoftAvatar.vue";
 import SoftModelInput from "@/components/SoftModelInput.vue";
 import ValidationError from "@/components/ValidationError.vue";
-import formMixin from "../mixins/form-mixin.js";
+import formMixin from "../../mixins/form-mixin.js";
 import img from "@/assets/img/bruce-mars.jpg";
 import showSwal from "@/mixins/showSwal.js";
 import SoftCheckbox from "@/components/SoftCheckbox.vue";
@@ -261,7 +261,7 @@ export default {
       try {
         await this.$store.dispatch("auth/logout");
       } finally {
-        this.$router.push("/login");
+        this.$router.push("/sign-in");
       }
     }
   },

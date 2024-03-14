@@ -1,4 +1,5 @@
 import authService from "../services/auth.service";
+import router from "../router/index";
 
 const user = JSON.parse(localStorage.getItem("userF"));
 const initialState = user ? { loggedIn: true } : { loggedIn: false };
@@ -28,6 +29,7 @@ export const auth = {
   mutations: {
     logMeIn(state) {
       state.loggedIn = true;
+      router.push('/')
     },
     logMeOut(state) {
       state.loggedIn = false;

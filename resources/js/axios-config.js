@@ -1,4 +1,3 @@
-// axios-config.js
 import axios from 'axios';
 import { toast } from 'vue3-toastify';
 import 'vue3-toastify/dist/index.css';
@@ -50,7 +49,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
   response => {
     // You can modify the response data here
-    notifySuccess(response.data.message);
+    // notifySuccess(response.data.message);
 
     return response;
   },

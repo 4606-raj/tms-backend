@@ -72,37 +72,31 @@
                   aria-label="mobile"
                 />
               </div>
-              <div class="row mb-3">
-              <label class="form-label">Profile</label>
-              <select v-model="selected">
-              <option disabled value="">Please select one</option>
-              <option>Role1</option>
-              <option>role2</option>
-              <option>role3</option>
-            </select>
-            </div>
-            <div class="row mb-3">
-              <label class="form-label">Choose Service</label>
-              <select v-model="selected">
-              <option disabled value="">Please select one</option>
-              <option>1</option>
-              <option>2</option>
-              <option>3</option>
-            </select>
-            </div>
-              <soft-checkbox
-                id="flexCheckDefault"
-                name="flexCheckDefault"
-                class="font-weight-light"
-                checked
-              >Close </soft-checkbox>
+              <div class="mb-3">
+                <label class="form-label">Profile</label>
+                <select class="form-select">
+                  <option disabled selected value="">Please select one</option>
+                  <option>Role1</option>
+                  <option>role2</option>
+                  <option>role3</option>
+                </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Choose Service</label>
+                <select class="form-select">
+                  <option disabled selected value="">Please select one</option>
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                </select>
+              </div>
 
               <div class="text-center">
                 <soft-button
                   color="warning"
                   full-width
                   variant="gradient"
-                  class="my-4 mb-2"
+                  class="my-4 mb-2 w-auto"
                   >Sign up</soft-button
                 >
               </div>
@@ -158,6 +152,11 @@ export default {
   },
   methods: {
     ...mapMutations(["toggleEveryDisplay", "toggleHideConfig"]),
+
+    async submitForm() {
+      const response = await this.$store.dispatch('auth/register', this.formData)
+    }
+    
   },
 };
 </script>

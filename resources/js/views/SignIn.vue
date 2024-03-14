@@ -125,10 +125,9 @@ export default {
   },
   methods: {
     ...mapMutations(["toggleEveryDisplay", "toggleHideConfig"]),
+    
     async submitForm() {
-      
       const response = await this.$store.dispatch('auth/login', this.formData)
-      
     }
   },
 };

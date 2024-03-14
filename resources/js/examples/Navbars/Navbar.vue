@@ -269,9 +269,9 @@ export default {
         navbar.classList.add("position-sticky");
         navbar.classList.add("shadow-blur");
       } else {
-        navbar.classList.remove("blur");
-        navbar.classList.remove("position-sticky");
-        navbar.classList.remove("shadow-blur");
+        navbar?.classList?.remove("blur");
+        navbar?.classList?.remove("position-sticky");
+        navbar?.classList?.remove("shadow-blur");
       }
     });
   },

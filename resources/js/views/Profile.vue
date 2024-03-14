@@ -234,7 +234,7 @@ export default {
       try {
         await this.$store.dispatch("auth/logout");
       } finally {
-        this.$router.push("/login");
+        this.$router.push("/sign-in");
       }
     }
   },

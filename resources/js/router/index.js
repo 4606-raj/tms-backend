@@ -16,7 +16,8 @@ import Users from "../views/Users.vue";
 import store from "../store";
 import guest from "../middlewares/guest.js";
 import auth from "../middlewares/auth.js";
-import CreateTicket from "@/views/CreateTicket.vue";
+import CreateTicket from "@/views/tickets/CreateTicket.vue";
+import IndexTicket from "@/views/tickets/IndexTicket.vue";
 
 function middlewarePipeline(context, middleware, index) {
   const nextMiddleware = middleware[index];
@@ -84,6 +85,9 @@ const routes = [
     path: "/sign-up",
     name: "Sign Up",
     component: SignUp,
+    meta: {
+      middleware: [guest],
+    },
   },
   {
     path: "/login",
@@ -131,6 +135,11 @@ const routes = [
     path: "/create-ticket",
     name: "CreateTicket",
     component: CreateTicket,
+  },
+  {
+    path: "/index-ticket",
+    name: "IndexTicket",
+    component: IndexTicket,
   },
 ];
 
