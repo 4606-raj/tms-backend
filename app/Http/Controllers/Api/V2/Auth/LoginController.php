@@ -21,6 +21,7 @@ class LoginController extends Controller
      */
     public function __invoke(LoginRequest $request): Response|Error
     {
+       
         $client = DB::table('oauth_clients')->where('password_client', 1)->first();
 
         $request = Request::create(config('app.url') . '/oauth/token', 'POST', [

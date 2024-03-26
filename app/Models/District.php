@@ -9,4 +9,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class District extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $fillable = [
+        'name',
+        'state_id',
+        'status',
+    ];
 }

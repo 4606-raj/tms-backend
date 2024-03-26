@@ -23,71 +23,92 @@
       <div class="mx-auto col-12">
         <div class="card z-index-0">
           <div class="card-body">
-            <form role="form">
+            <form role="form"  @submit.prevent="submitForm">
               <div class="mb-3">
                 <soft-input
                   id="name"
                   type="text"
+                  name="name"
                   placeholder="Login"
-                  aria-label="Name"
+                  aria-label="name"
+                  v-model="formData.name"
                 />
               </div>
               <div class="mb-3">
                 <soft-input
                   id="firstName"
                   type="text"
+                  name="first_name"
                   placeholder="firstName"
                   aria-label="firstName"
+                  v-model="formData.first_name"
                 />
               </div>
               <div class="mb-3">
                 <soft-input
                   id="lastName"
                   type="text"
+                  name="last_name"
                   placeholder="lastName"
                   aria-label="lastName"
+                  v-model="formData.last_name"
                 />
               </div>
               <div class="mb-3">
                 <soft-input
                   id="email"
                   type="email"
+                  name="email"
                   placeholder="Email"
                   aria-label="Email"
+                  v-model="formData.email"
                 />
               </div>
               <div class="mb-3">
                 <soft-input
                   id="password"
                   type="password"
+                  name="password"
                   placeholder="Password"
                   aria-label="Password"
+                  v-model="formData.password"
+                />
+              </div>
+              <div class="mb-3">
+                <soft-input
+                  id="password_confirmation"
+                  type="password"
+                  name="password_confirmation"
+                  placeholder="Password Confirmation" 
+                  aria-label="Password confirmation"
+                  v-model="formData.password_confirmation"
                 />
               </div>
               <div class="mb-3">
                 <soft-input
                   id="mobile"
                   type="text"
+                  name="mobile"
                   placeholder="mobile"
                   aria-label="mobile"
+                  v-model="formData.mobile"
                 />
               </div>
               <div class="mb-3">
                 <label class="form-label">Profile</label>
-                <select class="form-select">
+                <select class="form-select" name="profile"  v-model="formData.profile">
                   <option disabled selected value="">Please select one</option>
-                  <option>Role1</option>
-                  <option>role2</option>
-                  <option>role3</option>
+                  <option value="ROLE_L1">ROLE_L1</option>
+                  <option value="ROLE_L2">ROLE_L2</option>
+                  <option value="ROLE_L3">ROLE_L3</option>
                 </select>
               </div>
               <div class="mb-3">
                 <label class="form-label">Choose Service</label>
-                <select class="form-select">
+                <select class="form-select" name="service"  v-model="formData.service">
                   <option disabled selected value="">Please select one</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
+                  <option value="parivar_number">parivar number</option>
+                  
                 </select>
               </div>
 
@@ -127,6 +148,7 @@ import SoftButton from "@/components/SoftButton.vue";
 import curvedImage from '@/assets/img/curved-images/curved9.jpg';
 
 import { mapMutations } from "vuex";
+import axios from '@/axios-config';
 
 export default {
   name: "SignupBasic",
@@ -140,6 +162,17 @@ export default {
   data() {
     return {
       curvedImage,
+      formData: {
+        name: '',
+        first_name: '',
+        last_name: '',
+        mobile:'',
+        email: '',
+        password: '',
+        password_confirmation: '',
+        profile:'',
+        service:''
+      }
     };
   },
   created() {

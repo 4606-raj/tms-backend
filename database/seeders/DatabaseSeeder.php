@@ -19,5 +19,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ChannelSeeder::class);
         $this->call(DistrictSeeder::class);
         $this->call(SourceSeeder::class);
+        $this->call(AuthoritiesSeeder::class);
     }
 }

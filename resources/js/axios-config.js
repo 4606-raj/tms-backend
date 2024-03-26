@@ -6,11 +6,14 @@ const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
 const instance = axios.create({
   baseURL: baseUrl, // Replace this with your base URL
+  timeout: 1000,
+  headers: {'X-Custom-Header': 'foobar'}
 });
 
 const notifyError = (error) => {
+  console.log(error, 'api-error');
 
-  let message = error.response.data.message? error.response.data.message: error.response.data.errors[0].detail
+  let message = error.response?.data?.message? error?.response?.data?.message: error.response?.data?.errors[0].detail
   
   toast(message, {
     autoClose: 2000,
