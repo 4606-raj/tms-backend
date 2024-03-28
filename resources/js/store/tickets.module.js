@@ -11,6 +11,10 @@ export const tickets = {
       
       commit("setTickets", response);
     },
+    async createTicket({ commit }, ticket) {
+      const response = await ticketService.createTicket(ticket);
+      commit("setTickets", response);
+    },
 
   },
   mutations: {

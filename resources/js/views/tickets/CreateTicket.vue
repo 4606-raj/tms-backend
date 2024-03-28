@@ -1,32 +1,5 @@
 <template>
   <div class="container-fluid mt-4">
-    <div id="profile" class="card card-body mt-4">
-      <div v-if="profile" class="row justify-content-center align-items-center">
-        <div class="col-sm-auto col-4">
-          <soft-avatar
-            :img="pic"
-            alt="profile"
-            size="xl"
-            shadow="sm"
-            border-radius="lg"
-          />
-        </div>
-        <div class="col-sm-auto col-8 my-auto">
-          <div class="h-100">
-            <h5 class="mb-1 font-weight-bolder">{{ profile.name }}</h5>
-            <p class="mb-0 font-weight-bold text-sm">{{ profile.email }}</p>
-          </div>
-        </div>
-
-        <div class="col-sm-auto ms-sm-auto mt-sm-0 mt-3 d-flex">
-          <label class="form-check-label mb-0 me-2">
-            <small id="profileVisibility">Switch to invisible</small>
-          </label>
-          <soft-switch id="profile" name="profileVisibility" checked />
-        </div>
-      </div>
-    </div>
-
     <div class="row">
       <div class="col-6">
         <div id="basic-info" class="card mt-4">
@@ -39,7 +12,8 @@
               <label class="form-label">Applicant Name</label>
               <soft-model-input
                 id="name"
-                v-model="profileChange.name"
+                name="name"
+                v-model="ticket.name" 
                 type="text"
                 placeholder="Alec"
               />
@@ -50,7 +24,8 @@
               <label class="form-label mt-2">Applicant Email</label>
               <soft-model-input
                 id="email"
-                v-model="profileChange.email"
+                name="email"
+                v-model="ticket.email"
                 type="email"
                 placeholder="example@email.com"
               />
@@ -59,8 +34,9 @@
             <div class="row mb-3">
               <label class="form-label mt-2">Applicant Mobile</label>
               <soft-model-input
-                id="email"
-                v-model="profileChange.moblie"
+                id="mobile"
+                name="mobile"
+                v-model="ticket.moblie"
                 type="text"
                 placeholder="6789534687"
               />
@@ -69,8 +45,9 @@
             <div class="row mb-3">
               <label class="form-label mt-2">Applicant FamilyId</label>
               <soft-model-input
-                id="email"
-                v-model="profileChange.familyId"
+                id="familyId"
+                name="family_id"
+                v-model="ticket.familyId"
                 type="text"
                 placeholder="7865RT66"
               />
@@ -78,7 +55,7 @@
             </div>
             <div class="mb-3">
               <label class="form-label">District</label>
-              <select class="form-select">
+              <select class="form-select" name="district" v-model="ticket.district">
               <option disabled selected value="">Please select one</option>
               <option>Accv</option>
               <option>Bvvv</option>
@@ -88,7 +65,8 @@
             <div class="row mb-3">
               <soft-checkbox
                 id="flexCheckDefault"
-                name="flexCheckDefault"
+                name="auto_close"
+                v-model="ticket.auto_close"
                 class="font-weight-light"
                 checked
               >Auto Close </soft-checkbox>
@@ -111,78 +89,70 @@
           <div class="card-body pt-0">
             <div class="mb-3">
               <label class="form-label">Type:</label>
-              <select class="form-select">
+              <select class="form-select" name="type" v-model="ticket.type">
               <option disabled selected value="">Please select one</option>
-              <option>All</option>
-              <option>Query</option>
-              <option>Modification</option>
+              <option value="all">All</option> 
+              <option value="query">Query</option>
+              <option value="modification">Modification</option>
             </select>
             </div>
             <div class="mb-3">
               <label class="form-label">Source</label>
-              <select class="form-select">
+              <select class="form-select" name="source"v-model=ticket.source>
               <option disabled selected value="">Please select one</option>
-              <option>Accv</option>
-              <option>Bvvv</option>
-              <option>Cvv</option>
+              <option value="2">Accv</option>
+              <option value="3">Bvvv</option>
+              <option value="'4'">Cvv</option>
             </select>
             </div>
 
             <div class="mb-3">
               <label class="form-label">Channel</label>
-              <select class="form-select">
+              <select class="form-select" name="channel" v-model="ticket.channel">
               <option disabled selected value="">Please select one</option>
-              <option>Accv</option>
-              <option>Bvvv</option>
-              <option>Cvv</option>
+              <option value="1">Accv</option>
+              <option value="2">Bvvv</option>
+              <option value="3">Cvv</option>
             </select>
             </div>
             <div class="mb-3">
               <label class="form-label">Category</label>
-              <select class="form-select">
+              <select class="form-select" name="category_id" v-model="ticket.category_id">
               <option disabled selected value="">Please select one</option>
-              <option>Accv</option>
-              <option>Bvvv</option>
-              <option>Cvv</option>
+              <option value="1">Accv</option>
+              <option value="1">Bvvv</option>
+              <option value="1">Cvv</option>
             </select>
             </div>
             <div class="mb-3">
               <label class="form-label">SubCategory</label>
-              <select class="form-select">
+              <select class="form-select"name="sub_category_id" v-model="ticket.sub_category_id">
               <option disabled selected value="">Please select one</option>
-              <option>Accv</option>
-              <option>Bvvv</option>
-              <option>Cvv</option>
+              <option value="1">Accv</option>
+              <option value="1">Bvvv</option>
+              <option value="1">Cvv</option>
             </select>
             </div>
             <div class="mb-3">
               <label class="form-label">ChildSubCAtegory</label>
-              <select class="form-select">
+              <select class="form-select" name="child_sub_category_id" v-model="ticket.child_sub_category_id">
               <option disabled selected value="">Please select one</option>
-              <option>Accv</option>
-              <option>Bvvv</option>
-              <option>Cvv</option>
+              <option value="1">Accv</option>
+              <option value="1">Bvvv</option>
+              <option value="1">Cvv</option>
             </select>
             </div>
             
             <div class="card-body pt-0">
             <label class="form-label">Attachment</label><br />
-            <soft-image-input id="pfp" ref="pfp" @added-image="addedImage" />
-
-            <soft-button
-              v-if="!file"
-              size="sm"
-              color="warning"
-              @click="$refs.pfp.click()"
-              >Select</soft-button>
-            <validation-error :errors="apiValidationErrors.profile_image" />
+            <input type="file" name="attachment" >
           </div>
           </div>
         </div>
       </div>
       <div class="row container-fluid">
               <label class="form-label">Description</label>
-            <textarea placeholder="add desciption" ></textarea>
+            <textarea placeholder="add desciption" name="description" v-model="ticket.description"></textarea>
             <!-- <input type="hidden" value="random_number" name="ticket_number"> -->
           </div>
       <div>
@@ -191,10 +161,10 @@
           color="warning"
           variant="gradient"
           size="sm"
-          :is-disabled="loading2 ? true : false"
-          @click="handleProfileChange"
+          :is-disabled="loading ? true : false"
+          @click="createTicket"
           ><span
-            v-if="loading2"
+            v-if="loading"
             class="spinner-border spinner-border-sm"
           ></span
           ><span v-else>Save</span></soft-button
@@ -215,6 +185,9 @@ import img from "@/assets/img/bruce-mars.jpg";
 import showSwal from "@/mixins/showSwal.js";
 import SoftCheckbox from "@/components/SoftCheckbox.vue";
 
+import { mapMutations } from "vuex";
+import axios from '@/axios-config';
+
 export default {
   name: "Profile",
   components: {
@@ -227,100 +200,45 @@ export default {
   },
   mixins: [formMixin],
   data() {
-    const passChange = {
-      password: "",
-      password_confirmation: "",
-    };
-    const profileChange = {
-      name: "",
-      email: "",
-      profile_image: "",
-    };
     return {
-      passChange,
-      profileChange,
+      ticket: {
+        name: '',
+        email: '',
+        familyId: '',
+        mobile:'',
+        district: '',
+        auto_close: '',
+        category_id: '',
+        sub_category_id:'',
+        child_sub_category_id:'',
+        channel:'',
+        source:'',
+        type:'',
+        description:'',
+        
+      },
+
       loading: false,
-      loading2: false,
-      img,
     };
   },
-  computed: {
-    profile() {
-      return this.$store.getters["profile/profile"];
-    },
-    pic() {
-      if (this.profile.profile_image) return this.profile.profile_image;
-      else return require("/assets/img/placeholder.jpg");
-    },
-  },
-  async created() {
-    try {
-      await this.$store.dispatch("profile/getProfile");
-      this.profileChange = { ...this.profile };
-    } catch (error) {
-      try {
-        await this.$store.dispatch("auth/logout");
-      } finally {
-        this.$router.push("/sign-in");
-      }
-    }
-  },
+  
   methods: {
-    async handlePassChange() {
-      if (this.profile.id <= 3) {
-        showSwal.methods.showSwal({
-          type: "error",
-          message: "You cannot change data of default users!",
-          width: 450,
-        });
-        return;
-      }
-      this.resetApiValidation();
-      this.loading = true;
-
+    async createTicket() {
       try {
-        await this.$store.dispatch("profile/updateProfile", this.passChange);
+        await this.$store.dispatch("tickets/createTicket", this.ticket);
+            
         showSwal.methods.showSwal({
           type: "success",
-          message: "Password changed successfully!",
+          message: "Ticket created successfully!",
           width: 500,
         });
-        this.passChange.password = "";
-        this.passChange.password_confirmation = "";
         this.loading = false;
       } catch (error) {
         this.setApiValidation(error.response.data.errors);
         this.loading = false;
       }
     },
-
-    async handleProfileChange() {
-      if (this.profile.id <= 3 && (process.env.VUE_APP_IS_DEMO ?? 1) == 1) {
-        showSwal.methods.showSwal({
-          type: "error",
-          message: "You cannot change data of default users!",
-          width: 450,
-        });
-        return;
-      }
-
-      this.resetApiValidation();
-      this.loading2 = true;
-
-      try {
-        await this.$store.dispatch("profile/updateProfile", this.profileChange);
-        showSwal.methods.showSwal({
-          type: "success",
-          message: "Profile updated successfully!",
-          width: 600,
-        });
-        this.loading2 = false;
-      } catch (error) {
-        console.log(error);
-        this.setApiValidation(error.response.data.errors);
-        this.loading2 = false;
-      }
-    },
+    
   },
 };
 </script>

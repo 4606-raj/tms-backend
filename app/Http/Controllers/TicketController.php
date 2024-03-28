@@ -25,7 +25,31 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //dd($request->all());
+        try {
+            $response = Ticket::create([
+                'name'          => $request->name,
+                'email'         => $request->email,
+                'family_id'      => $request->family_id,
+                'mobile'         => $request->mobile,
+                'auto_close'    => $request->auto_close,
+                'district'     => $request->district,
+                'type'        => $request->type,
+                'source'       => $request->source,
+                'channel'       => $request->channel,
+                'category_id'   => $request->category_id,
+                'sub_category_id'  => $request->sub_category_id,
+                'child_sub_category_id'  => $request->child_sub_category_id,
+                'description'  => $request->description,
+                'attachment'  => $request->attachment,
+            ]);
+        } catch (ClientException $e) {
+            $errors = json_decode($e->getResponse()->getBody()->getContents(), true)['errors'];
+            $errors = collect($errors)->map(function ($error) {
+                return Error::fromArray($error);
+            });
+            return ErrorResponse::make($errors);
+        }
     }
 
     /**
@@ -38,7 +62,7 @@ class TicketController extends Controller
         return $this->successResponse($data);
     }
 
-    /**
+    /** from storage.
      * Update the specified resource in storage.
      */
     public function update(Request $request, string $id)
@@ -47,9 +71,10 @@ class TicketController extends Controller
     }
 
     /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
+     * Remove the specified resource
+     * 
+        */
+     public function destroy(string $id)
     {
         //
     }

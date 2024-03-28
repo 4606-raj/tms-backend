@@ -7,4 +7,10 @@ export default {
       return response.data.data;
     }
   },
+  async createTicket(ticket) {
+    const response = await axios.post("/tickets", ticket);
+    if (response.status == 200) {
+      return response.data.data;
+    }
+  },
 };
