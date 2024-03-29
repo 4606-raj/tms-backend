@@ -8,7 +8,6 @@
               <h5>User Info</h5>
             </div>
 
-<<<<<<< Updated upstream
 
             <div class="card-body pt-0">
               <div class="row mb-3">
@@ -78,61 +77,6 @@
               </div>
 
             
-=======
-            <div class="row mb-3">
-              <label class="form-label mt-2">Applicant Email</label>
-              <soft-model-input
-                id="email"
-                name="email"
-                v-model="ticket.email"
-                type="email"
-                placeholder="example@email.com"
-              />
-              <validation-error :errors="apiValidationErrors.email" />
-            </div>
-            <div class="row mb-3">
-              <label class="form-label mt-2">Applicant Mobile</label>
-              <soft-model-input
-                id="mobile"
-                name="mobile"
-                v-model="ticket.mobile"
-                type="text"
-                placeholder="6789534687"
-              />
-              <validation-error :errors="apiValidationErrors.mobile" />
-            </div> 
-            <div class="row mb-3">
-              <label class="form-label mt-2">Applicant FamilyId</label>
-              <soft-model-input
-                id="familyId"
-                name="family_id"
-                v-model="ticket.family_id"
-                type="text"
-                placeholder="7865RT66"
-              />
-              <validation-error :errors="apiValidationErrors.familyId" />
-            </div>
-            <div class="mb-3">
-              <label class="form-label">District</label>
-              <select class="form-select" name="district" v-model="ticket.district">
-              <option disabled selected value="">Please select one</option>
-              <option>Accv</option>
-              <option>Bvvv</option>
-              <option>Cvv</option>
-            </select>
-            </div>
-            <div class="row mb-3">
-              <soft-checkbox
-                id="flexCheckDefault"
-                name="auto_close"
-                v-model="ticket.auto_close"
-                value="1"
-                class="font-weight-light"
-                checked
-              >Auto Close </soft-checkbox>
-              
-              
->>>>>>> Stashed changes
             </div>
 
           
@@ -277,11 +221,7 @@ export default {
         family_id: '',
         mobile:'',
         district: '',
-<<<<<<< Updated upstream
-        auto_close: true,
-=======
         auto_close: '0',
->>>>>>> Stashed changes
         category_id: '',
         sub_category_id:'',
         child_sub_category_id:'',
