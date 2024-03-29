@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponses;
 use App\Models\Ticket;
+use App\Http\Requests\TicketRequest;
 
 class TicketController extends Controller
 {
@@ -23,26 +24,12 @@ class TicketController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(TicketRequest $request)
     {
-        //dd($request->all());
         try {
-            $response = Ticket::create([
-                'name'          => $request->name,
-                'email'         => $request->email,
-                'family_id'      => $request->family_id,
-                'mobile'         => $request->mobile,
-                'auto_close'    => $request->auto_close,
-                'district'     => $request->district,
-                'type'        => $request->type,
-                'source'       => $request->source,
-                'channel'       => $request->channel,
-                'category_id'   => $request->category_id,
-                'sub_category_id'  => $request->sub_category_id,
-                'child_sub_category_id'  => $request->child_sub_category_id,
-                'description'  => $request->description,
-                'attachment'  => $request->attachment,
-            ]);
+
+            $response = Ticket::create($request->all());
+            
         } catch (ClientException $e) {
             $errors = json_decode($e->getResponse()->getBody()->getContents(), true)['errors'];
             $errors = collect($errors)->map(function ($error) {

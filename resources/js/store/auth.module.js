@@ -2,7 +2,6 @@ import authService from "../services/auth.service";
 import router from "../router/index";
 
 const user = JSON.parse(localStorage.getItem("userF"));
-console.log(user);
 const initialState = user ? { loggedIn: true } : { loggedIn: false };
 
 export const auth = {

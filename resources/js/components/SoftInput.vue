@@ -78,7 +78,6 @@ export default {
   },
   watch: {
     value(newValue) {
-      console.log(newValue, 'newValue');
       this.inputValue = newValue;
     }
   },

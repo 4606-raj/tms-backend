@@ -56,7 +56,7 @@ export default {
     },
   },
   mounted() {
-    console.log(this.data);
+    // console.log(this.data);
   }
   
 };

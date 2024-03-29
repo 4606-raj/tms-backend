@@ -4,6 +4,7 @@ import { auth } from "./auth.module";
 import { reset } from "./reset.module";
 import { profile } from "./profile.module";
 import { tickets } from "./tickets.module";
+import { categories } from "./categories.module";
 
 export default createStore({
   state: {
@@ -30,6 +31,7 @@ export default createStore({
     reset,
     profile,
     tickets,
+    categories,
   },
   mutations: {
     toggleConfigurator(state) {

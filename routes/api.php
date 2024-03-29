@@ -12,6 +12,7 @@ use App\Http\Controllers\Api\V2\MeController;
 use LaravelJsonApi\Laravel\Facades\JsonApiRoute;
 use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use App\Http\Controllers\TicketController;
+use App\Http\Controllers\CategoriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,6 +33,7 @@ Route::prefix('v1')->middleware('json.api')->group(function () {
     Route::post('/password-reset', ResetPasswordController::class)->name('password.reset');
 
     Route::apiResource('tickets', TicketController::class);
+    Route::apiResource('categories', CategoriesController::class);
     
 });
 

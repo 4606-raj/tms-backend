@@ -5,7 +5,8 @@
       class="form-check-input"
       type="checkbox"
       :name="name"
-      :checked="checked"
+      :checked="value"
+      @input="emitInput"
     />
     <label :for="id" class="custom-control-label" :class="$attrs.class">
       <slot />
@@ -25,9 +26,14 @@ export default {
       type: String,
       default: "",
     },
-    checked: {
+    value: {
       type: Boolean,
       default: false,
+    },
+  },
+  methods: {
+    emitInput(event) {
+      this.$emit("update:value", event.target.checked);
     },
   },
 };
