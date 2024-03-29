@@ -27,15 +27,43 @@ class TicketController extends Controller
     public function store(TicketRequest $request)
     {
         try {
+<<<<<<< Updated upstream
 
             $response = Ticket::create($request->all());
             
+=======
+            $rules = [
+                'name' => 'required|string|max:255',
+                'email' => 'required|email|unique:users,email',
+                // Add more validation rules as needed
+            ];
+    
+            // Validate the request
+            $validatedData = $request->validate($rules);
+
+            $response = Ticket::create([
+                'name'          => $request->name,
+                'email'         => $request->email,
+                'family_id'      => $request->family_id,
+                'mobile'         => $request->mobile,
+                'auto_close'    => $request->auto_close,
+                'district'     => $request->district,
+                'type'        => $request->type,
+                'source'       => $request->source,
+                'channel'       => $request->channel,
+                'category_id'   => $request->category_id,
+                'sub_category_id'  => $request->sub_category_id,
+                'child_sub_category_id'  => $request->child_sub_category_id,
+                'description'  => $request->description,
+                'attachment'  => $request->attachment,
+            ]);
+>>>>>>> Stashed changes
         } catch (ClientException $e) {
-            $errors = json_decode($e->getResponse()->getBody()->getContents(), true)['errors'];
-            $errors = collect($errors)->map(function ($error) {
-                return Error::fromArray($error);
-            });
-            return ErrorResponse::make($errors);
+            // $errors = json_decode($e->getResponse()->getBody()->getContents(), true)['errors'];
+            // $errors = collect($errors)->map(function ($error) {
+            //     return Error::fromArray($error);
+            // });
+            // return ErrorResponse::make($errors);
         }
     }
 
