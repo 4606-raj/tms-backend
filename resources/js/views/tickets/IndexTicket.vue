@@ -2,7 +2,10 @@
     <div class="py-4 container-fluid">
       <div class="row">
         <div class="col-12">
-          <soft-table :headers="tableHeaders" :data="tableData"/>
+
+          <router-link class="btn bg-gradient-warning btn-sm" :to="{name: 'CreateTicket'}">Create Ticket</router-link>
+          
+          <soft-table :headers="tableHeaders" :data="tickets"/>
         </div>
       </div>
     </div>
@@ -22,25 +25,20 @@
         tableHeaders: [
           'name', 'email', 'phone'
         ],
-        tableData: [],
       }
     },
     async mounted() {
-      await this.fetchData();
+      this.fetchData();
+    },
+    computed: {
+      tickets() {
+        const allTickets = this.$store.getters['tickets/getAll'];
+        return allTickets.map(({ name, email, mobile }) => ({ name, email, mobile }))
+      },
     },
     methods: {
-      async fetchData() {
-        try {
-
-          await this.$store.dispatch('tickets/fetchAll')
-
-          this.tableData = this.$store.getters['tickets/getAll']
-          this.tableData = this.tableData.map(({ name, email, mobile }) => ({ name, email, mobile }))
-          
-        } catch (error) {
-          console.error('Error fetching data:', error);
-        }
-
+      fetchData() {
+        this.$store.dispatch('tickets/fetchAll')
       }
     }
     

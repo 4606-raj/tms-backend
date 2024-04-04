@@ -29,19 +29,6 @@ class TicketController extends Controller
     public function store(TicketRequest $request)
     {
         try {
-            $rules = [
-                'name' => 'required|string|max:255',
-                'email' => 'required|email|unique:users,email',
-                // Add more validation rules as needed
-            ];
-    
-            // Validate the request
-            //$validatedData = $request->validate($rules);
-
-
-            //$ticketNumber = Str::random(8);
-            //Ticket::where('ticket_number', $ticketNumber)->exists();
-dd((string)auth()->id());
             $response = Ticket::create([
                 'name'          => $request->name,
                 'email'         => $request->email,
@@ -57,15 +44,14 @@ dd((string)auth()->id());
                 'child_sub_category_id'  => $request->child_sub_category_id,
                 'description'  => $request->description,
                 'attachment'  => $request->attachment,
-                'ticket_number' => $ticketNumber,
+                'ticket_number' => \Str::random(8),
                 'user_id'       => auth()->id()
             ]);
+
+            return $this->successResponse($response, 'Ticket Created Successfully');
         } catch (ClientException $e) {
-            // $errors = json_decode($e->getResponse()->getBody()->getContents(), true)['errors'];
-            // $errors = collect($errors)->map(function ($error) {
-            //     return Error::fromArray($error);
-            // });
-            // return ErrorResponse::make($errors);
+            \Log::error($e);
+            return $this->errorResponse($e->getMessage(), 500);
         }
     }
 

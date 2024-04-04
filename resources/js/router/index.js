@@ -137,7 +137,7 @@ const routes = [
     component: CreateTicket,
   },
   {
-    path: "/index-ticket",
+    path: "/tickets",
     name: "IndexTicket",
     component: IndexTicket,
   },

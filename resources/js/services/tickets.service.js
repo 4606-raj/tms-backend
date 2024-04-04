@@ -12,5 +12,6 @@ export default {
     if (response.status == 200) {
       return response.data.data;
     }
+    return false;
   },
 };

@@ -10,7 +10,7 @@ export default {
         width: options.width ? options.width : 300,
         text: options.message,
         customClass: {
-          popup: options.type === "success" ? "bg-success" : "bg-danger",
+          popup: options.type === "error" ? "bg-danger" : "bg-primary",
           htmlContainer: "text-white",
         },
         showConfirmButton: false,

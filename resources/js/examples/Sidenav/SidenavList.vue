@@ -64,7 +64,7 @@
         </h6>
       </li>
       <li class="nav-item">
-        <sidenav-collapse navText="Create Ticket" :to="{ name: 'CreateTicket' }">
+        <sidenav-collapse navText="Tickets" :to="{ name: 'IndexTicket' }">
           <template #icon>
             <customer-support />
           </template>

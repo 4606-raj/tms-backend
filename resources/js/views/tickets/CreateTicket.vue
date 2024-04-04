@@ -199,6 +199,7 @@ export default {
     this.$store.dispatch("channels/fetchAll");
     this.$store.dispatch("district/fetchAll");
     this.$store.dispatch("sources/fetchAll");
+    this.$store.dispatch("tickets/fetchAll");
   },
 
   computed: {
@@ -244,19 +245,7 @@ export default {
   
   methods: {
     async handleSubmit() {
-      try {
-        await this.$store.dispatch("tickets/createTicket", this.ticket);
-            
-        showSwal.methods.showSwal({
-          type: "success",
-          message: "Ticket created successfully!",
-          width: 500,
-        });
-        this.loading = false;
-      } catch (error) {
-        this.setApiValidation(error.response.data.errors);
-        this.loading = false;
-      }
+      await this.$store.dispatch("tickets/createTicket", this.ticket);
     },
     
     async getSubcategories() {
