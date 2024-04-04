@@ -13,6 +13,9 @@ use LaravelJsonApi\Laravel\Facades\JsonApiRoute;
 use LaravelJsonApi\Laravel\Http\Controllers\JsonApiController;
 use App\Http\Controllers\TicketController;
 use App\Http\Controllers\CategoriesController;
+use App\Http\Controllers\DistrictController;
+use App\Http\Controllers\SourceController;
+use App\Http\Controllers\ChannelController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,8 +35,14 @@ Route::prefix('v1')->middleware('json.api')->group(function () {
     Route::post('/password-forgot', ForgotPasswordController::class);
     Route::post('/password-reset', ResetPasswordController::class)->name('password.reset');
 
-    Route::apiResource('tickets', TicketController::class);
+ 
     Route::apiResource('categories', CategoriesController::class);
+    Route::apiResource('channels', ChannelController::class);
+    Route::apiResource('sources', SourceController::class);
+    Route::apiResource('district', DistrictController::class);
+    Route::middleware('auth:api')->apiResource('tickets', TicketController::class);
+    // Route::post('subcategories', CategoriesController::class,'subCategories');
+    // Route::post('childsubcategories', CategoriesController::class,'childSubCategories');
     
 });
 

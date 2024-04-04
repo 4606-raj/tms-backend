@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Traits\ApiResponses;
-use App\Models\Category;
+use App\Models\Source;
 
-class CategoriesController extends Controller
+class SourceController extends Controller
 {
 
     use ApiResponses;
@@ -16,8 +16,8 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $data = Category::with('subcategories')->where('cat_id','=','1')->get();
- 
+        $data = Source::where('status','1')->get();
+
 
         return $this->successResponse($data);
     }
@@ -53,16 +53,5 @@ class CategoriesController extends Controller
     {
         //
     }
-    public function subCategories()
-    {
-        $data = Category::with('subcategories')->where('cat_id','=','1')->get();
-
-        return $this->successResponse($data);
-    }
-    public function childSubCategories($id)
-    {
-        $data = Category::with('subcategories')->where('cat_id','=',$id)->get();
-
-        return $this->successResponse($data);
-    }
+   
 }

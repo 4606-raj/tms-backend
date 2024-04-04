@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Traits\ApiResponses;
 use App\Models\Ticket;
 use App\Http\Requests\TicketRequest;
+use Illuminate\Support\Str;
+use Auth;
 
 class TicketController extends Controller
 {
@@ -27,11 +29,6 @@ class TicketController extends Controller
     public function store(TicketRequest $request)
     {
         try {
-<<<<<<< Updated upstream
-
-            $response = Ticket::create($request->all());
-            
-=======
             $rules = [
                 'name' => 'required|string|max:255',
                 'email' => 'required|email|unique:users,email',
@@ -39,8 +36,12 @@ class TicketController extends Controller
             ];
     
             // Validate the request
-            $validatedData = $request->validate($rules);
+            //$validatedData = $request->validate($rules);
 
+
+            //$ticketNumber = Str::random(8);
+            //Ticket::where('ticket_number', $ticketNumber)->exists();
+dd((string)auth()->id());
             $response = Ticket::create([
                 'name'          => $request->name,
                 'email'         => $request->email,
@@ -56,8 +57,9 @@ class TicketController extends Controller
                 'child_sub_category_id'  => $request->child_sub_category_id,
                 'description'  => $request->description,
                 'attachment'  => $request->attachment,
+                'ticket_number' => $ticketNumber,
+                'user_id'       => auth()->id()
             ]);
->>>>>>> Stashed changes
         } catch (ClientException $e) {
             // $errors = json_decode($e->getResponse()->getBody()->getContents(), true)['errors'];
             // $errors = collect($errors)->map(function ($error) {

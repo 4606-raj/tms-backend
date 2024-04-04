@@ -5,6 +5,9 @@ import { reset } from "./reset.module";
 import { profile } from "./profile.module";
 import { tickets } from "./tickets.module";
 import { categories } from "./categories.module";
+import { district } from "./district.module";
+import { channels } from "./channels.module";
+import { sources } from "./sources.module";
 
 export default createStore({
   state: {
@@ -32,6 +35,9 @@ export default createStore({
     profile,
     tickets,
     categories,
+    district,
+    channels,
+    sources
   },
   mutations: {
     toggleConfigurator(state) {

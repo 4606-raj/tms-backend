@@ -59,9 +59,7 @@
                 <label class="form-label">District</label>
                 <select class="form-select" name="district" v-model="ticket.district">
                 <option disabled selected value="">Please select one</option>
-                <option>Accv</option>
-                <option>Bvvv</option>
-                <option>Cvv</option>
+                <option v-for="item in district" :value="item.id" :key="item.id">{{ item.name }}</option>
               </select>
               </div>
               <div class="row mb-3">
@@ -104,9 +102,7 @@
                 <label class="form-label">Source</label>
                 <select class="form-select" name="source"v-model=ticket.source>
                 <option disabled selected value="">Please select one</option>
-                <option value="2">Accv</option>
-                <option value="3">Bvvv</option>
-                <option value="'4'">Cvv</option>
+                <option v-for="item in sources" :value="item.id" :key="item.id">{{ item.name }}</option>
               </select>
               </div>
 
@@ -114,34 +110,32 @@
                 <label class="form-label">Channel</label>
                 <select class="form-select" name="channel" v-model="ticket.channel">
                 <option disabled selected value="">Please select one</option>
-                <option value="1">Accv</option>
-                <option value="2">Bvvv</option>
-                <option value="3">Cvv</option>
+                <option v-for="item in channels" :value="item.id" :key="item.id">{{ item.name }}</option>
               </select>
               </div>
               <div class="mb-3">
                 <label class="form-label">Category</label>
-                <select class="form-select" name="category_id" v-model="ticket.category_id" @change="getSubcategories">
+                <select class="form-select" name="category_id" v-model="ticket.category_id">
                   <option disabled value="">Please select one</option>
-                  <option v-for="item in categories" :value="item.id" :key="item.id">{{ item.name }}</option>
+                  <option value="1" >Management</option>
+                  <option value="2" >Technical</option>
                 </select>
               </div>
               <div class="mb-3">
                 <label class="form-label">SubCategory</label>
-                <select class="form-select"name="sub_category_id" v-model="ticket.sub_category_id">
+                <select class="form-select"name="sub_category_id" v-model="ticket.sub_category_id"  @change="getSubcategories">
                 <option disabled selected value="">Please select one</option>
-                <option v-for="item in subcategories" value="{{ item.id }}">{{ item.name }}</option>
+                <option v-for="item in categories" :value="item.id" :key="item.id">{{ item.name }}</option>
               </select>
               </div>
               <div class="mb-3">
-                <label class="form-label">ChildSubCAtegory</label>
-                <select class="form-select" name="child_sub_category_id" v-model="ticket.child_sub_category_id">
+                <label class="form-label">ChildSubCategory</label>
+                <select class="form-select"name="child_sub_category_id" v-model="ticket.child_sub_category_id">
                 <option disabled selected value="">Please select one</option>
-                <option value="1">Accv</option>
-                <option value="1">Bvvv</option>
-                <option value="1">Cvv</option>
+                <option v-for="item in subcategories" :value="item.id">{{ item.name }}</option>
               </select>
               </div>
+            
               
               <div class="card-body pt-0">
               <label class="form-label">Attachment</label><br />
@@ -202,6 +196,9 @@ export default {
 
   mounted() {
     this.$store.dispatch("categories/fetchAll");
+    this.$store.dispatch("channels/fetchAll");
+    this.$store.dispatch("district/fetchAll");
+    this.$store.dispatch("sources/fetchAll");
   },
 
   computed: {
@@ -210,7 +207,16 @@ export default {
     },
     subcategories() {
       return this.$store.getters['categories/getCurrentSubcategories'];
-    }
+    },
+    district() {
+      return this.$store.getters['district/getAll'];
+    },
+    channels() {
+      return this.$store.getters['channels/getAll'];
+    },
+    sources() {
+      return this.$store.getters['sources/getAll'];
+    },
   },
 
   data() {
@@ -255,7 +261,7 @@ export default {
     
     async getSubcategories() {
       const allCategories = await this.categories;
-      const res = allCategories.filter(category => category.id == this.ticket.category_id);
+      const res = allCategories.filter(category => category.id == this.ticket.sub_category_id);
       await this.$store.dispatch("categories/setCurrentSubcategories", res[0].subcategories);
       return res[0].subcategories;
     }
