@@ -2,16 +2,21 @@ import ticketService from "../services/tickets.service";
 import showSwal from "@/mixins/showSwal.js";
 
 const initialState = {
-  tickets: []
+  tickets: [],
+  pagination: null
 };
 
 export const tickets = {
   namespaced: true,
   state: initialState,
   actions: {
-    async fetchAll({ commit }) {      
-      let response = await ticketService.fetchAll();
-      commit("setTickets", response);
+    async fetchAll({ commit }, payload) {      
+      let response = await ticketService.fetchAll(payload);
+      
+      let {data, ...pagination} = response;
+      
+      commit("setTickets", data);
+      commit("updatePagination", pagination);
     },
     async createTicket({ commit }, ticket) {
       const response = await ticketService.createTicket(ticket);
@@ -32,11 +37,21 @@ export const tickets = {
         state.tickets.push(payload)
       }
     },
+
+  updatePagination(state, payload) {
+    state.pagination = payload;
   },
+
+},
+
+
 
   getters: {
     getAll(state) {
       return state.tickets;
+    },
+    getPagination(state) {
+      return state.pagination;
     },
   },
 };

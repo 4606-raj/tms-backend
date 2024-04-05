@@ -18,7 +18,7 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $data = Ticket::all();
+        $data = Ticket::paginate(5);
 
         return $this->successResponse($data);
     }

@@ -37,6 +37,8 @@ export default {
     getClasses: (active, disabled) => {
       let activeValue, disabledValue;
 
+      console.log(disabled);
+
       activeValue = active ? "active" : null;
       disabledValue = disabled ? "disabled" : null;
 

@@ -1,8 +1,9 @@
 import axios from "../axios-config";
 
 export default {
-  async fetchAll() {
-    const response = await axios.get("/tickets");
+  async fetchAll(payload) {
+    const page = payload.page != undefined? payload.page: 1;
+    const response = await axios.get(`/tickets?page=${page}`);
     if (response.status == 200) {
       return response.data.data;
     }
