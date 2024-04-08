@@ -19,7 +19,8 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $data = Ticket::with('category','subCategory','childSubcategory','districts')->paginate(5);
+        $data = Ticket::with('category','subCategory','childSubcategory','districts')->GET(10); // Change 10 to the number of items per page you want
+
         $tickets = $data->map(function ($ticket) {
             return [
                 'ticket_number'        => $ticket->ticket_number,
@@ -28,12 +29,12 @@ class TicketController extends Controller
                 'email'                => $ticket->email,
                 'mobile'               => $ticket->mobile,
                 'family_id'            => $ticket->family_id,
-                'category_name'        => $ticket->category->name, // Assuming 'name' is the attribute storing the category name
-                'subcategory_name'     => $ticket->subCategory->name,
-                'chidsubcategory_name' => $ticket->childSubcategory->name,
+                'category_name'        => $ticket->category ? $ticket->category->name : null, // Assuming 'name' is the attribute storing the category name
+                'subcategory_name'     => $ticket->subCategory ? $ticket->subCategory->name : null,
+                'chidsubcategory_name' => $ticket->childSubcategory ? $ticket->childSubcategory->name : null,
                 'assign_to'            => $ticket->assign_to,
                 'auto_close'           => $ticket->auto_close, 
-                'district_name'        => $ticket->districts->name,
+                'district_name'        => $ticket->districts ? $ticket->districts->name : null,
                 'type'                 => $ticket->type,
                 'source'               => $ticket->source,
                 'channel'              => $ticket->channel,
@@ -43,7 +44,9 @@ class TicketController extends Controller
             ];
         });
 
-        return $this->successResponse($tickets);
+        return $this->successResponse($data);
+
+
     }
 
     /**

@@ -31,52 +31,76 @@
   </template>
   
   <script>
-  import SoftTable from "../components/SoftTable.vue";
-  import SoftPagination from "../components/SoftPagination.vue";
-  import SoftPaginationItem from "../components/SoftPaginationItem.vue";
-  
-  export default {
-    name: "IndexTicket",
-    components: {
-      SoftTable,
-      SoftPagination,
-      SoftPaginationItem, 
-    },
+import SoftTable from "../components/SoftTable.vue";
+import SoftPagination from "../components/SoftPagination.vue";
+import SoftPaginationItem from "../components/SoftPaginationItem.vue";
 
-    data() {
-      return {
-        tableHeaders: [
-          'ticket_number','name(mobile)', 'email', 'mobile','familyid','category','subcategory','childsubcategory','Assignto','district','status','channel','loggedby','loggedat','resolveddate'
-        ],
-      }
-    },
-    async mounted() {
-      this.fetchData();
-    },
-    computed: {
-      tickets() {
-        const allTickets = this.$store.getters['tickets/getAll'];
-        return allTickets.map(({ ticket_number, name_mob, email, mobile, family_id, category_name, subcategory_name, chidsubcategory_name, assign_to, district_name,auto_close,channel,user_id,created_at,resolved_date  }) => ({ ticket_number, name_mob, email, mobile, family_id, category_name, subcategory_name, chidsubcategory_name, assign_to, district_name,auto_close,channel,user_id,created_at,resolved_date }))
-      },
-      pagination() {
-        return this.$store.getters['tickets/getPagination'];
-      }
-    },
-    methods: {
-      fetchData() {
-        this.$store.dispatch('tickets/fetchAll', {page: this.pagination?.current_page})
-      },
+export default {
+  name: "IndexTicket",
+  components: {
+    SoftTable,
+    SoftPagination,
+    SoftPaginationItem,
+  },
 
-      changePage(page) {
-
-        if(page < 1 || page > this.pagination?.last_page) return;
-        
-        this.pagination.current_page = page;
-        this.fetchData()
-      }
-
+  data() {
+    return {
+      tableHeaders: [
+        'ticketnumber', 'name(mobile)', 'email', 'mobile', 'familyid', 'category', 'subcategory', 'childsubcategory', 'Assignto', 'district', 'status', 'channel', 'loggedby', 'loggedat', 'resolveddate'
+      ],
     }
-    
-  };
-  </script>
+  },
+  async mounted() {
+    this.fetchData();
+  },
+  computed: {
+    tickets() {
+      const allTickets = this.$store.getters['tickets/getAll'];
+         console.log(allTickets);
+      return allTickets.map(({ ticket_number, name_mob, email, mobile, family_id, category_name, subcategory_name, chidsubcategory_name, assign_to, district_name, auto_close, channel, user_id, created_at, resolved_date }) => ({
+        ticket_number,
+        name_mob,
+        email,
+        mobile,
+        family_id,
+        category_name,
+        subcategory_name,
+        chidsubcategory_name,
+        assign_to,
+        district_name,
+        auto_close,
+        channel,
+        user_id,
+        created_at,
+        resolved_date
+      }))
+    },
+    pagination() {
+      return this.$store.getters['tickets/getPagination'];
+    }
+  },
+  methods: {
+    fetchData() {
+        // Check if pagination object exists before accessing its properties
+        if (this.pagination && this.pagination.current_page) {
+          this.$store.dispatch('tickets/fetchAll', { page: this.pagination.current_page });
+        } else {
+          // Handle the case where pagination object is not initialized
+          console.error('Pagination object is null or undefined');
+        }
+      },
+
+
+    changePage(page) {
+      if (page < 1 || page > this.pagination.last_page) return;
+
+      this.pagination.current_page = page;
+      this.fetchData()
+    }
+
+  }
+
+};
+</script>
+
   

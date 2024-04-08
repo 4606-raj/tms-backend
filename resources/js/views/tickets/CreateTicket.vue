@@ -69,12 +69,8 @@
                   v-model="ticket.auto_close"
                   class="font-weight-light"
                   checked
-                >Auto Close </soft-checkbox>
-                
-                
+                >Auto Close </soft-checkbox>  
               </div>
-
-            
             </div>
 
           
@@ -178,7 +174,6 @@ import SoftAvatar from "@/components/SoftAvatar.vue";
 import SoftModelInput from "@/components/SoftModelInput.vue";
 import ValidationError from "@/components/ValidationError.vue";
 import formMixin from "../../mixins/form-mixin.js";
-import showSwal from "@/mixins/showSwal.js";
 import SoftCheckbox from "@/components/SoftCheckbox.vue";
 
 export default {
