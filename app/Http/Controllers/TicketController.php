@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponses;
 use App\Models\Ticket;
+use App\Models\Category;
 use App\Http\Requests\TicketRequest;
 use Illuminate\Support\Str;
 use Auth;
@@ -18,9 +19,31 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $data = Ticket::paginate(5);
+        $data = Ticket::with('category','subCategory','childSubcategory','districts')->paginate(5);
+        $tickets = $data->map(function ($ticket) {
+            return [
+                'ticket_number'        => $ticket->ticket_number,
+                'name_mob'             => $ticket->name. "  <br>  " . $ticket->mobile,
+                'name'                 => $ticket->name,
+                'email'                => $ticket->email,
+                'mobile'               => $ticket->mobile,
+                'family_id'            => $ticket->family_id,
+                'category_name'        => $ticket->category->name, // Assuming 'name' is the attribute storing the category name
+                'subcategory_name'     => $ticket->subCategory->name,
+                'chidsubcategory_name' => $ticket->childSubcategory->name,
+                'assign_to'            => $ticket->assign_to,
+                'auto_close'           => $ticket->auto_close, 
+                'district_name'        => $ticket->districts->name,
+                'type'                 => $ticket->type,
+                'source'               => $ticket->source,
+                'channel'              => $ticket->channel,
+                'user_id'              => $ticket->user_id,
+                'created_at'           => $ticket->created_at,
+                'resolved_date'        => $ticket->resolved_date,
+            ];
+        });
 
-        return $this->successResponse($data);
+        return $this->successResponse($tickets);
     }
 
     /**

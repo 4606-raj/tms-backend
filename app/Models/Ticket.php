@@ -13,15 +13,19 @@ class Ticket extends Model
     ];
 
     public function category() {
-        return $this->hasMany(Category::class);
+        return $this->belongsTo(Category::class);
     }
 
     public function subCategory() {
-        return $this->hasMany(Category::class, 'sub_category_id');
+        return $this->belongsTo(Category::class, 'sub_category_id');
     }
 
-    public function newSubcategory() {
-        return $this->hasMany(Category::class, 'new_subcategory_id');
+    public function childSubcategory() {
+        return $this->belongsTo(Category::class, 'child_sub_category_id');
+    }
+
+    public function districts() {
+        return $this->belongsTo(District::class, 'district');
     }
     
 }

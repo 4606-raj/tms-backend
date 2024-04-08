@@ -46,7 +46,7 @@
     data() {
       return {
         tableHeaders: [
-          'name', 'email', 'phone'
+          'ticket_number','name(mobile)', 'email', 'mobile','familyid','category','subcategory','childsubcategory','Assignto','district','status','channel','loggedby','loggedat','resolveddate'
         ],
       }
     },
@@ -56,7 +56,7 @@
     computed: {
       tickets() {
         const allTickets = this.$store.getters['tickets/getAll'];
-        return allTickets.map(({ name, email, mobile }) => ({ name, email, mobile }))
+        return allTickets.map(({ ticket_number, name_mob, email, mobile, family_id, category_name, subcategory_name, chidsubcategory_name, assign_to, district_name,auto_close,channel,user_id,created_at,resolved_date  }) => ({ ticket_number, name_mob, email, mobile, family_id, category_name, subcategory_name, chidsubcategory_name, assign_to, district_name,auto_close,channel,user_id,created_at,resolved_date }))
       },
       pagination() {
         return this.$store.getters['tickets/getPagination'];
