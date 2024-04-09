@@ -3,8 +3,12 @@ import showSwal from "@/mixins/showSwal.js";
 
 const initialState = {
   tickets: [],
-  pagination: null
+  pagination: {
+    current_page: 1,
+    // Other pagination properties such as total_pages, per_page, etc.
+  },
 };
+
 
 export const tickets = {
   namespaced: true,

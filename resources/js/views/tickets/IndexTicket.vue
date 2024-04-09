@@ -56,22 +56,27 @@ export default {
   computed: {
     tickets() {
       const allTickets = this.$store.getters['tickets/getAll'];
-         console.log(allTickets);
-      return allTickets.map(({ ticket_number, name_mob, email, mobile, family_id, category_name, subcategory_name, chidsubcategory_name, assign_to, district_name, auto_close, channel, user_id, created_at, resolved_date }) => ({
+      if (!allTickets || !Array.isArray(allTickets)) {
+        console.error('Tickets data is not properly initialized or is not an array.');
+        return [];
+      }
+
+         console.log(allTickets,'dfdf');
+      return allTickets.map(({ ticket_number, name, email, mobile, family_id, category, sub_category, child_subcategory, assign_to, districts, auto_close, channels, users, created_at, resolved_date }) => ({
         ticket_number,
-        name_mob,
+        name_mob: `${name} - ${mobile}`,
         email,
         mobile,
         family_id,
-        category_name,
-        subcategory_name,
-        chidsubcategory_name,
-        assign_to,
-        district_name,
-        auto_close,
-        channel,
-        user_id,
-        created_at,
+        category_name: category.name,
+        subcategory_name: sub_category.name,
+        chidsubcategory_name: child_subcategory.name,
+        assign_to : users.name,
+        district_name: districts.name,
+        auto_close: auto_close === '0' ? 'Open' : 'close',
+        channel: channels.name,
+        logged: users.name,
+        created_at: this.formatDate(created_at),
         resolved_date
       }))
     },
@@ -80,6 +85,12 @@ export default {
     }
   },
   methods: {
+
+    formatDate(dateString) {
+    // Assuming dateString is in ISO format like "YYYY-MM-DDTHH:MM:SSZ"
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+    },
     fetchData() {
         // Check if pagination object exists before accessing its properties
         if (this.pagination && this.pagination.current_page) {

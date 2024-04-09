@@ -12,6 +12,10 @@ class Ticket extends Model
        'type','email','name','mobile','district','family_id','source','channel','user_id','user_id','category_id','category_id','sub_category_id','sub_category_id','child_sub_category_id','assign_by','attachment','auto_close','ticket_number','assign_to','resloved_at','description','priority','remark',
     ];
 
+    public function users() {
+        return $this->belongsTo(User::class,'user_id');
+    }
+
     public function category() {
         return $this->belongsTo(Category::class);
     }
@@ -26,6 +30,14 @@ class Ticket extends Model
 
     public function districts() {
         return $this->belongsTo(District::class, 'district');
+    }
+
+    public function channels() {
+        return $this->belongsTo(Channel::class,'channel');
+    }
+
+    public function sources() {
+        return $this->belongsTo(Source::class,'source');
     }
     
 }
