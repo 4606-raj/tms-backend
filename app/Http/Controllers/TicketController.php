@@ -17,9 +17,44 @@ class TicketController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $tickets = Ticket::with('users:id,name','category:id,name','subCategory:id,name','childSubcategory','districts','channels','sources')->paginate(10); // Change 10 to the number of items per page you want
+        $query = Ticket::with('users:id,name','category:id,name','subCategory:id,name','childSubcategory','districts','channels','sources');
+        if($request->type){
+            $query->where('type',"=",$request->type);
+        }
+        if($request->district){
+            $query->where('district',"=",$request->district);
+        }
+        if($request->status){
+            $query->where('status',"=",$request->status);
+        }
+        if($request->start & $request->end){
+            $query->where(['created_at'=> $request->start,'resolved_at'=> $request->end]);
+        }
+        if($request->start){
+            $query->date('created_at',$request->start);
+        }
+        if($request->end){
+            $query->date('resolved_at',"=",$request->status);
+        }
+        if($request->category_id){
+            $query->where('category_id',$request->category_id);
+        }
+        if($request->sub_category_id){
+            $query->where('subcategory_id',$request->subcategory_id);
+        }
+        if($request->child_subcategory_id){
+            $query->where('child_sub_category_id',$request->child_subcategory_id);
+        }
+        if($request->assign_by){
+            $query->where('assign_by',$request->assign_by);
+        }
+        if($request->assign_to){
+            $query->where('assign_to',$request->assign_to);
+        }
+      
+        $tickets =     $query->paginate(10); 
         return $this->successResponse($tickets);
 
 
@@ -83,5 +118,22 @@ class TicketController extends Controller
      public function destroy(string $id)
     {
         //
+    }
+    public function search(Request $request)
+    {
+        $query = Ticket::with('users:id,name','category:id,name','subCategory:id,name','childSubcategory','districts','channels','sources');
+        if($request->search == 'ticket_number'){
+            $query->where('ticket_number',"=",$request->ticket_number);
+        }
+        if($request->search == 'family_id'){
+            $query->where('family_id',"=",$request->family_id);
+        }
+        if($request->search == 'mobile'){
+            $query->where('mobile',"=",$request->mobile);
+        }
+        $ticket =     $query->first(); 
+        return $this->successResponse($ticket);
+
+
     }
 }

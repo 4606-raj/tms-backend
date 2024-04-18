@@ -41,6 +41,7 @@ Route::prefix('v1')->middleware('json.api')->group(function () {
     Route::apiResource('sources', SourceController::class);
     Route::apiResource('district', DistrictController::class);
     Route::middleware('auth:api')->apiResource('tickets', TicketController::class);
+    Route::middleware('auth:api')->post('search-ticket', [TicketController::class,'search']);
     // Route::post('subcategories', CategoriesController::class,'subCategories');
     // Route::post('childsubcategories', CategoriesController::class,'childSubCategories');
     

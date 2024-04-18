@@ -72,7 +72,7 @@
       </li>
       
       <li class="nav-item">
-        <sidenav-collapse navText="Search Ticket" :to="{ name: 'Tables' }">
+        <sidenav-collapse navText="Search Ticket" :to="{ name: 'SearchTicket' }">
           <template #icon>
             <office />
           </template>
