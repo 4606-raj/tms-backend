@@ -33,13 +33,13 @@
           </template>
         </sidenav-collapse>
       </li> -->
-      <li class="nav-item">
+      <!-- <li class="nav-item">
         <sidenav-collapse navText="Add User" :to="{ name: 'Profile' }">
           <template #icon>
             <customer-support />
           </template>
         </sidenav-collapse>
-      </li>
+      </li> -->
       <li class="nav-item">
         <sidenav-collapse navText="User Management" :to="{ name: 'Users' }">
           <template #icon>
@@ -78,15 +78,15 @@
           </template>
         </sidenav-collapse>
       </li>
-      <!-- <li class="nav-item">
-        <sidenav-collapse navText="Billing" :to="{ name: 'Billing' }">
+      <li class="nav-item">
+        <sidenav-collapse navText="ContactUs" :to="{ name: 'ContactUs' }">
           <template #icon>
             <credit-card />
           </template>
         </sidenav-collapse>
       </li>
 
-      <li class="nav-item">
+      <!--<li class="nav-item">
         <sidenav-collapse
           navText="Virtual Reality"
           :to="{ name: 'Virtual Reality' }"
@@ -138,17 +138,6 @@
         >
       </li>
     </ul>
-  </div>
-  <div class="pt-3 mx-3 mt-3 sidenav-footer">
-    <sidenav-card
-      :class="cardBg"
-      textPrimary="Need Help?"
-      textSecondary="Please check our docs"
-      route="https://vue-soft-ui-dashboard-laravel-docs.creative-tim.com/vue/overview/soft-ui-dashboard"
-      label="Documentation"
-      icon="ni ni-diamond"
-    />
-    
   </div>
 </template>
 <script>

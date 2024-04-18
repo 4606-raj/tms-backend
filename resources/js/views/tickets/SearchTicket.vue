@@ -3,40 +3,21 @@
       <div class="row px-0 pt-0 pb-2">
         <div class="col-12 ">
             <div class="col-4">
-              <label class="form-label">Type: </label>
-              <select class="form-select" name="type">
-                <option disabled selected value="">Please select one</option>
-                <option value="all">All</option> 
-                <option value="query">Query</option>
-                <option value="modification">Modification</option>
+              <label class="form-label">search By: </label>
+              <select class="form-select" name="search">
+                  <option disabled selected value="">Please select one</option>
+                  <option value="familyId">FamilyId</option>
+                  <option value="mobile_number">Mobile Number</option>
+                  <option value="ticket_number">Ticket Number</option> 
               </select>
             </div>
             <div class="col-4">
-              <label class="form-label">Created BY: </label>
-              <select class="form-select" name="created_by">
-                <option disabled selected value="">Please select one</option>
-                <option value="all">All</option> 
-                <option value="operator">Operator</option>
-                <option value="modification">Modification</option>
-              </select>
-            </div>
-            <div class="col-4">
-              <label class="form-label">Start Date</label>
+              <label class="form-label">Value</label>
               <soft-model-input
-                id="start_date"
+                id="value"
                 type="text"
-                placeholder="DD-MM-YY"
+                placeholder="Enter value"
               />
-            </div>
-            <div class="col-4">
-              <label class="form-label">Status: </label>
-              <select class="form-select" name="status">
-                <option disabled selected value="">Please select one</option>
-                <option value="all">All</option> 
-                <option value="open">Open</option>
-                <option value="close">close</option>
-                <option value="resolved">resolved</option>
-              </select>
             </div>
             <div class="col-4">
               <soft-button

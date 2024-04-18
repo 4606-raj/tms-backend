@@ -89,7 +89,7 @@
               </div>
               <div class="col-lg-4 me-auto ms-0 text-center">
                 <div
-                  class="bg-gradient-success border-radius-lg min-height-200"
+                  class="bg-gradient-warning border-radius-lg min-height-200"
                 >
                   <img
                     src="../assets/img/shapes/waves-white.svg"
@@ -829,7 +829,7 @@ export default {
   name: "rtl-page",
   data() {
     return {
-      iconBackground: "bg-gradient-success",
+      iconBackground: "bg-gradient-warning",
       faHandPointer,
       faUsers,
       faCreditCard,

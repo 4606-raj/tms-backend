@@ -88,11 +88,11 @@
               <div class="mb-3">
                 <label class="form-label">Type:</label>
                 <select class="form-select" name="type" v-model="ticket.type">
-                <option disabled selected value="">Please select one</option>
-                <option value="all">All</option> 
-                <option value="query">Query</option>
-                <option value="modification">Modification</option>
-              </select>
+                  <option disabled selected value="">Please select one</option>
+                  <option value="all">All</option> 
+                  <option value="query">Query</option>
+                  <option value="modification">Modification</option>
+                </select>
               </div>
               <div class="mb-3">
                 <label class="form-label">Source</label>

@@ -1,11 +1,5 @@
 <template>
   <div class="py-4 container-fluid">
-    <div class="form-group">
-      <div class="alert alert-danger text-white" role="alert">
-        Add, Edit, Delete features are not functional. This is a PRO feature!
-        Click <a style="text-decoration: underline" href="https://www.creative-tim.com/product/vue-soft-ui-dashboard-pro-laravel">here</a> to see the PRO product.
-      </div>
-    </div>
     <div class="row">
       <div class="col-12">
         <div class="card">
@@ -17,9 +11,10 @@
               </div>
               <div class="my-auto mt-4 ms-auto mt-lg-0">
                 <div class="my-auto ms-auto">
-                  <a @click="alert" class="mb-0 btn bg-gradient-warning btn-sm"
+                  <!-- <a @click="alert" class="mb-0 btn bg-gradient-warning btn-sm"
                     >+&nbsp; New User</a
-                  >
+                  > -->
+                  <router-link class="mb-0 btn bg-gradient-warning btn-sm" :to="{name: 'Sign Up'}">+&nbsp; New User</router-link>
                 </div>
               </div>
             </div>

@@ -18,6 +18,7 @@ import guest from "../middlewares/guest.js";
 import auth from "../middlewares/auth.js";
 import CreateTicket from "@/views/tickets/CreateTicket.vue";
 import IndexTicket from "@/views/tickets/IndexTicket.vue";
+import ContactUs from "@/views/ContactUs.vue";
 
 function middlewarePipeline(context, middleware, index) {
   const nextMiddleware = middleware[index];
@@ -140,6 +141,11 @@ const routes = [
     path: "/tickets",
     name: "IndexTicket",
     component: IndexTicket,
+  },
+  {
+    path: "/contact-us",
+    name: "ContactUs",
+    component: ContactUs,
   },
 ];
 
