@@ -24,17 +24,12 @@ class AuthoritiesSeeder extends Seeder
 
         $authorities = [ 
         ['name' => 'Admin', 'status' => 1],
-        ['name' => 'ROLE_L1', 'status' => 1],
-        ['name' => 'ROLE_L2', 'status' => 1],
-        ['name' => 'ROLE_L3', 'status' => 1],
-        ['name' => 'ROLE_ZCRIM', 'status' => 1],
-        ['name' => 'ROLE_PROCESS', 'status' => 1],
-        ['name' => 'ROLE_DASHBOARD', 'status' => 1],
-        ['name' => 'ROLE_SUPERVISOR', 'status' => 1],
-        ['name' => 'ROLE_DCRIM', 'status' => 1],
-        ['name' => 'ROLE_TECHNICAL', 'status' => 1],
-        ['name' => 'ROLE_OPERATOR', 'status' => 1],
+        ['name' => 'OPERATOR', 'status' => 1],
         ['name' => 'AGENT', 'status' => 1],
+        ['name' => 'PROCESS', 'status' => 1],
+        ['name' => 'TECHNICAL', 'status' => 1],
+        ['name' => 'DCRIM', 'status' => 1],
+        ['name' => 'ZCRIM', 'status' => 1],
         ['name' => 'CHATBOT', 'status' => 1],
         ];
    
