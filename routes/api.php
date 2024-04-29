@@ -16,6 +16,7 @@ use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\SourceController;
 use App\Http\Controllers\ChannelController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::prefix('v1')->middleware('json.api')->group(function () {
     Route::apiResource('channels', ChannelController::class);
     Route::apiResource('sources', SourceController::class);
     Route::apiResource('district', DistrictController::class);
+    Route::middleware('auth:api')->apiResource('users', UserController::class);
     Route::middleware('auth:api')->apiResource('tickets', TicketController::class);
     Route::middleware('auth:api')->post('search-ticket', [TicketController::class,'search']);
     // Route::post('subcategories', CategoriesController::class,'subCategories');

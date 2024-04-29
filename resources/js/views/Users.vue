@@ -21,50 +21,24 @@
           </div>
           <div class="px-0 pb-0 card-body">
             <div class="table-responsive">
-              <table id="users-list" ref="usersList" class="table table-flush">
-                <thead class="thead-light">
-                  <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Mobile</th>
-                    <th>Service</th>
-                    <th>Profile</th>
-                    <th>Created At</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                  </tr>
-                </thead>
-                <tbody class="text-sm">
-                  <tr>
-                    <td>Admin</td>
-                    <td>admin@jsonapi.com</td>
-                    <td>6785986666</td>
-                    <td>XYZ</td>
-                    <td>Role_set</td>
-                    <td>2023-01-16</td>
-                    <td>Active</td>
-                    <td>
-                      <a
-                        @click="alert"
-                        id="1"
-                        class="actionButton cursor-pointer me-3"
-                        data-bs-toggle="tooltip"
-                        title="Edit User"
-                      >
-                        <i class="fas fa-user-edit text-secondary"></i> </a
-                      ><a
-                        @click="alert"
-                        id="2"
-                        class="actionButton deleteButton cursor-pointer"
-                        data-bs-toggle="tooltip"
-                        title="Delete User"
-                      >
-                        <i class="fas fa-trash text-secondary"></i>
-                      </a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
+              <soft-table :headers="tableHeaders" :data="users"/>
+              <div class="pagination justify-content-end">
+                <soft-pagination color="primary" v-if="pagination != null">
+                  <soft-pagination-item label="<" 
+                    @click="changePage(pagination.current_page - 1)" 
+                    :disabled="pagination.current_page === 1" />
+                    
+                    <soft-pagination-item v-for="page in pagination.last_page" 
+                    :label="page.toString()" 
+                    :class="{ active: pagination.current_page === page }" 
+                    @click="changePage(page)"
+                  />
+                    
+                  <soft-pagination-item label=">" 
+                  @click="changePage(pagination.current_page + 1)" 
+                  :disabled="pagination.current_page >= pagination.last_page" />
+                </soft-pagination>
+              </div>
             </div>
           </div>
           <div
@@ -101,27 +75,72 @@
 </template>
 
 <script>
-import showSwal from "../mixins/showSwal.js";
+import SoftTable from "../components/SoftTable.vue";
+import SoftPagination from "../components/SoftPagination.vue";
+import SoftPaginationItem from "../components/SoftPaginationItem.vue";
 
 export default {
   name: "Users",
   components: {
+    SoftTable,
+    SoftPagination,
+    SoftPaginationItem,
     //BasePagination,
   },
   data() {
-    return {};
+    return {
+      tableHeaders: [
+        'Name', 'email', 'mobile', 'Services', 'Profile', 'CreatedAt', 'status'
+      ],
+    }
+  },
+  async mounted() {
+    this.fetchData();
+  },
+  computed: {
+    users() {
+      const allUsers = this.$store.getters['users/getAll'];
+      if (!allUsers || !Array.isArray(allUsers)) {
+        console.error('User LIst is not properly initialized or is not an array.');
+        return [];
+      }
+      return allUsers.map(({ name, email, mobile, service, profile, created_at, status }) => ({
+        name,
+        email,
+        mobile,
+        service,
+        profile,
+        created_at: this.formatDate(created_at),
+        status: status === '1' ? 'Active' : 'Deactive',
+      }))
+    },
+    pagination() {
+      return this.$store.getters['users/getPagination'];
+    }
   },
 
-  async mounted() {},
-
   methods: {
-    alert() {
-      showSwal.methods.showSwal({
-        type: "error",
-        message: "This is a PRO feature.",
-        width: 400,
-      });
+    formatDate(dateString) {
+      const date = new Date(dateString);
+      return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     },
+    fetchData() {
+        // Check if pagination object exists before accessing its properties
+        if (this.pagination && this.pagination.current_page) {
+          this.$store.dispatch('users/fetchAll', { page: this.pagination.current_page });
+        } else {
+          // Handle the case where pagination object is not initialized
+          console.error('Pagination object is null or undefined');
+        }
+      },
+
+
+    changePage(page) {
+      if (page < 1 || page > this.pagination.last_page) return;
+
+      this.pagination.current_page = page;
+      this.fetchData()
+    }
   },
 };
 </script>

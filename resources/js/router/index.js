@@ -88,7 +88,7 @@ const routes = [
     name: "Sign Up",
     component: SignUp,
     meta: {
-      middleware: [guest],
+      //middleware: [guest],
     },
   },
   {

@@ -13,4 +13,7 @@ class Authority extends Model
         'name',
         'status',
     ];
+    public function users() {
+        return $this->belongsTo(User::class);
+    }
 }

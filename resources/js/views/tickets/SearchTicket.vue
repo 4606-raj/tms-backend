@@ -13,14 +13,15 @@
             </div>
             <div class="col-4">
               <label class="form-label">Value</label>
-              <soft-model-input
-                id="value"
-                type="text"
-                placeholder="Enter value"
-              />
+              <input
+                  id="value"
+                  name="value"
+                  type="text"
+                  placeholder="mobile number"
+                />
             </div>
             <div class="col-4">
-              <soft-button
+              <button
                 color="warning"
                 variant="gradient"
                 class="float-end mt-6 mb-0"
@@ -31,7 +32,7 @@
                   v-if="loading"
                   class="spinner-border spinner-border-sm"
                 ></span>
-                <span v-else>SEARCH</span></soft-button
+                <span v-else>SEARCH</span></button
               >
             </div>
           </div>
@@ -71,7 +72,7 @@ export default {
       const searchTicket = this.$store.getters['tickets/searchTicket'];
       if (!searchTicket || !Array.isArray(searchTicket)) {
         console.error('Tickets data is not properly initialized or is not an array.');
-        return [];
+        return ["No data found"];
       }
       return searchTicket.map(({ ticket_number, name, email, mobile, family_id, category, sub_category, child_subcategory, assign_to, districts, auto_close, channels, users, created_at, resolved_date }) => ({
         ticket_number,

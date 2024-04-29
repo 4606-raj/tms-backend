@@ -77,4 +77,10 @@ class User extends Authenticatable
     {
         $this->notify(new ResetPasswordNotification($token));
     }
+    public function users() {
+        return $this->belongsTo(User::class,'user_id');
+    }
+    public function authority() {
+        return $this->belongsTo(Authority::class);
+    }
 }

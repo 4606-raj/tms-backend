@@ -8,6 +8,7 @@ import { categories } from "./categories.module";
 import { district } from "./district.module";
 import { channels } from "./channels.module";
 import { sources } from "./sources.module";
+import { users } from "./users.module";
 
 export default createStore({
   state: {
@@ -37,7 +38,8 @@ export default createStore({
     categories,
     district,
     channels,
-    sources
+    sources,
+    users
   },
   mutations: {
     toggleConfigurator(state) {
