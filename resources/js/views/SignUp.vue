@@ -97,10 +97,7 @@
               <div class="mb-3">
                 <label class="form-label">Profile</label>
                 <select class="form-select" name="profile"  v-model="formData.profile">
-                  <option disabled selected value="">Please select one</option>
-                  <option value="ROLE_L1">ROLE_L1</option>
-                  <option value="ROLE_L2">ROLE_L2</option>
-                  <option value="ROLE_L3">ROLE_L3</option>
+                  <option v-for="item in authorities" :value="item.id" :key="item.id">{{ item.name }}</option>
                 </select>
               </div>
               <div class="mb-3">
@@ -183,9 +180,17 @@ export default {
     this.toggleEveryDisplay();
     this.toggleHideConfig();
   },
+  mounted() {
+    this.$store.dispatch("authorities/fetchAll");
+  },
+  computed: {
+    authorities() {
+      return this.$store.getters['authorities/getAll'];
+    },
+  },
   methods: {
     ...mapMutations(["toggleEveryDisplay", "toggleHideConfig"]),
-
+ 
     async submitForm() {
       const response = await this.$store.dispatch('auth/register', this.formData)
     }

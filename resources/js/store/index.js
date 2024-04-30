@@ -9,6 +9,7 @@ import { district } from "./district.module";
 import { channels } from "./channels.module";
 import { sources } from "./sources.module";
 import { users } from "./users.module";
+import { authorities } from "./authorities.module";
 
 export default createStore({
   state: {
@@ -39,7 +40,8 @@ export default createStore({
     district,
     channels,
     sources,
-    users
+    users,
+    authorities
   },
   mutations: {
     toggleConfigurator(state) {

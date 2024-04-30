@@ -17,6 +17,7 @@ use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\SourceController;
 use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AuthorityController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,7 +37,7 @@ Route::prefix('v1')->middleware('json.api')->group(function () {
     Route::post('/password-forgot', ForgotPasswordController::class);
     Route::post('/password-reset', ResetPasswordController::class)->name('password.reset');
 
- 
+    Route::apiResource('authorities', AuthorityController::class);
     Route::apiResource('categories', CategoriesController::class);
     Route::apiResource('channels', ChannelController::class);
     Route::apiResource('sources', SourceController::class);
