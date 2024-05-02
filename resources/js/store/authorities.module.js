@@ -1,4 +1,4 @@
-import authorityService from "../services/authorities.service";
+import authoritiesService from "../services/authorities.service";
 
 const initialState = [];
 
@@ -7,15 +7,14 @@ export const authorities = {
   state: initialState,
   actions: {
     async fetchAll({ commit }) {      
-      let response = await authorityService.fetchAll();
-      
+      let response = await authoritiesService.fetchAll();
       commit("setAuthorities", response);
     },
 
   },
   mutations: {
     setAuthorities(state, payload) {
-      state.channels = payload;
+      state.authorities = payload;
     },
   },
 

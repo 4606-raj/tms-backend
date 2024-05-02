@@ -5,8 +5,10 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponses;
 use App\Models\Authority;
+use App\Models\Channel;
 
-class AuthorityController extends Controller
+
+class AuthoritiesController extends Controller
 {
 
     use ApiResponses;
@@ -17,8 +19,6 @@ class AuthorityController extends Controller
     public function index()
     {
         $data = Authority::where('status','1')->get();
-
-
         return $this->successResponse($data);
     }
 

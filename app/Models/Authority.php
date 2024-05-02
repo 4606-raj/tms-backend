@@ -9,11 +9,12 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class Authority extends Model
 {
     use HasFactory, SoftDeletes;
+    protected $table = 'authorities';
     protected $fillable = [
         'name',
         'status',
     ];
-    public function users() {
-        return $this->belongsTo(User::class);
-    }
+    // public function users() {
+    //     return $this->belongsTo(User::class);
+    // }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponses;
 use App\Models\Channel;
+use DB;
 
 class ChannelController extends Controller
 {
