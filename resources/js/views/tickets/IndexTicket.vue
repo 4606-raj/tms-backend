@@ -1,8 +1,8 @@
-<template>
+<template>  
     <div class="py-4 container-fluid">
       <div class="row px-0 pt-0 pb-2">
-        <div class="col-12 ">
-            <div class="col-4">
+        <div class="col-12 row">
+            <div class="col-3">
               <label class="form-label">Type: </label>
               <select class="form-select" name="type">
                 <option disabled selected value="">Please select one</option>
@@ -11,7 +11,7 @@
                 <option value="modification">Modification</option>
               </select>
             </div>
-            <div class="col-4">
+            <div class="col-3">
               <label class="form-label">Created BY: </label>
               <select class="form-select" name="created_by">
                 <option disabled selected value="">Please select one</option>
@@ -20,15 +20,21 @@
                 <option value="modification">Modification</option>
               </select>
             </div>
-            <div class="col-4">
+            <div class="col-3">
               <label class="form-label">Start Date</label>
-              <soft-model-input
+              <!-- <soft-model-input
                 id="start_date"
                 type="text"
                 placeholder="DD-MM-YY"
+              /> -->
+              <input
+                id="start_date"
+                type="text"
+                class="form-control"
+                placeholder="DD-MM-YY"
               />
             </div>
-            <div class="col-4">
+            <div class="col-3">
               <label class="form-label">Status: </label>
               <select class="form-select" name="status">
                 <option disabled selected value="">Please select one</option>
@@ -38,11 +44,13 @@
                 <option value="resolved">resolved</option>
               </select>
             </div>
-            <div class="col-4">
+          </div>
+          <div class="row">
+            <div class="col-12">
               <soft-button
                 color="warning"
                 variant="gradient"
-                class="float-end mt-6 mb-0"
+                class="float-end btn bg-gradient-info btn-sm mt-4"
                 size="sm"
                 :is-disabled="loading ? true : false"
                 @click="handlePassChange"
@@ -55,9 +63,15 @@
             </div>
           </div>
       </div>
+
+      <div>
+        <router-link class="btn bg-gradient-warning btn-sm mt-4" :to="{name: 'CreateTicket'}">Create Ticket</router-link>
+
+      </div>
+      
       <div class="row">
+
         <div class="col-12">
-          <router-link class="btn bg-gradient-warning btn-sm" :to="{name: 'CreateTicket'}">Create Ticket</router-link>
           <div class="table-responsive">
             <soft-table :headers="tableHeaders" :data="tickets"/>
             <div class="pagination justify-content-end">

@@ -1,7 +1,7 @@
 <template>
     <div class="py-4 container-fluid">
       <div class="row px-0 pt-0 pb-2">
-        <div class="col-12 ">
+        <div class="col-12 row d-flex align-items-center ">
             <div class="col-4">
               <label class="form-label">search By: </label>
               <select class="form-select" name="search">
@@ -17,14 +17,15 @@
                   id="value"
                   name="value"
                   type="text"
+                  class="form-control"
                   placeholder="mobile number"
                 />
             </div>
             <div class="col-4">
-              <button
+              <soft-button
                 color="warning"
                 variant="gradient"
-                class="float-end mt-6 mb-0"
+                class="float-start btn bg-gradient-info btn-sm mt-4"
                 size="sm"
                 :is-disabled="loading ? true : false"
                 @click="handlePassChange"
@@ -32,7 +33,7 @@
                   v-if="loading"
                   class="spinner-border spinner-border-sm"
                 ></span>
-                <span v-else>SEARCH</span></button
+                <span v-else>SEARCH</span></soft-button
               >
             </div>
           </div>
