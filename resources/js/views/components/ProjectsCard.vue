@@ -48,82 +48,30 @@
         <table class="table align-items-center mb-0">
           <thead>
             <tr>
-              <th
-                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-              >
-                Companies
-              </th>
-              <th
-                class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"
-              >
-                Members
-              </th>
-              <th
-                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-              >
-                Budget
-              </th>
-              <th
-                class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"
-              >
-                Completion
-              </th>
+              <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7">Agents</th>
+              <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7">Totals</th>
+              <th class="text-uppercase text-secondary text-s font-weight-bolder opacity-7 ps-2"> Resolved</th>
+              <th class="text-center text-uppercase text-secondary text-s font-weight-bolder opacity-7">Pending</th>
+              <th class="text-center text-uppercase text-secondary text-xs font-weight-bolder opacity-7">Completion</th>
             </tr>
           </thead>
           <tbody>
             <tr>
               <td>
                 <div class="d-flex px-2 py-1">
-                  <div>
-                    <soft-avatar :img="img1" size="sm" class="me-3" alt="xd" />
-                  </div>
                   <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Soft UI XD Version</h6>
+                    <h6 class="mb-0 text-sm">DCRIM</h6>
                   </div>
-                </div>
-              </td>
-              <td>
-                <div class="avatar-group mt-2">
-                  <a
-                    href="javascript:;"
-                    class="avatar avatar-xs rounded-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    data-bs-original-title="Ryan Tompson"
-                  >
-                    <img :src="img2" rounded-circle alt="team1" />
-                  </a>
-                  <a
-                    href="javascript:;"
-                    class="avatar avatar-xs rounded-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    data-bs-original-title="Romina Hadid"
-                  >
-                    <img :src="img3" alt="team2" />
-                  </a>
-                  <a
-                    href="javascript:;"
-                    class="avatar avatar-xs rounded-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    data-bs-original-title="Alexander Smith"
-                  >
-                    <img :src="img4" alt="team3" />
-                  </a>
-                  <a
-                    href="javascript:;"
-                    class="avatar avatar-xs rounded-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    data-bs-original-title="Jessica Doe"
-                  >
-                    <img :src="img5" rounded-circle alt="team4" />
-                  </a>
                 </div>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="text-xs font-weight-bold">$14,000</span>
+                <span class="text-xs font-weight-bold">14,000</span>
+              </td>
+              <td class="align-middle text-center text-sm">
+                <span class="text-xs font-weight-bold">14,000</span>
+              </td>
+              <td class="align-middle text-center text-sm">
+                <span class="text-xs font-weight-bold">14,000</span>
               </td>
               <td class="align-middle">
                 <div class="d-flex align-items-center justify-content-center">
@@ -142,53 +90,29 @@
             <tr>
               <td>
                 <div class="d-flex px-2 py-1">
-                  <div>
-                    <soft-avatar
-                      :img="img6"
-                      size="sm"
-                      class="me-3"
-                      alt="atlassian"
-                    />
-                  </div>
                   <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Add Progress Track</h6>
+                    <h6 class="mb-0 text-sm">PROCESS</h6>
                   </div>
-                </div>
-              </td>
-              <td>
-                <div class="avatar-group mt-2">
-                  <a
-                    href="javascript:;"
-                    class="avatar avatar-xs rounded-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    data-bs-original-title="Romina Hadid"
-                  >
-                    <img :src="img7" alt="team5" />
-                  </a>
-                  <a
-                    href="javascript:;"
-                    class="avatar avatar-xs rounded-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    data-bs-original-title="Jessica Doe"
-                  >
-                    <img :src="img8" alt="team6" />
-                  </a>
                 </div>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="text-xs font-weight-bold">$3,000</span>
+                <span class="text-s font-weight-bold">14,000</span>
+              </td>
+              <td class="align-middle text-center text-sm">
+                <span class="text-xs font-weight-bold">14,000</span>
+              </td>
+              <td class="align-middle text-center text-sm">
+                <span class="text-xs font-weight-bold">14,000</span>
               </td>
               <td class="align-middle">
                 <div class="d-flex align-items-center justify-content-center">
-                  <span class="text-xs font-weight-bold mx-2">10%</span>
+                  <span class="text-xs font-weight-bold mx-2">60%</span>
                   <div>
                     <soft-progress
                       color="info"
                       class="mx-auto"
                       variant="gradient"
-                      :percentage="10"
+                      :percentage="60"
                     />
                   </div>
                 </div>
@@ -197,173 +121,29 @@
             <tr>
               <td>
                 <div class="d-flex px-2 py-1">
-                  <div>
-                    <soft-avatar
-                      :img="img9"
-                      size="sm"
-                      class="me-3"
-                      alt="team7"
-                    />
-                  </div>
                   <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Fix Platform Errors</h6>
+                    <h6 class="mb-0 text-sm">TECHNICAL</h6>
                   </div>
-                </div>
-              </td>
-              <td>
-                <div class="avatar-group mt-2">
-                  <a
-                    href="javascript:;"
-                    class="avatar avatar-xs rounded-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    data-bs-original-title="Romina Hadid"
-                  >
-                    <img :src="img10" alt="team8" />
-                  </a>
-                  <a
-                    href="javascript:;"
-                    class="avatar avatar-xs rounded-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    data-bs-original-title="Jessica Doe"
-                  >
-                    <img :src="img11" alt="team9" />
-                  </a>
                 </div>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="text-xs font-weight-bold">Not set</span>
-              </td>
-              <td class="align-middle">
-                <div class="d-flex align-items-center justify-content-center">
-                  <span class="text-xs font-weight-bold mx-2">100%</span>
-                  <div>
-                    <soft-progress
-                      color="success"
-                      class="mx-auto"
-                      variant="gradient"
-                      :percentage="100"
-                    />
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <soft-avatar
-                      :img="img12"
-                      class="me-3"
-                      size="sm"
-                      alt="spotify"
-                    />
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Launch our Mobile App</h6>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="avatar-group mt-2">
-                  <a
-                    href="javascript:;"
-                    class="avatar avatar-xs rounded-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    data-bs-original-title="Ryan Tompson"
-                  >
-                    <img :src="img13" alt="user1" />
-                  </a>
-                  <a
-                    href="javascript:;"
-                    class="avatar avatar-xs rounded-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    data-bs-original-title="Romina Hadid"
-                  >
-                    <img :src="img14" alt="user2" />
-                  </a>
-                  <a
-                    href="javascript:;"
-                    class="avatar avatar-xs rounded-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    data-bs-original-title="Alexander Smith"
-                  >
-                    <img :src="img15" alt="user3" />
-                  </a>
-                  <a
-                    href="javascript:;"
-                    class="avatar avatar-xs rounded-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    data-bs-original-title="Jessica Doe"
-                  >
-                    <img :src="img16" alt="user4" />
-                  </a>
-                </div>
+                <span class="text-xs font-weight-bold">14,000</span>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="text-xs font-weight-bold">$20,500</span>
-              </td>
-              <td class="align-middle">
-                <div class="d-flex align-items-center justify-content-center">
-                  <span class="text-xs font-weight-bold mx-2">100%</span>
-                  <div>
-                    <soft-progress
-                      color="success"
-                      class="mx-auto"
-                      variant="gradient"
-                      :percentage="100"
-                    />
-                  </div>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="d-flex px-2 py-1">
-                  <div>
-                    <soft-avatar
-                      :img="img17"
-                      rounded-circle
-                      class="me-3"
-                      size="sm"
-                      alt="jira"
-                    />
-                  </div>
-                  <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Add the New Pricing Page</h6>
-                  </div>
-                </div>
-              </td>
-              <td>
-                <div class="avatar-group mt-2">
-                  <a
-                    href="javascript:;"
-                    class="avatar avatar-xs rounded-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    data-bs-original-title="Ryan Tompson"
-                  >
-                    <img :src="img18" alt="user5" />
-                  </a>
-                </div>
+                <span class="text-xs font-weight-bold">14,000</span>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="text-xs font-weight-bold">$500</span>
+                <span class="text-xs font-weight-bold">14,000</span>
               </td>
               <td class="align-middle">
                 <div class="d-flex align-items-center justify-content-center">
-                  <span class="text-xs font-weight-bold mx-2">25%</span>
+                  <span class="text-xs font-weight-bold mx-2">60%</span>
                   <div>
                     <soft-progress
                       color="info"
                       class="mx-auto"
                       variant="gradient"
-                      :percentage="25"
+                      :percentage="60"
                     />
                   </div>
                 </div>
@@ -372,53 +152,29 @@
             <tr>
               <td>
                 <div class="d-flex px-2 py-1">
-                  <div>
-                    <soft-avatar
-                      :img="img19"
-                      class="me-3"
-                      size="sm"
-                      alt="invision"
-                    />
-                  </div>
                   <div class="d-flex flex-column justify-content-center">
-                    <h6 class="mb-0 text-sm">Redesign New Online Shop</h6>
+                    <h6 class="mb-0 text-sm">ZCRIM</h6>
                   </div>
-                </div>
-              </td>
-              <td>
-                <div class="avatar-group mt-2">
-                  <a
-                    href="javascript:;"
-                    class="avatar avatar-xs rounded-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    data-bs-original-title="Ryan Tompson"
-                  >
-                    <img :src="img20" alt="user6" />
-                  </a>
-                  <a
-                    href="javascript:;"
-                    class="avatar avatar-xs rounded-circle"
-                    data-bs-toggle="tooltip"
-                    data-bs-placement="bottom"
-                    data-bs-original-title="Jessica Doe"
-                  >
-                    <img :src="img21" alt="user7" />
-                  </a>
                 </div>
               </td>
               <td class="align-middle text-center text-sm">
-                <span class="text-xs font-weight-bold">$2,000</span>
+                <span class="text-xs font-weight-bold">14,000</span>
+              </td>
+              <td class="align-middle text-center text-sm">
+                <span class="text-xs font-weight-bold">14,000</span>
+              </td>
+              <td class="align-middle text-center text-sm">
+                <span class="text-xs font-weight-bold">14,000</span>
               </td>
               <td class="align-middle">
                 <div class="d-flex align-items-center justify-content-center">
-                  <span class="text-xs font-weight-bold mx-2">40%</span>
+                  <span class="text-xs font-weight-bold mx-2">60%</span>
                   <div>
                     <soft-progress
                       color="info"
                       class="mx-auto"
                       variant="gradient"
-                      :percentage="40"
+                      :percentage="60"
                     />
                   </div>
                 </div>

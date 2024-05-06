@@ -144,7 +144,13 @@
         <div class="row container-fluid card mt-4">
             <label class="form-label">Description</label>
             <textarea placeholder="add desciption" name="description" v-model="ticket.description"></textarea>
-              <!-- <input type="hidden" value="random_number" name="ticket_number"> -->
+            <soft-ckeditor
+              id="flexdescriptionDefault"
+              name="description"
+              v-model="ticket.description"
+              class="font-weight-light"
+              placeholder =ck description
+            ></soft-ckeditor>  
         </div>
 
         <div>
@@ -175,6 +181,7 @@ import SoftModelInput from "@/components/SoftModelInput.vue";
 import ValidationError from "@/components/ValidationError.vue";
 import formMixin from "../../mixins/form-mixin.js";
 import SoftCheckbox from "@/components/SoftCheckbox.vue";
+import SoftCkeditor from "@/components/SoftCkeditor.vue";
 
 export default {
   name: "Profile",
@@ -185,6 +192,7 @@ export default {
     SoftModelInput,
     ValidationError,
     SoftCheckbox,
+    SoftCkeditor,
   },
 
   mixins: [formMixin],
@@ -194,7 +202,7 @@ export default {
     this.$store.dispatch("channels/fetchAll");
     this.$store.dispatch("district/fetchAll");
     this.$store.dispatch("sources/fetchAll");
-    this.$store.dispatch("tickets/fetchAll");
+    //this.$store.dispatch("tickets/fetchAll");
   },
 
   computed: {
@@ -231,7 +239,6 @@ export default {
         source:'',
         type:'',
         description:'',
-        
       },
 
       loading: false,

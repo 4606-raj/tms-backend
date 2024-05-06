@@ -1,10 +1,12 @@
 <template>  
     <div class="py-4 container-fluid">
-      <div class="row px-0 pt-0 pb-2">
+       <!---start filter section-->
+    <div class="row px-0 pt-0 pb-2">
+      <h5>Ticket's Filters</h5>
         <div class="col-12 row">
             <div class="col-3">
               <label class="form-label">Type: </label>
-              <select class="form-select" name="type">
+              <select class="form-select" name="type" v-model="formdata.type">
                 <option disabled selected value="">Please select one</option>
                 <option value="all">All</option> 
                 <option value="query">Query</option>
@@ -13,7 +15,7 @@
             </div>
             <div class="col-3">
               <label class="form-label">Created BY: </label>
-              <select class="form-select" name="created_by">
+              <select class="form-select" name="created_by" v-model="formdata.created_by">
                 <option disabled selected value="">Please select one</option>
                 <option value="all">All</option> 
                 <option value="operator">Operator</option>
@@ -22,21 +24,29 @@
             </div>
             <div class="col-3">
               <label class="form-label">Start Date</label>
-              <!-- <soft-model-input
-                id="start_date"
-                type="text"
-                placeholder="DD-MM-YY"
-              /> -->
               <input
                 id="start_date"
                 type="text"
                 class="form-control"
                 placeholder="DD-MM-YY"
+                v-model="formdata.start"
               />
             </div>
             <div class="col-3">
+              <label class="form-label">End Date</label>
+              <input
+                id="end_date"
+                type="text"
+                class="form-control"
+                placeholder="DD-MM-YY"
+                v-model="formdata.end"
+              />
+            </div>
+          </div>
+          <div class="col-12 row">
+            <div class="col-3">
               <label class="form-label">Status: </label>
-              <select class="form-select" name="status">
+              <select class="form-select" name="status" v-model="formdata.status">
                 <option disabled selected value="">Please select one</option>
                 <option value="all">All</option> 
                 <option value="open">Open</option>
@@ -44,29 +54,81 @@
                 <option value="resolved">resolved</option>
               </select>
             </div>
+            <div class="col-3">
+              <label class="form-label">Category: </label>
+              <select class="form-select" name="category" v-model="formdata.category">
+                <option disabled selected value="">Please select one</option>
+                <option value="all">All</option> 
+                <option value="operator">Operator</option>
+                <option value="modification">Modification</option>
+              </select>
+            </div>
+            <div class="col-3">
+              <label class="form-label">Subcategory: </label>
+              <select class="form-select" name="subcategory" v-model="formdata.subcategory">
+                <option disabled selected value="">Please select one</option>
+                <option value="all">All</option> 
+                <option value="operator">Operator</option>
+                <option value="modification">Modification</option>
+              </select>
+            </div>
+            <div class="col-3">
+              <label class="form-label">ChildSubcategory: </label>
+              <select class="form-select" name="childsubcategory" v-model="formdata.childsubcategory">
+                <option disabled selected value="">Please select one</option>
+                <option value="all">All</option> 
+                <option value="operator">Operator</option>
+                <option value="modification">Modification</option>
+              </select>
+            </div>
           </div>
-          <div class="row">
-            <div class="col-12">
-              <soft-button
-                color="warning"
-                variant="gradient"
-                class="float-end btn bg-gradient-info btn-sm mt-4"
-                size="sm"
-                :is-disabled="loading ? true : false"
-                @click="handlePassChange"
-                ><span
-                  v-if="loading"
-                  class="spinner-border spinner-border-sm"
-                ></span>
-                <span v-else>SEARCH</span></soft-button
-              >
+          <div class="col-12 row">
+            <div class="col-3">
+              <label class="form-label">District: </label>
+              <select class="form-select" name="district" v-model="formdata.district">
+                <option disabled selected value="">Please select one</option>
+                <option value="all">All</option> 
+                <option value="1">sonipat</option>
+                <option value="2">panipat</option>
+              </select>
+            </div>
+            <div class="col-3">
+              <label class="form-label">Assign To: </label>
+              <select class="form-select" name="assign" v-model="formdata.assign_to">
+                <option disabled selected value="">Please select one</option>
+                <option value="all">All</option> 
+                <option value="DCRIM">DCRIM</option>
+                <option value="ZCRIM">ZCRIM</option>
+              </select>
+            </div>
+            <div class="col-3">
+              <label class="form-label">Assign User: </label>
+              <select class="form-select" name="assign" v-model="formdata.assign_user">
+                <option disabled selected value="">Please select one</option>
+                <option value="all">All</option> 
+                <option value="1">ABC</option>
+                <option value="2">BCD</option>
+              </select>
+            </div>
+            <div class="col-3 d-flex justify-content-end">
+              <soft-button color="warning" variant="gradient" class="btn bg-gradient-info btn-sm mt-4 me-2"
+                  size="sm" :is-disabled="loading ? true : false" @click="handlePassChange">
+                  <span v-if="loading" class="spinner-border spinner-border-sm"></span>
+                  <span v-else>SEARCH</span>
+              </soft-button>
+              <soft-button class="btn bg-gradient-primary btn-sm mt-4" @click="resetForm">
+                  <span>Clear</span>
+              </soft-button>
             </div>
           </div>
       </div>
+      <!---end filter section-->
 
-      <div>
+      <div >
         <router-link class="btn bg-gradient-warning btn-sm mt-4" :to="{name: 'CreateTicket'}">Create Ticket</router-link>
-
+        <soft-button class="float-end btn bg-gradient-dark btn-sm mt-4" @click="downloadExcel">
+        <span>Download Assigned Ticket</span></soft-button>
+        <router-link class="float-end btn bg-gradient-light btn-sm mt-4" :to="{name: 'CreateTicket'}">Assigned Ticket</router-link>
       </div>
       
       <div class="row">
@@ -112,6 +174,19 @@ export default {
 
   data() {
     return {
+      formdata: {
+        type: '',
+        created_by: '',
+        start: '',
+        end:'',
+        status: '',
+        district: '',
+        category: '',
+        subcategory:'',
+        childsubcategory:'',
+        assign_to:'',
+        assign_user:'',
+      },
       tableHeaders: [
         'ticketnumber', 'name(mobile)', 'email', 'mobile', 'familyid', 'category', 'subcategory', 'childsubcategory', 'Assignto', 'district', 'status', 'channel', 'loggedby', 'loggedat', 'resolveddate'
       ],
@@ -150,6 +225,9 @@ export default {
     }
   },
   methods: {
+    resetForm() {
+      this.formdata = ''; // Reset the input field value
+    },
 
     formatDate(dateString) {
     // Assuming dateString is in ISO format like "YYYY-MM-DDTHH:MM:SSZ"

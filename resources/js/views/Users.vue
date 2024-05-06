@@ -1,5 +1,57 @@
 <template>
   <div class="py-4 container-fluid">
+    <div class="row px-0 pt-0 pb-2">
+      <div class="col-12 row d-flex align-items-center ">
+        <div class="col-4">
+          <label class="form-label">search By: </label>
+          <select class="form-select" name="search" v-model="selectedType">
+            <option disabled selected value="">Choose Search Type</option>
+            <option value="email">Email Id</option> 
+            <option value="text">Login</option>
+            <option value="number">Mobile Number</option> 
+          </select>
+        </div>
+          <div class="col-4">
+            <label class="form-label">Value</label>
+            <input
+                id="value"
+                name="value"
+                :type="selectedType"
+                class="form-control"
+                placeholder="enter search value here"
+                v-model="inputValue"
+            />
+          </div>
+          <div class="col-4">
+            <soft-button
+              color="warning"
+              variant="gradient"
+              class="float-start btn bg-gradient-info btn-sm mt-4"
+              size="sm"
+              :is-disabled="loading ? true : false"
+              @click="handlePassChange"
+              ><span
+                v-if="loading"
+                class="spinner-border spinner-border-sm"
+              ></span>
+              <span v-else>SEARCH</span></soft-button
+            >
+            <soft-button
+              color="warning"
+              variant="gradient"
+              class="float-start btn bg-gradient-primary btn-sm mt-4"
+              size="sm"
+              :is-disabled="loading ? true : false"
+              @click="resetForm"
+              ><span
+                v-if="loading"
+                class="spinner-border spinner-border-sm"
+              ></span>
+              <span v-else>Clear</span></soft-button
+            >
+          </div>
+        </div>
+      </div>
     <div class="row">
       <div class="col-12">
         <div class="">
@@ -69,6 +121,8 @@ export default {
   },
   data() {
     return {
+      selectedType: '', // Default selected input type from here
+      inputValue: '', // Initial value for the input field
       tableHeaders: [
         'Name', 'email', 'mobile', 'Services', 'Profile', 'CreatedAt', 'status'
       ],
@@ -98,8 +152,10 @@ export default {
       return this.$store.getters['users/getPagination'];
     }
   },
-
   methods: {
+    resetForm() {
+      this.inputValue = ''; // Reset the input field value
+    },
     formatDate(dateString) {
       const date = new Date(dateString);
       return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });

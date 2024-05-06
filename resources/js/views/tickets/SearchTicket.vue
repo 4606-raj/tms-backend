@@ -40,7 +40,6 @@
       </div>
       <div class="row">
         <div class="col-12">
-          <router-link class="btn bg-gradient-warning btn-sm" :to="{name: 'CreateTicket'}">Create Ticket</router-link>
           <div class="table-responsive">
             <soft-table :headers="tableHeaders" :data="tickets"/>
           </div>

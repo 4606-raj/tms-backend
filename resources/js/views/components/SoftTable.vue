@@ -5,10 +5,10 @@
     </div>
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
-        <table class="table align-items-center mb-0">
+        <table class="table align-items-center mb-0 table-striped">
           <thead>
             <tr>
-              <th v-for="header in headers" class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">
+              <th v-for="header in headers" class="text-uppercase text-secondary text-m font-weight-bolder opacity-10">
                 {{ header }}
               </th>
               
@@ -18,7 +18,7 @@
           <tbody>
             <tr v-for="item in data">
               <td v-for="value in item">
-                <p class="text-xs font-weight-bold mb-0">{{ value }}</p>
+                <p class="text-s font-weight-bold mb-0">{{ value }}</p>
               </td>
             </tr>
           </tbody>
