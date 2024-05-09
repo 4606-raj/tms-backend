@@ -22,21 +22,28 @@ class RegisterController extends Controller
      */
     public function __invoke(RegisterRequest $request): Response|Error
     {
-        // User::create([
-        //     'name'          => $request->name,
-        //     'email'         => $request->email,
-        //     'password'      => $request->password,
-        //     'login'         => $request->name,
-        //     'first_name'    => $request->first_name,
-        //     'last_name'     => $request->last_name,
-        //     'mobile'        => $request->mobile,
-        //     'profile'       => $request->profile,
-        //     'service'       => $request->service,
-        //     'district_id'   => $request->district_id,
-        //     'authority_id'  => $request->authority_id,
-        // ]);
-        return redirect()->route('/users')->with('success', 'User created successfully.');
-        //return (new LoginController)(new LoginRequest($request->only(['email', 'password'])));
+        $user = User::create([
+            'name'          => $request->name,
+            'email'         => $request->email,
+            'password'      => $request->password,
+            'login'         => $request->name,
+            'first_name'    => $request->first_name,
+            'last_name'     => $request->last_name,
+            'mobile'        => $request->mobile,
+            'profile'       => $request->profile,
+            'service'       => $request->service,
+            'district_id'   => $request->district_id,
+            'authority_id'  => $request->authority_id,
+        ]);
+
+        $user->assignRole('user');
+        $responseData = [
+            'user' => $user,
+        ];
+        $jsonResponse = new Response(json_encode($responseData), Response::HTTP_OK, ['Content-Type' => 'application/json']);
+
+        return $jsonResponse;
+        // return (new LoginController)(new LoginRequest($request->only(['email', 'password'])));
     }
     public function showRegistrationForm()
     {

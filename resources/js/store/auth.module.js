@@ -12,6 +12,13 @@ export const auth = {
       await authService.login(userData);
       commit("logMeIn");
     },
+    
+    async getPermissions({ commit }) {
+      const response = await authService.getPermissions();
+      if(response) {
+        commit("setPermissions", response.data)
+      }
+    },
 
     async logout({ commit }) {
       try {
@@ -34,11 +41,18 @@ export const auth = {
     logMeOut(state) {
       state.loggedIn = false;
     },
+
+    setPermissions(state, data) {
+      state.userPermissions = data;
+    }
   },
 
   getters: {
     loggedIn(state) {
       return state.loggedIn;
     },
+    getPermissions(state) {
+      return state.userPermissions;
+    }
   },
 };

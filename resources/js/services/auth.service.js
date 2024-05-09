@@ -25,5 +25,11 @@ export default {
     if (response.data.access_token) {
       localStorage.setItem("userF", JSON.stringify(response.data.access_token));
     }
+
+  },
+
+  async getPermissions() {
+    const response = await axios.get("/user/permissions");
+    return response.data;
   },
 };

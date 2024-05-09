@@ -66,7 +66,7 @@
                   <!-- <a @click="alert" class="mb-0 btn bg-gradient-warning btn-sm"
                     >+&nbsp; New User</a
                   > -->
-                  <router-link class="mb-0 btn bg-gradient-warning btn-sm" :to="{name: 'Sign Up'}">+&nbsp; New User</router-link>
+                  <router-link class="mb-0 btn bg-gradient-warning btn-sm" :to="{name: 'UsersCreate'}">+&nbsp; New User</router-link>
                 </div>
               </div>
             </div>

@@ -7,6 +7,7 @@ use App\Traits\ApiResponses;
 use App\Models\User;
 use App\Models\Authority;
 use App\Http\Requests\UserRequest;
+use App\Http\Requests\Api\V2\Auth\RegisterRequest;
 use Illuminate\Support\Str;
 use Auth;
 
@@ -29,10 +30,30 @@ class UserController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(UserRequest $request)
+    public function store(RegisterRequest $request)
     {
         try {
-           ////
+            $user = User::create([
+                'name'          => $request->name,
+                'email'         => $request->email,
+                'password'      => $request->password,
+                'login'         => $request->name,
+                'first_name'    => $request->first_name,
+                'last_name'     => $request->last_name,
+                'mobile'        => $request->mobile,
+                'profile'       => $request->profile,
+                'service'       => $request->service,
+                'district_id'   => $request->district_id,
+                'authority_id'  => $request->authority_id,
+            ]);
+    
+            $user->assignRole('user');
+            // $responseData = [
+            //     'user' => $user,
+            // ];
+            // $jsonResponse = new Response(json_encode($responseData), Response::HTTP_OK, ['Content-Type' => 'application/json']);
+    
+            return $this->successResponse($user);
         } catch (ClientException $e) {
             \Log::error($e);
             return $this->errorResponse($e->getMessage(), 500);
@@ -73,4 +94,9 @@ class UserController extends Controller
         return $this->successResponse($data);
     }
    
+    public function getPermissions() {
+        return $this->successResponse(auth()->user()->getAllPermissions()->pluck('name'));
+    }
+    
+    
 }
