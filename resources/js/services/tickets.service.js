@@ -8,6 +8,13 @@ export default {
       return response.data.data;
     }
   },
+  async ticketDetail(payload) {
+    const id = payload.id;
+    const response = await axios.get(`/tickets/${id}`);
+    if (response.status == 200) {
+      return response.data.data;
+    }
+  },
   async search(payload) {
     const response = await axios.get(`/tickets/search`);
     if (response.status == 200) {

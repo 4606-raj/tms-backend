@@ -22,6 +22,14 @@ export const tickets = {
       commit("setTickets", data);
       commit("updatePagination", pagination);
     },
+    async ticketDetail({ commit }, payload) {      
+      let response = await ticketService.ticketDetail(payload);
+      
+      let {data} = response;
+      
+      commit("setTickets", data);
+     
+    },
     async search({ commit }, payload) {      
       let response = await ticketService.search(payload);
       
