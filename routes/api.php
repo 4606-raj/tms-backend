@@ -43,10 +43,8 @@ Route::prefix('v1')->middleware('json.api')->group(function () {
     Route::apiResource('channels', ChannelController::class);
     Route::apiResource('sources', SourceController::class);
     Route::apiResource('district', DistrictController::class);
-    Route::middleware(['auth:api', 'check.permission:user_management'])->apiResource('users', UserController::class);
-    Route::middleware(['auth:api', 'check.permission:ticket_management'])->apiResource('tickets', TicketController::class);
-    Route::middleware('auth:api')->get('/user/permissions', [UserController::class, 'getPermissions']);
-    
+    Route::middleware('auth:api')->apiResource('users', UserController::class);
+    Route::middleware('auth:api')->apiResource('tickets', TicketController::class);
     Route::middleware('auth:api')->post('search-ticket', [TicketController::class,'search']);
     // Route::post('subcategories', CategoriesController::class,'subCategories');
     // Route::post('childsubcategories', CategoriesController::class,'childSubCategories');

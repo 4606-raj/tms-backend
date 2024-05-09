@@ -21,7 +21,6 @@ import IndexTicket from "@/views/tickets/IndexTicket.vue";
 import SearchTicket from "@/views/tickets/SearchTicket.vue";
 import TicketDetail from "@/views/tickets/ShowTicket.vue";
 import ContactUs from "@/views/ContactUs.vue";
-import CreateUser from "@/views/users/Create.vue";
 
 function middlewarePipeline(context, middleware, index) {
   const nextMiddleware = middleware[index];
@@ -134,12 +133,6 @@ const routes = [
     path: "/users",
     name: "Users",
     component: Users,
-    meta: { requiresAuth: true, requiredPermissions: ['user_management'] }
-  },
-  {
-    path: "/users/create",
-    name: "UsersCreate",
-    component: CreateUser,
   },
   {
     path: "/create-ticket",
@@ -186,16 +179,6 @@ router.beforeEach((to, from, next) => {
   // If the route does not have any middleware defined,
   // directly call the auth function and proceed to the next route.
   if (!to.meta.middleware) {
-
-    if (checkPermissions(to)) {
-      auth({ ...context, next }); // Simplified to just pass next
-      return next(); // Call next() to proceed to the next route
-    } else {
-      // Redirect to unauthorized page or handle unauthorized access
-      return next('/unauthorized');
-    }
-
-    
     auth({ ...context, next }); // Simplified to just pass next
     return next(); // Call next() to proceed to the next route
   }
@@ -207,15 +190,5 @@ router.beforeEach((to, from, next) => {
     next: middlewarePipeline(context, middleware, 1), // Call middlewarePipeline with updated next
   });
 });
-
-function checkPermissions(route) {
-  // console.log(route.meta.requiredPermissions);
-  // console.log(router.app.$store.getters["auth/getPermissions"])
-  const userPermissions = store.getters["auth/getPermissions"];
-  // console.log(store.getters['auth/getPermissions'], 'store.state'); 
-
-
-  return true;
-}
 
 export default router;

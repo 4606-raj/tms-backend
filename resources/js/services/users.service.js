@@ -14,11 +14,4 @@ export default {
       return response.data.data;
     }
   },
-
-  async create(payload) {
-    const response = await axios.post(`/users`, payload);
-    if (response.status == 200) {
-      return response.data.data;
-    }
-  },
 };

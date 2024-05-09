@@ -15,7 +15,7 @@ return new class extends Migration
             $table->string('login')->nullable()->after('name');
             $table->string('first_name')->nullable()->after('login');
             $table->string('last_name')->nullable()->after('first_name');
-            $table->string('mobile')->nullable()->after('last_name');
+            $table->biginteger('mobile')->nullable()->after('last_name');
             $table->string('profile')->nullable()->after('mobile');
             $table->string('service')->nullable()->after('password');
             $table->integer('authority_id')->nullable()->after('profile');

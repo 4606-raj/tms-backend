@@ -11,7 +11,7 @@
           </template>
         </sidenav-collapse>
       </li>
-      <li class="mt-3 nav-item" v-if="hasPermission('user_management')">
+      <li class="mt-3 nav-item">
         <h6
           class="text-xs ps-4 text-uppercase font-weight-bolder opacity-6"
           :class="this.$store.state.isRTL ? 'me-4' : 'ms-2'"
@@ -41,7 +41,7 @@
         </sidenav-collapse>
       </li> -->
       <li class="nav-item">
-        <sidenav-collapse navText="User Management" :to="{ name: 'Users' }" v-if="hasPermission('user_management')" >
+        <sidenav-collapse navText="User Management" :to="{ name: 'Users' }">
           <template #icon>
             <switches />
           </template>
@@ -55,7 +55,7 @@
           TEMPLATES
         </h6>
       </li> -->
-      <li class="mt-3 nav-item" v-if="hasPermission('ticket_management')">
+      <li class="mt-3 nav-item">
         <h6
           class="text-xs ps-4 text-uppercase font-weight-bolder opacity-6"
           :class="this.$store.state.isRTL ? 'me-4' : 'ms-2'"
@@ -63,7 +63,7 @@
          Tickets
         </h6>
       </li>
-      <li class="nav-item" v-if="hasPermission('ticket_management')">
+      <li class="nav-item">
         <sidenav-collapse navText="Tickets" :to="{ name: 'IndexTicket' }">
           <template #icon>
             <customer-support />
@@ -71,7 +71,7 @@
         </sidenav-collapse>
       </li>
       
-      <li class="nav-item" v-if="hasPermission('ticket_management')">
+      <li class="nav-item">
         <sidenav-collapse navText="Search Ticket" :to="{ name: 'SearchTicket' }">
           <template #icon>
             <office />
@@ -164,7 +164,6 @@ export default {
       title: "Ticket Tool",
       controls: "dashboardsExamples",
       isActive: "active",
-      permissions: [],
     };
   },
   components: {
@@ -186,14 +185,6 @@ export default {
       return this.$store.getters["auth/loggedIn"];
     },
   },
-  async mounted() {
-    let isLoggedIn = this.$store.getters["auth/loggedIn"];
-    if(isLoggedIn) {
-
-      await this.$store.dispatch("auth/getPermissions");
-      this.permissions = this.$store.getters["auth/getPermissions"];
-    }
-  },
   methods: {
     getRoute() {
       const routeArr = this.$route.path.split("/");
@@ -205,11 +196,7 @@ export default {
       } finally {
         this.$router.push("/sign-in");
       }
-    },
-
-    hasPermission(value) {
-      return this.permissions.includes(value);
-    },
+    }
   },
 };
 </script>

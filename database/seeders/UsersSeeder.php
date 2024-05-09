@@ -21,12 +21,10 @@ class UsersSeeder extends Seeder
         DB::table('users')->truncate();
         Schema::enableForeignKeyConstraints();
 
-        $user = User::create([
+        User::create([
             'name' => 'Admin',
             'email' => 'admin@jsonapi.com',
             'password' => 'secret'
         ]);
-
-        $user->assignRole('admin');
     }
 }
