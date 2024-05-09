@@ -11,8 +11,6 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Database\Eloquent\SoftDeletes; 
-use Spatie\Permission\Models\Role;
-use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
@@ -84,9 +82,5 @@ class User extends Authenticatable
     }
     public function authority() {
         return $this->belongsTo(Authority::class);
-    }
-
-    public function hasPermission($permission) {
-        return $this->roles->flatMap->permissions->pluck('name')->contains($permission);
     }
 }
