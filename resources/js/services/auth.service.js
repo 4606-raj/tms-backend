@@ -8,7 +8,7 @@ export default {
   async login(user) {
     const response = await axios.post("/login", user);
     if (response.data.access_token) {
-      localStorage.setItem("userF", JSON.stringify(response.data.access_token));
+      await localStorage.setItem("userF", JSON.stringify(response.data.access_token));
     }
   },
 

@@ -4,14 +4,18 @@ import 'vue3-toastify/dist/index.css';
 
 const baseUrl = import.meta.env.VITE_API_BASE_URL;
 
-const authToken = JSON.parse(localStorage.getItem('userF')); 
+// const authToken = JSON.parse(localStorage.getItem('userF')); 
+const getAuthToken = () => {
+  return JSON.parse(localStorage.getItem('userF'));
+};
+
 
 const instance = axios.create({
   baseURL: baseUrl, // Replace this with your base URL
   timeout: 60000,
   headers: {
     'X-Custom-Header': 'foobar',
-    'Authorization': `Bearer ${authToken}`
+    // 'Authorization': `Bearer ${authToken}`
   }
 });
 
@@ -44,6 +48,11 @@ const notifySuccess = (message = 'Success') => {
 instance.interceptors.request.use(
   config => {
     // You can modify the request config here (e.g., add headers)
+    const authToken = getAuthToken();
+    if (authToken) {
+      config.headers['Authorization'] = `Bearer ${authToken}`;
+    }
+
     return config;
   },
   error => {

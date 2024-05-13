@@ -128,6 +128,9 @@ export default {
     
     async submitForm() {
       const response = await this.$store.dispatch('auth/login', this.formData)
+      
+      if(this.$store.getters['auth/loggedIn'] && localStorage.getItem('userF'))
+        await this.$store.dispatch('auth/getPermissions')
     }
   },
 };

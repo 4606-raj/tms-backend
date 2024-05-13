@@ -41,7 +41,7 @@
         </sidenav-collapse>
       </li> -->
       <li class="nav-item">
-        <sidenav-collapse navText="User Management" :to="{ name: 'Users' }" v-if="hasPermission('user_management')" >
+        <sidenav-collapse navText="User Management" :to="{ name: 'Users' }" v-if="!hasPermission('user_management')" >
           <template #icon>
             <switches />
           </template>
@@ -55,7 +55,7 @@
           TEMPLATES
         </h6>
       </li> -->
-      <li class="mt-3 nav-item" v-if="hasPermission('ticket_management')">
+      <li class="mt-3 nav-item" v-if="!hasPermission('ticket_management')">
         <h6
           class="text-xs ps-4 text-uppercase font-weight-bolder opacity-6"
           :class="this.$store.state.isRTL ? 'me-4' : 'ms-2'"
@@ -187,12 +187,10 @@ export default {
     },
   },
   async mounted() {
-    let isLoggedIn = this.$store.getters["auth/loggedIn"];
-    if(isLoggedIn) {
-
-      await this.$store.dispatch("auth/getPermissions");
-      this.permissions = this.$store.getters["auth/getPermissions"];
-    }
+    // let isLoggedIn = this.$store.getters["auth/loggedIn"];
+    // if(isLoggedIn) {
+    //   this.permissions = this.$store.getters["auth/getPermissions"];
+    // }
   },
   methods: {
     getRoute() {
@@ -208,7 +206,7 @@ export default {
     },
 
     hasPermission(value) {
-      return this.permissions.includes(value);
+      return this.permissions?.includes(value);
     },
   },
 };
