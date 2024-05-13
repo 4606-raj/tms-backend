@@ -168,27 +168,47 @@ const router = createRouter({
 });
 
 // eslint-disable-next-line no-unused-vars
-router.beforeEach((to, from, next) => {
-  const context = {
-    to,
-    from,
-    next,
-    store,
-  };
+// router.beforeEach((to, from, next) => {
+//   const context = {
+//     to,
+//     from,
+//     next,
+//     store,
+//   };
 
-  // If the route does not have any middleware defined,
-  // directly call the auth function and proceed to the next route.
-  if (!to.meta.middleware) {
-    auth({ ...context, next }); // Simplified to just pass next
-    return next(); // Call next() to proceed to the next route
-  }
+//   // If the route does not have any middleware defined,
+//   // directly call the auth function and proceed to the next route.
+//   if (!to.meta.middleware) {
 
-  // If middleware is defined for the route, execute the first middleware
-  const middleware = to.meta.middleware;
-  return middleware[0]({
-    ...context,
-    next: middlewarePipeline(context, middleware, 1), // Call middlewarePipeline with updated next
-  });
-});
+//     // if (checkPermissions(to)) {
+//     //   auth({ ...context, next }); // Simplified to just pass next
+//     //   return next(); // Call next() to proceed to the next route
+//     // } else {
+//     //   // Redirect to unauthorized page or handle unauthorized access
+//     //   return next('/unauthorized');
+//     // }
+
+    
+//     auth({ ...context, next }); // Simplified to just pass next
+//     return next(); // Call next() to proceed to the next route
+//   }
+
+//   // If middleware is defined for the route, execute the first middleware
+//   const middleware = to.meta.middleware;
+//   return middleware[0]({
+//     ...context,
+//     next: middlewarePipeline(context, middleware, 1), // Call middlewarePipeline with updated next
+//   });
+// });
+
+function checkPermissions(route) {
+  // console.log(route.meta.requiredPermissions);
+  // console.log(router.app.$store.getters["auth/getPermissions"])
+  const userPermissions = store.getters["auth/getPermissions"];
+  // console.log(store.getters['auth/getPermissions'], 'store.state'); 
+
+
+  return true;
+}
 
 export default router;
