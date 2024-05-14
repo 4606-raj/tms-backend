@@ -124,7 +124,7 @@
       </div>
       <!---end filter section-->
 
-      <div class="col-12">
+      <div >
 
         <router-link class="btn bg-gradient-warning btn-sm mt-4" :to="{name: 'CreateTicket'}" v-if="hasPermission('create_ticket')">Create Ticket</router-link>
         <soft-button class="float-end btn bg-gradient-dark btn-sm mt-4" @click="downloadExcel">
@@ -191,6 +191,7 @@ export default {
       tableHeaders: [
         'ticketnumber', 'name(mobile)', 'email', 'mobile', 'familyid', 'category', 'subcategory', 'childsubcategory', 'Assignto', 'district', 'status', 'channel', 'loggedby', 'loggedat', 'resolveddate'
       ],
+      permissions: ['create_ticket'],
     }
   },
   async mounted() {
@@ -254,6 +255,7 @@ export default {
       this.fetchData()
     },
     hasPermission(value) {
+      console.log(value,"bbb");
       return this.permissions?.includes(value);
     },
 
