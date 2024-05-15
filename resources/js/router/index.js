@@ -175,13 +175,23 @@ const router = createRouter({
 });
 
 // eslint-disable-next-line no-unused-vars
-// router.beforeEach((to, from, next) => {
-//   const context = {
-//     to,
-//     from,
-//     next,
-//     store,
-//   };
+router.beforeEach( async (to, from, next) => {
+  const context = {
+    to,
+    from,
+    next,
+    store,
+  };
+
+  // if (to.name !== 'Sign In' && store.getters['auth/getPermissions'] == undefined) {
+  //   try {
+  //     await store.dispatch('auth/getPermissions');
+  //   } catch (error) {
+  //     console.error('Error fetching permissions on page reload:', error);
+  //   }
+  // }
+  next();
+
 
 //   // If the route does not have any middleware defined,
 //   // directly call the auth function and proceed to the next route.
@@ -206,7 +216,7 @@ const router = createRouter({
 //     ...context,
 //     next: middlewarePipeline(context, middleware, 1), // Call middlewarePipeline with updated next
 //   });
-// });
+});
 
 function checkPermissions(route) {
   // console.log(route.meta.requiredPermissions);
