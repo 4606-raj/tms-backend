@@ -206,7 +206,7 @@ export default {
     },
 
     hasPermission(value) {
-      console.log(value,"schsc");
+      // console.log(value,"schsc");
       return this.permissions?.includes(value);
     },
   },

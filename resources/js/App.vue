@@ -35,6 +35,8 @@ import Configurator from "@/examples/Configurator.vue";
 import Navbar from "@/examples/Navbars/Navbar.vue";
 import AppFooter from "@/examples/Footer.vue";
 import { mapMutations } from "vuex";
+import store from "./store";
+
 export default {
   name: "App",
   components: {
@@ -59,6 +61,20 @@ export default {
   },
   beforeMount() {
     this.$store.state.isTransparent = "bg-transparent";
+  },
+  created() {
+    this.fetchPermissionsOnReload();
+  },
+  methods: {
+    async fetchPermissionsOnReload() {
+      if (store.getters['auth/getPermissions'] == undefined) {
+        try {
+          await store.dispatch('auth/getPermissions');
+        } catch (error) {
+          console.error('Error fetching permissions on page reload:', error);
+        }
+      }
+    },
   },
 };
 </script>
