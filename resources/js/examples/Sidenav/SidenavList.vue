@@ -41,7 +41,7 @@
         </sidenav-collapse>
       </li> -->
       <li class="nav-item">
-        <sidenav-collapse navText="User Management" :to="{ name: 'Users' }">
+        <sidenav-collapse navText="User Management" :to="{ name: 'Users' }" v-if="hasPermission('user_management')" >
           <template #icon>
             <switches />
           </template>
@@ -55,7 +55,7 @@
           TEMPLATES
         </h6>
       </li> -->
-      <li class="mt-3 nav-item">
+      <li class="mt-3 nav-item" v-if="hasPermission('ticket_management')">
         <h6
           class="text-xs ps-4 text-uppercase font-weight-bolder opacity-6"
           :class="this.$store.state.isRTL ? 'me-4' : 'ms-2'"
@@ -164,6 +164,7 @@ export default {
       title: "Ticket Tool",
       controls: "dashboardsExamples",
       isActive: "active",
+      permissions: ['ticket_management','user_management'],
     };
   },
   components: {

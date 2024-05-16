@@ -172,6 +172,7 @@ export default {
       tableHeaders: [
         'ticketnumber', 'name(mobile)', 'email', 'mobile', 'familyid', 'category', 'subcategory', 'childsubcategory', 'Assignto', 'district', 'status', 'channel', 'loggedby', 'loggedat', 'resolveddate'
       ],
+      permissions: ['create_ticket'],
     }
   },
   async mounted() {
