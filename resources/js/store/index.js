@@ -10,6 +10,7 @@ import { channels } from "./channels.module";
 import { sources } from "./sources.module";
 import { users } from "./users.module";
 import { authorities } from "./authorities.module";
+import { roles } from "./roles.module";
 
 export default createStore({
   state: {
@@ -41,7 +42,8 @@ export default createStore({
     channels,
     sources,
     users,
-    authorities
+    authorities,
+    roles
   },
   mutations: {
     toggleConfigurator(state) {
