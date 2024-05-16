@@ -36,7 +36,7 @@ class RegisterController extends Controller
             'authority_id'  => $request->authority_id,
         ]);
 
-        $user->assignRole('user');
+        $user->assignRole($request->profile);
         $responseData = [
             'user' => $user,
         ];

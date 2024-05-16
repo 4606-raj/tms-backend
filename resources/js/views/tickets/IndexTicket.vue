@@ -1,28 +1,28 @@
 <template>  
     <div class="py-4 container-fluid">
-       <!---start filter section-->
-    <div class="row px-0 pt-0 pb-2">
-      <h5>Ticket's Filters</h5>
+      <!---start filter section-->
+      <div class="row px-0 pt-0 pb-2">
+        <h5>Ticket's Filters</h5>
         <div class="col-12 row">
-            <div class="col-3">
-              <label class="form-label">Type: </label>
-              <select class="form-select" name="type" v-model="formdata.type">
-                <option disabled selected value="">Please select one</option>
-                <option value="all">All</option> 
-                <option value="query">Query</option>
-                <option value="modification">Modification</option>
-              </select>
-            </div>
-            <div class="col-3">
-              <label class="form-label">Created BY: </label>
-              <select class="form-select" name="created_by" v-model="formdata.created_by">
-                <option disabled selected value="">Please select one</option>
-                <option value="all">All</option> 
-                <option value="operator">Operator</option>
-                <option value="modification">Modification</option>
-              </select>
-            </div>
-            <div class="col-3">
+          <div class="col-3">
+            <label class="form-label">Type: </label>
+            <select class="form-select" name="type" v-model="formdata.type">
+              <option disabled selected value="">Please select one</option>
+              <option value="all">All</option> 
+              <option value="query">Query</option>
+              <option value="modification">Modification</option>
+            </select>
+          </div>
+          <div class="col-3">
+            <label class="form-label">Created BY: </label>
+            <select class="form-select" name="created_by" v-model="formdata.created_by">
+              <option disabled selected value="">Please select one</option>
+              <option value="all">All</option> 
+              <option value="operator">Operator</option>
+              <option value="modification">Modification</option>
+            </select>
+          </div>
+          <div class="col-3">
               <label class="form-label">Start Date</label>
               <input
                 id="start_date"
@@ -31,8 +31,8 @@
                 placeholder="DD-MM-YY"
                 v-model="formdata.start"
               />
-            </div>
-            <div class="col-3">
+          </div>
+          <div class="col-3">
               <label class="form-label">End Date</label>
               <input
                 id="end_date"
@@ -41,90 +41,90 @@
                 placeholder="DD-MM-YY"
                 v-model="formdata.end"
               />
-            </div>
           </div>
-          <div class="col-12 row">
-            <div class="col-3">
-              <label class="form-label">Status: </label>
-              <select class="form-select" name="status" v-model="formdata.status">
-                <option disabled selected value="">Please select one</option>
-                <option value="all">All</option> 
-                <option value="open">Open</option>
-                <option value="close">close</option>
-                <option value="resolved">resolved</option>
-              </select>
-            </div>
-            <div class="col-3">
-              <label class="form-label">Category: </label>
-              <select class="form-select" name="category" v-model="formdata.category">
-                <option disabled selected value="">Please select one</option>
-                <option value="all">All</option> 
-                <option value="operator">Operator</option>
-                <option value="modification">Modification</option>
-              </select>
-            </div>
-            <div class="col-3">
-              <label class="form-label">Subcategory: </label>
-              <select class="form-select" name="subcategory" v-model="formdata.subcategory">
-                <option disabled selected value="">Please select one</option>
-                <option value="all">All</option> 
-                <option value="operator">Operator</option>
-                <option value="modification">Modification</option>
-              </select>
-            </div>
-            <div class="col-3">
-              <label class="form-label">ChildSubcategory: </label>
-              <select class="form-select" name="childsubcategory" v-model="formdata.childsubcategory">
-                <option disabled selected value="">Please select one</option>
-                <option value="all">All</option> 
-                <option value="operator">Operator</option>
-                <option value="modification">Modification</option>
-              </select>
-            </div>
+        </div>
+        <div class="col-12 row">
+          <div class="col-3">
+            <label class="form-label">Status: </label>
+            <select class="form-select" name="status" v-model="formdata.status">
+              <option disabled selected value="">Please select one</option>
+              <option value="all">All</option> 
+              <option value="open">Open</option>
+              <option value="close">close</option>
+              <option value="resolved">resolved</option>
+            </select>
           </div>
-          <div class="col-12 row">
-            <div class="col-3">
-              <label class="form-label">District: </label>
-              <select class="form-select" name="district" v-model="formdata.district">
-                <option disabled selected value="">Please select one</option>
-                <option value="all">All</option> 
-                <option value="1">sonipat</option>
-                <option value="2">panipat</option>
-              </select>
-            </div>
-            <div class="col-3">
-              <label class="form-label">Assign To: </label>
-              <select class="form-select" name="assign" v-model="formdata.assign_to">
-                <option disabled selected value="">Please select one</option>
-                <option value="all">All</option> 
-                <option value="DCRIM">DCRIM</option>
-                <option value="ZCRIM">ZCRIM</option>
-              </select>
-            </div>
-            <div class="col-3">
-              <label class="form-label">Assign User: </label>
-              <select class="form-select" name="assign" v-model="formdata.assign_user">
-                <option disabled selected value="">Please select one</option>
-                <option value="all">All</option> 
-                <option value="1">ABC</option>
-                <option value="2">BCD</option>
-              </select>
-            </div>
-            <div class="col-3 d-flex justify-content-end">
-              <soft-button color="warning" variant="gradient" class="btn bg-gradient-info btn-sm mt-4 me-2"
-                  size="sm" :is-disabled="loading ? true : false" @click="handlePassChange">
-                  <span v-if="loading" class="spinner-border spinner-border-sm"></span>
-                  <span v-else>SEARCH</span>
-              </soft-button>
-              <soft-button class="btn bg-gradient-primary btn-sm mt-4" @click="resetForm">
-                  <span>Clear</span>
-              </soft-button>
-            </div>
+          <div class="col-3">
+            <label class="form-label">Category: </label>
+            <select class="form-select" name="category" v-model="formdata.category">
+              <option disabled selected value="">Please select one</option>
+              <option value="all">All</option> 
+              <option value="operator">Operator</option>
+              <option value="modification">Modification</option>
+            </select>
           </div>
+          <div class="col-3">
+            <label class="form-label">Subcategory: </label>
+            <select class="form-select" name="subcategory" v-model="formdata.subcategory">
+              <option disabled selected value="">Please select one</option>
+              <option value="all">All</option> 
+              <option value="operator">Operator</option>
+              <option value="modification">Modification</option>
+            </select>
+          </div>
+          <div class="col-3">
+            <label class="form-label">ChildSubcategory: </label>
+            <select class="form-select" name="childsubcategory" v-model="formdata.childsubcategory">
+              <option disabled selected value="">Please select one</option>
+              <option value="all">All</option> 
+              <option value="operator">Operator</option>
+              <option value="modification">Modification</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-12 row">
+          <div class="col-3">
+            <label class="form-label">District: </label>
+            <select class="form-select" name="district" v-model="formdata.district">
+              <option disabled selected value="">Please select one</option>
+              <option value="all">All</option> 
+              <option value="1">sonipat</option>
+              <option value="2">panipat</option>
+            </select>
+          </div>
+          <div class="col-3">
+            <label class="form-label">Assign To: </label>
+            <select class="form-select" name="assign" v-model="formdata.assign_to">
+              <option disabled selected value="">Please select one</option>
+              <option value="all">All</option> 
+              <option value="DCRIM">DCRIM</option>
+              <option value="ZCRIM">ZCRIM</option>
+            </select>
+          </div>
+          <div class="col-3">
+            <label class="form-label">Assign User: </label>
+            <select class="form-select" name="assign" v-model="formdata.assign_user">
+              <option disabled selected value="">Please select one</option>
+              <option value="all">All</option> 
+              <option value="1">ABC</option>
+              <option value="2">BCD</option>
+            </select>
+          </div>
+          <div class="col-3 d-flex justify-content-end">
+            <soft-button color="warning" variant="gradient" class="btn bg-gradient-info btn-sm mt-4 me-2"
+                size="sm" :is-disabled="loading ? true : false" @click="handlePassChange">
+                <span v-if="loading" class="spinner-border spinner-border-sm"></span>
+                <span v-else>SEARCH</span>
+            </soft-button>
+            <soft-button class="btn bg-gradient-primary btn-sm mt-4" @click="resetForm">
+                <span>Clear</span>
+            </soft-button>
+          </div>
+        </div>
       </div>
       <!---end filter section-->
 
-      <div >
+      <div class="col-12">
 
         <router-link class="btn bg-gradient-warning btn-sm mt-4" :to="{name: 'CreateTicket'}" v-if="hasPermission('create_ticket')">Create Ticket</router-link>
         <soft-button class="float-end btn bg-gradient-dark btn-sm mt-4" @click="downloadExcel">
@@ -132,10 +132,10 @@
         <router-link class="float-end btn bg-gradient-light btn-sm mt-4" :to="{name: 'CreateTicket'}">Assigned Ticket</router-link>
       </div>
       
-      <div class="row">
+      <div class="row col-12">
 
         <div class="col-12">
-          <list :tickets="tickets"/>
+          <list :tableHeaders="tableHeaders" :tickets="tickets"/>
         </div>
       </div>
     </div>
@@ -171,7 +171,6 @@ export default {
       tableHeaders: [
         'ticketnumber', 'name(mobile)', 'email', 'mobile', 'familyid', 'category', 'subcategory', 'childsubcategory', 'Assignto', 'district', 'status', 'channel', 'loggedby', 'loggedat', 'resolveddate'
       ],
-      permissions: ['create_ticket'],
     }
   },
   async mounted() {
@@ -201,6 +200,9 @@ export default {
         created_at: this.formatDate(created_at),
         resolved_date
       }))
+    },
+    permissions() {
+      return this.$store.getters["auth/getPermissions"];
     },
     pagination() {
       return this.$store.getters['tickets/getPagination'];
@@ -232,7 +234,6 @@ export default {
       this.fetchData()
     },
     hasPermission(value) {
-      console.log(value,"bbb");
       return this.permissions?.includes(value);
     },
 

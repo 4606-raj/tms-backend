@@ -110,12 +110,14 @@
 <script>
 import showSwal from "../mixins/showSwal.js";
 import SoftTable from "./components/SoftTable.vue";
+import SoftButton from "./components/SoftTable.vue";
 import SoftPagination from "./components/SoftPagination.vue";
 import SoftPaginationItem from "./components/SoftPaginationItem.vue";
 export default {
   name: "Users",
   components: {
     SoftTable,
+    // SoftButton,
     SoftPagination,
     SoftPaginationItem,
   },

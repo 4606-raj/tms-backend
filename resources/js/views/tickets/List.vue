@@ -32,6 +32,10 @@ export default {
         tickets: {
             type: Array,
             required: true,
+        },
+        tableHeaders: {
+            type: Array,
+            required: true,
         }
     },
     components: {
