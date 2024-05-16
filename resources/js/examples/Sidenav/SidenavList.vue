@@ -164,7 +164,6 @@ export default {
       title: "Ticket Tool",
       controls: "dashboardsExamples",
       isActive: "active",
-      permissions: ['ticket_management','user_management'],
     };
   },
   components: {
