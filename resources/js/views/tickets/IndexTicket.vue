@@ -125,7 +125,8 @@
       <!---end filter section-->
 
       <div >
-        <router-link class="btn bg-gradient-warning btn-sm mt-4" :to="{name: 'CreateTicket'}">Create Ticket</router-link>
+
+        <router-link class="btn bg-gradient-warning btn-sm mt-4" :to="{name: 'CreateTicket'}" v-if="hasPermission('create_ticket')">Create Ticket</router-link>
         <soft-button class="float-end btn bg-gradient-dark btn-sm mt-4" @click="downloadExcel">
         <span>Download Assigned Ticket</span></soft-button>
         <router-link class="float-end btn bg-gradient-light btn-sm mt-4" :to="{name: 'CreateTicket'}">Assigned Ticket</router-link>
@@ -190,6 +191,7 @@ export default {
       tableHeaders: [
         'ticketnumber', 'name(mobile)', 'email', 'mobile', 'familyid', 'category', 'subcategory', 'childsubcategory', 'Assignto', 'district', 'status', 'channel', 'loggedby', 'loggedat', 'resolveddate'
       ],
+      permissions: ['create_ticket'],
     }
   },
   async mounted() {
@@ -235,22 +237,24 @@ export default {
       return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     },
     fetchData() {
-        // Check if pagination object exists before accessing its properties
-        if (this.pagination && this.pagination.current_page) {
-          this.$store.dispatch('tickets/fetchAll', { page: this.pagination.current_page });
-        } else {
-          // Handle the case where pagination object is not initialized
-          console.error('Pagination object is null or undefined');
-        }
-      },
-
-
+      // Check if pagination object exists before accessing its properties
+      if (this.pagination && this.pagination.current_page) {
+        this.$store.dispatch('tickets/fetchAll', { page: this.pagination.current_page });
+      } else {
+        // Handle the case where pagination object is not initialized
+        console.error('Pagination object is null or undefined');
+      }
+    },
     changePage(page) {
       if (page < 1 || page > this.pagination.last_page) return;
 
       this.pagination.current_page = page;
       this.fetchData()
-    }
+    },
+    hasPermission(value) {
+      console.log(value,"bbb");
+      return this.permissions?.includes(value);
+    },
 
   }
 
