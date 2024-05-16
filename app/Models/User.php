@@ -83,4 +83,11 @@ class User extends Authenticatable
     public function authority() {
         return $this->belongsTo(Authority::class);
     }
+<<<<<<< HEAD
+=======
+
+    public function hasPermission($permission) {
+        return $this->roles->flatMap->permissions->pluck('name')->contains($permission);
+    }
+>>>>>>> 3b19118 (add permissions)
 }
