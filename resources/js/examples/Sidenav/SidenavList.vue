@@ -164,7 +164,6 @@ export default {
       title: "Ticket Tool",
       controls: "dashboardsExamples",
       isActive: "active",
-      permissions: ['ticket_management','user_management'],
     };
   },
   components: {
@@ -185,6 +184,16 @@ export default {
     loggedIn() {
       return this.$store.getters["auth/loggedIn"];
     },
+    permissions() {
+      return this.$store.getters["auth/getPermissions"];
+    }
+  },
+  async mounted() {
+    // console.log(this.getPermissions, 'fjas');
+    // let isLoggedIn = this.$store.getters["auth/loggedIn"];
+    // if(isLoggedIn) {
+    //   this.permissions = this.$store.getters["auth/getPermissions"];
+    // }
   },
   methods: {
     getRoute() {
