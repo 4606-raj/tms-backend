@@ -124,7 +124,7 @@
       </div>
       <!---end filter section-->
 
-      <div >
+      <div class="col-12">
 
         <router-link class="btn bg-gradient-warning btn-sm mt-4" :to="{name: 'CreateTicket'}" v-if="hasPermission('create_ticket')">Create Ticket</router-link>
         <soft-button class="float-end btn bg-gradient-dark btn-sm mt-4" @click="downloadExcel">
@@ -135,26 +135,7 @@
       <div class="row col-12">
 
         <div class="col-12">
-          <div class="table-responsive">
-            <soft-table :headers="tableHeaders" :data="tickets"/>
-            <div class="pagination justify-content-end">
-            <soft-pagination color="primary" v-if="pagination != null">
-              <soft-pagination-item label="<" 
-              @click="changePage(pagination.current_page - 1)" 
-              :disabled="pagination.current_page === 1" />
-              
-              <soft-pagination-item v-for="page in pagination.last_page" 
-              :label="page.toString()" 
-              :class="{ active: pagination.current_page === page }" 
-              @click="changePage(page)"
-              />
-              
-              <soft-pagination-item label=">" 
-                @click="changePage(pagination.current_page + 1)" 
-                :disabled="pagination.current_page >= pagination.last_page" />
-              </soft-pagination>
-            </div>
-          </div>
+          <list :tableHeaders="tableHeaders" :tickets="tickets"/>
         </div>
       </div>
     </div>
@@ -191,7 +172,6 @@ export default {
       tableHeaders: [
         'ticketnumber', 'name(mobile)', 'email', 'mobile', 'familyid', 'category', 'subcategory', 'childsubcategory', 'Assignto', 'district', 'status', 'channel', 'loggedby', 'loggedat', 'resolveddate'
       ],
-      permissions: ['create_ticket'],
     }
   },
   async mounted() {
@@ -255,7 +235,6 @@ export default {
       this.fetchData()
     },
     hasPermission(value) {
-      console.log(value,"bbb");
       return this.permissions?.includes(value);
     },
 
