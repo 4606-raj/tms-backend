@@ -1,7 +1,14 @@
 <template>
   <div class="container-fluid mt-4">
     <div class="row">
-     
+      <div class="col-12">
+        <button class="float-end btn bg-gradient-warning btn-sm mt-4" @click="showAssignTicketModal">Assign Ticket</button>
+        <router-link class="float-start btn bg-gradient-primary btn-sm mt-4" :to="{name: 'CreateTicket'}">View Ticket Remarks</router-link>
+        <button class="float-end btn bg-gradient-light btn-sm mt-4">Close Ticket</button>
+       
+      </div>
+    </div>
+    <div class="row">
         <div class="col-4">
           <div id="basic-info" class="card mt-4">
             <div class="card-header">
@@ -147,6 +154,8 @@
      
 
     </div>
+    <!-- Modal component -->
+    <assign-ticket-modal :isVisible="isAssignTicketModalVisible" @close="isAssignTicketModalVisible = false" />
   </div>
 </template>
 
@@ -156,8 +165,8 @@ import SoftSwitch from "@/components/SoftSwitch.vue";
 import SoftModelInput from "@/components/SoftModelInput.vue";
 import ValidationError from "@/components/ValidationError.vue";
 import formMixin from "../../mixins/form-mixin.js";
-import SoftCheckbox from "@/components/SoftCheckbox.vue";
 import SoftCkeditor from "@/components/SoftCkeditor.vue";
+import AssignTicketModal from "./components/AssignTicketModal.vue"; // Adjust the path as necessary
 
 export default {
   name: "ShowTicket",
@@ -167,28 +176,44 @@ export default {
     SoftModelInput,
     ValidationError,
     SoftCkeditor,
+    AssignTicketModal,
   },
 
   mixins: [formMixin],
-
-  mounted() {
-    //this.$store.dispatch("tickets/fetchAll");
-  },
-
-  computed: {
-   
-  },
-
   data() {
     return {
-      
+      ticket: [],
+      isAssignTicketModalVisible: false
     };
   },
+  created() {
+    this.fetchTicketDetail();
+  },
+  // mounted() {
+  //     this.ticket =  this.$store.dispatch('tickets/ticketDetail', '1');//this.$route.params.id);
+  // },
+
   
   methods: {
-    async handleSubmit() {
-      await this.$store.dispatch("tickets/createTicket", this.ticket);
+    async fetchTicketDetail() {
+      const ticketId = this.$route.params.id;
+      if (!ticketId) {
+        console.error('Ticket ID is not defined.');
+        return;
+      }
+      try {
+        const response = await fetch(`http://127.0.0.1:8001/tickets/${ticketId}`);
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        this.ticket = await response.json();
+      } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+      }
     },
+    showAssignTicketModal() {
+      this.isAssignTicketModalVisible = true;
+    }
   },
 };
 

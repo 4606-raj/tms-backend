@@ -32,4 +32,8 @@ export default {
     const response = await axios.get("/user/permissions");
     return response.data;
   },
+  async getRoles() {
+    const response = await axios.get("/roles");
+    return response.data;
+  },
 };

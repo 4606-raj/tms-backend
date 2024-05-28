@@ -17,7 +17,6 @@ use App\Http\Controllers\DistrictController;
 use App\Http\Controllers\SourceController;
 use App\Http\Controllers\ChannelController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\AuthoritiesController;
 use App\Http\Controllers\RoleController;
 
 /*
@@ -37,15 +36,17 @@ Route::prefix('v1')->middleware('json.api')->group(function () {
     Route::post('/register', RegisterController::class);
     Route::post('/password-forgot', ForgotPasswordController::class);
     Route::post('/password-reset', ResetPasswordController::class)->name('password.reset');
+    Route::get('/roles', [RegisterController::class, 'getRoles']);
 
-    Route::apiResource('authorities', AuthoritiesController::class);
     Route::apiResource('categories', CategoriesController::class);
     Route::apiResource('channels', ChannelController::class);
     Route::apiResource('sources', SourceController::class);
     Route::apiResource('district', DistrictController::class);
     Route::middleware(['auth:api', 'check.permission:user_management'])->apiResource('users', UserController::class);
     Route::middleware(['auth:api', 'check.permission:ticket_management'])->apiResource('tickets', TicketController::class);
+    Route::middleware('auth:api')->get('/assign-ticket', [TicketController::class, 'assignTicket']);
     Route::middleware('auth:api')->get('/user/permissions', [UserController::class, 'getPermissions']);
+   
     
     Route::middleware('auth:api')->post('search-ticket', [TicketController::class,'search']);
     // Route::post('subcategories', CategoriesController::class,'subCategories');

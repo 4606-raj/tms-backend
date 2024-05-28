@@ -82,7 +82,8 @@
                     <div class="mb-3">
                         <label class="form-label">Profile</label>
                         <select class="form-select" name="profile"  v-model="formData.profile">
-                        <option v-for="item in authorities" :value="item.id" :key="item.id">{{ item.name }}</option>
+                        <option disabled selected value="">Please select one</option>
+                        <option v-for="item in roles" :value="item.name" :key="item.id">{{ toUpperCase(item.name) }}</option>
                         </select>
                     </div>
                     <div class="mb-3">
@@ -155,14 +156,17 @@ import curvedImage from '@/assets/img/curved-images/curved9.jpg';
     };
   },
   mounted() {
-    this.$store.dispatch("authorities/fetchAll");
+    
   },
   computed: {
-    authorities() {
-      return this.$store.getters['authorities/getAll'];
-    },
+    roles() {
+      return this.$store.getters["auth/getRoles"];
+    }
   },
   methods: {
+    toUpperCase(value) {
+      return value.toUpperCase();
+    },
     async submitForm() {
       const response = await this.$store.dispatch('users/create', this.formData)
       if (response.success) {

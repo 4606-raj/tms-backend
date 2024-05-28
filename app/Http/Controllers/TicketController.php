@@ -108,7 +108,14 @@ class TicketController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $data = $request->validate([
+            'description' => 'required',
+           
+        ]);
+
+        $ticket->update($data);
+
+        return $this->successResponse($ticket);
     }
 
     /**

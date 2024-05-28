@@ -4,15 +4,15 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes; 
+//use Illuminate\Database\Eloquent\SoftDeletes; 
 
-class Authority extends Model
+class Role extends Model
 {
-    use HasFactory, SoftDeletes;
-    protected $table = 'authorities';
+    use HasFactory;
+    protected $table = 'roles';
     protected $fillable = [
         'name',
-        'status',
+        'guard_name',
     ];
     // public function users() {
     //     return $this->belongsTo(User::class);

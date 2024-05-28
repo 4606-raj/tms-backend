@@ -127,7 +127,8 @@
       <div class="col-12">
 
         <router-link class="btn bg-gradient-warning btn-sm mt-4" :to="{name: 'CreateTicket'}" v-if="hasPermission('create_ticket')">Create Ticket</router-link>
-        <soft-button class="float-end btn bg-gradient-dark btn-sm mt-4" @click="downloadExcel">
+        <soft-button class="float-end btn bg-gradient-primary btn-sm mt-4" @click="downloadExcel"><i class="fa fa-download" aria-hidden="true"></i></soft-button>
+        <soft-button class="float-end btn bg-gradient-dark btn-sm mt-4" @click="AssinedTicketExcel">
         <span>Download Assigned Ticket</span></soft-button>
         <router-link class="float-end btn bg-gradient-light btn-sm mt-4" :to="{name: 'CreateTicket'}">Assigned Ticket</router-link>
       </div>

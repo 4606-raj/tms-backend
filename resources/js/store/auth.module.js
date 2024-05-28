@@ -20,6 +20,13 @@ export const auth = {
       }
     },
 
+    async getRoles({ commit }) {
+      const response = await authService.getRoles();
+      if(response) {
+        commit("setRoles", response.data)
+      }
+    },
+
     async logout({ commit }) {
       try {
         await authService.logout();
@@ -42,6 +49,10 @@ export const auth = {
       state.loggedIn = false;
     },
 
+    setRoles(state, data) {
+      state.userRoles = data;
+    },
+
     setPermissions(state, data) {
       state.userPermissions = data;
     }
@@ -53,6 +64,9 @@ export const auth = {
     },
     getPermissions(state) {
       return state.userPermissions;
+    },
+    getRoles(state) {
+      return state.userRoles;
     }
   },
 };

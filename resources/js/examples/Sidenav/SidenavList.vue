@@ -79,11 +79,18 @@
         </sidenav-collapse>
       </li>
       <li class="nav-item">
+        <sidenav-collapse navText="TicketDetail" :to="{ name: 'TicketDetail', params: { id: '1' } }">
+          <template #icon>
+            <credit-card />
+          </template>
+        </sidenav-collapse> 
+      </li>
+      <li class="nav-item">
         <sidenav-collapse navText="ContactUs" :to="{ name: 'ContactUs' }">
           <template #icon>
             <credit-card />
           </template>
-        </sidenav-collapse>
+        </sidenav-collapse> 
       </li>
 
       <!--<li class="nav-item">

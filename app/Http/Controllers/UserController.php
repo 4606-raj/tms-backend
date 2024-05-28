@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Traits\ApiResponses;
 use App\Models\User;
-use App\Models\Authority;
+use App\Models\Role;
 use App\Http\Requests\UserRequest;
 use App\Http\Requests\Api\V2\Auth\RegisterRequest;
 use Illuminate\Support\Str;
@@ -20,8 +20,8 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $query = User::with('authority');
-        $users =     $query->paginate(10); 
+        $users = User::paginate(10); 
+          
         return $this->successResponse($users);
 
 
@@ -47,7 +47,7 @@ class UserController extends Controller
                 'authority_id'  => $request->authority_id,
             ]);
     
-            $user->assignRole('user');
+            $user->assignRole($request->profile);
             // $responseData = [
             //     'user' => $user,
             // ];
@@ -85,13 +85,6 @@ class UserController extends Controller
      public function destroy(string $id)
     {
         //
-    }
-    public function authorities()
-    {
-        $data = Authority::get();
- 
-
-        return $this->successResponse($data);
     }
    
     public function getPermissions() {

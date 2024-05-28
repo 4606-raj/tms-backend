@@ -64,6 +64,7 @@ export default {
   },
   created() {
     this.fetchPermissionsOnReload();
+    this.fetchRolesOnReload();
   },
   methods: {
     async fetchPermissionsOnReload() {
@@ -72,6 +73,15 @@ export default {
           await store.dispatch('auth/getPermissions');
         } catch (error) {
           console.error('Error fetching permissions on page reload:', error);
+        }
+      }
+    },
+    async fetchRolesOnReload() {
+      if (store.getters['auth/getRoles'] == undefined) {
+        try {
+          await store.dispatch('auth/getRoles');
+        } catch (error) {
+          console.error('Error fetching roles on page reload:', error);
         }
       }
     },

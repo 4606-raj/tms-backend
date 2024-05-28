@@ -157,9 +157,10 @@ const routes = [
     component: SearchTicket,
   },
   {
-    path: "/ticket-details",
+    path: "/tickets/:id",
     name: "TicketDetail",
     component: TicketDetail,
+   
   },
   {
     path: "/contact-us",

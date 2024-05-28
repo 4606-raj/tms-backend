@@ -7,11 +7,13 @@ use App\Http\Requests\Api\V2\Auth\RegisterRequest;
 use LaravelJsonApi\Core\Document\Error;
 use Symfony\Component\HttpFoundation\Response;
 use App\Http\Requests\Api\V2\Auth\LoginRequest;
+use App\Traits\ApiResponses;
 use App\Models\User;
-use App\Models\Authority;
+use App\Models\Role;
 
 class RegisterController extends Controller
 {
+    use ApiResponses;
         /**
      * Handle the incoming request.
      *
@@ -54,4 +56,11 @@ class RegisterController extends Controller
             abort(403); // or redirect to unauthorized page
         }
     }
+    public function getRoles()
+    {
+        $data = Role::select('id','name')->get();
+        return $this->successResponse($data);
+    }
+   
+   
 }
