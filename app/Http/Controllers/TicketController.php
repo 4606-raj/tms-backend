@@ -128,7 +128,9 @@ class TicketController extends Controller
     }
     public function search(Request $request)
     {
+        dd($request->all());
         $query = Ticket::with('users:id,name','category:id,name','subCategory:id,name','childSubcategory','districts','channels','sources');
+       
         if($request->search == 'ticket_number'){
             $query->where('ticket_number',"=",$request->ticket_number);
         }

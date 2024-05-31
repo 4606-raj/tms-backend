@@ -4,7 +4,7 @@
         <div class="col-12 row d-flex align-items-center ">
             <div class="col-4">
               <label class="form-label">search By: </label>
-              <select class="form-select" name="search">
+              <select  v-model="searchBy" class="form-select" name="search">
                   <option disabled selected value="">Please select one</option>
                   <option value="familyId">FamilyId</option>
                   <option value="mobile_number">Mobile Number</option>
@@ -14,27 +14,26 @@
             <div class="col-4">
               <label class="form-label">Value</label>
               <input
-                  id="value"
-                  name="value"
-                  type="text"
-                  class="form-control"
-                  placeholder="mobile number"
+                v-model="searchValue"
+                id="value"
+                name="value"
+                type="text"
+                class="form-control"
+                placeholder="Enter value"
                 />
             </div>
             <div class="col-4">
               <soft-button
-                color="warning"
-                variant="gradient"
-                class="float-start btn bg-gradient-info btn-sm mt-4"
-                size="sm"
-                :is-disabled="loading ? true : false"
-                @click="handlePassChange"
-                ><span
-                  v-if="loading"
-                  class="spinner-border spinner-border-sm"
-                ></span>
-                <span v-else>SEARCH</span></soft-button
-              >
+                  color="warning"
+                  variant="gradient"
+                  class="float-start btn bg-gradient-info btn-sm mt-4"
+                  size="sm"
+                  :is-disabled="loading"
+                  @click="handlePassChange"
+                >
+                  <span v-if="loading" class="spinner-border spinner-border-sm"></span>
+                  <span v-else>SEARCH</span>
+                </soft-button>
             </div>
           </div>
       </div>
@@ -59,9 +58,13 @@ export default {
 
   data() {
     return {
+      searchBy: '',
+      searchValue: '',
+      loading: false,
       tableHeaders: [
-        'ticketnumber', 'name(mobile)', 'email', 'mobile', 'familyid', 'category', 'subcategory', 'childsubcategory', 'Assignto', 'district', 'status', 'channel', 'loggedby', 'loggedat', 'resolveddate'
+        'ticket_number', 'name_mob', 'email', 'mobile', 'family_id', 'category_name', 'subcategory_name', 'chidsubcategory_name', 'assign_to', 'district_name', 'auto_close', 'channel', 'logged', 'created_at', 'resolved_date'
       ],
+      
     }
   },
   async mounted() {
@@ -94,17 +97,32 @@ export default {
     }
   },
   methods: {
-
     formatDate(dateString) {
-    // Assuming dateString is in ISO format like "YYYY-MM-DDTHH:MM:SSZ"
       const date = new Date(dateString);
       return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     },
-    fetchData() {
-          this.$store.dispatch('tickets/search');
-      },
+    async handlePassChange() {
+      if (!this.searchBy || !this.searchValue) {
+        alert("Please select a search criterion and enter a value.");
+        return;
+      }
+      this.loading = true;
+      try {
+        await this.fetchData();
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      } finally {
+        this.loading = false;
+      }
+    },
+    async fetchData() {
+      const searchParams = {
+        searchBy: this.searchBy,
+        searchValue: this.searchValue
+      };
+      await this.$store.dispatch('tickets/search', searchParams);
+    }
   }
-
 };
 </script>
 

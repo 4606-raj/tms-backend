@@ -15,8 +15,10 @@ export default {
       return response.data.data;
     }
   },
-  async search(payload) {
-    const response = await axios.get(`/tickets/search`);
+  async search(searchParams) {
+    console.log(searchParams);
+    const response = await axios.get(`/tickets/search-ticket`, searchParams);
+    console.log(response.data,"ererer");
     if (response.status == 200) {
       return response.data.data;
     }

@@ -48,9 +48,8 @@ Route::prefix('v1')->middleware('json.api')->group(function () {
     Route::middleware('auth:api')->get('/user/permissions', [UserController::class, 'getPermissions']);
    
     
-    Route::middleware('auth:api')->post('search-ticket', [TicketController::class,'search']);
-    // Route::post('subcategories', CategoriesController::class,'subCategories');
-    // Route::post('childsubcategories', CategoriesController::class,'childSubCategories');
+    Route::middleware('auth:api')->get('tickets/search-ticket', [TicketController::class,'search']);
+   
     
 });
 

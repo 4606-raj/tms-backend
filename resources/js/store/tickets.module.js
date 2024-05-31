@@ -3,6 +3,7 @@ import showSwal from "@/mixins/showSwal.js";
 
 const initialState = {
   tickets: [],
+  searchTicket: [],
   pagination: {
     current_page: 1,
     // Other pagination properties such as total_pages, per_page, etc.
@@ -14,6 +15,7 @@ export const tickets = {
   namespaced: true,
   state: initialState,
   actions: {
+    /* ----------All tickets------------------*/
     async fetchAll({ commit }, payload) {      
       let response = await ticketService.fetchAll(payload);
       
@@ -22,6 +24,7 @@ export const tickets = {
       commit("setTickets", data);
       commit("updatePagination", pagination);
     },
+    /* ----------show ticket------------------*/
     async ticketDetail({ commit }, payload) {      
       let response = await ticketService.ticketDetail(payload);
       
@@ -30,14 +33,18 @@ export const tickets = {
       commit("setTickets", data);
      
     },
-    async search({ commit }, payload) {      
-      let response = await ticketService.search(payload);
-      
-      let {data} = response;
-      
-      commit("setTickets", data);
+    /* ----------search ticket------------------*/
+    async search({ commit }, searchParams) { 
+    // try {     
+        const response = await ticketService.search(searchParams);
+        console.log(response,'ggg');
+        commit('setSearchTicket', response.data);
+      // } catch (error) {
+      //   console.error('Error searching tickets:', error);
+      // }
      
     },
+    /* ----------create ticket------------------*/
     async createTicket({ commit }, ticket) {
       const response = await ticketService.createTicket(ticket);
       commit("setTickets", response);
@@ -57,6 +64,9 @@ export const tickets = {
         state.tickets.push(payload)
       }
     },
+    setSearchTicket(state, tickets) {
+      state.searchTicket = tickets;
+    },
 
   updatePagination(state, payload) {
     state.pagination = payload;
@@ -73,5 +83,9 @@ export const tickets = {
     getPagination(state) {
       return state.pagination;
     },
+    searchTicket(state) {
+      return state.searchTicket;
+    },
+    
   },
 };
