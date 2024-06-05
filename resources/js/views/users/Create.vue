@@ -87,6 +87,28 @@
                         </select>
                     </div>
                     <div class="mb-3">
+                      <label class="form-label">Category</label>
+                      <select class="form-select" name="category_id" v-model="formData.category_id">
+                        <option disabled value="">Please select one</option>
+                        <option value="1" >Management</option>
+                        <option value="2" >Technical</option>
+                      </select>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">SubCategory</label>
+                      <select class="form-select"name="sub_category_id" v-model="formData.sub_category_id"  @change="getSubcategories">
+                      <option disabled selected value="">Please select one</option>
+                      <option v-for="item in categories" :value="item.id" :key="item.id">{{ item.name }}</option>
+                    </select>
+                    </div>
+                    <div class="mb-3">
+                      <label class="form-label">ChildSubCategory</label>
+                      <select class="form-select"name="child_sub_category_id" v-model="formData.child_sub_category_id">
+                      <option disabled selected value="">Please select one</option>
+                      <option v-for="item in subcategories" :value="item.id">{{ item.name }}</option>
+                    </select>
+                    </div>
+                    <div class="mb-3">
                         <label class="form-label">Choose Service</label>
                         <select class="form-select" name="service"  v-model="formData.service">
                         <option disabled selected value="">Please select one</option>
@@ -151,17 +173,27 @@ import curvedImage from '@/assets/img/curved-images/curved9.jpg';
         password: '',
         password_confirmation: '',
         profile:'',
-        service:''
+        service:'',
+        category_id: '',
+        sub_category_id:'',
+        child_sub_category_id:'',
       }
     };
   },
   mounted() {
+    this.$store.dispatch("categories/fetchAll");
     
   },
   computed: {
     roles() {
       return this.$store.getters["auth/getRoles"];
-    }
+    },
+    categories() {
+      return this.$store.getters['categories/getAll'];
+    },
+    subcategories() {
+      return this.$store.getters['categories/getCurrentSubcategories'];
+    },
   },
   methods: {
     toUpperCase(value) {
@@ -175,6 +207,12 @@ import curvedImage from '@/assets/img/curved-images/curved9.jpg';
         console.log(response);
     }
 
+    },
+    async getSubcategories() {
+      const allCategories = await this.categories;
+      const res = allCategories.filter(category => category.id == this.formData.sub_category_id);
+      await this.$store.dispatch("categories/setCurrentSubcategories", res[0].subcategories);
+      return res[0].subcategories;
     }
     
   },

@@ -45,7 +45,11 @@ class UserController extends Controller
                 'service'       => $request->service,
                 'district_id'   => $request->district_id,
                 'authority_id'  => $request->authority_id,
+                'category_id'  => $request->category_id,
+                'sub_category_id'  => $request->sub_category_id,
+                'child_sub_category_id'  => $request->child_sub_category_id,
             ]);
+            
     
             $user->assignRole($request->profile);
             // $responseData = [
@@ -90,6 +94,7 @@ class UserController extends Controller
     public function getPermissions() {
         return $this->successResponse(auth()->user()->getAllPermissions()->pluck('name'));
     }
+   
     
     
 }

@@ -11,19 +11,17 @@
         <div class="modal-body">
           <form @submit.prevent="assignTicket">
             <div class="mb-3">
-              <label class="form-label">Level</label>
-              <select class="form-select" v-model="formData.level" required>
-                <option disabled value="">Please select a level</option>
-                <option value="1">Level 1</option>
-                <option value="2">Level 2</option>
-                <option value="3">Level 3</option>
+              <label class="form-label">Assign Role</label>
+              <select class="form-select" name="assignRole"  v-model="formData.assignRole" @change="fetchUsersWithRole">
+              <option disabled selected value="">Please select one</option>
+              <option v-for="item in roles" :value="item.name" :key="item.id">{{ toUpperCase(item.name) }}</option>
               </select>
             </div>
             <div class="mb-3">
               <label class="form-label">User</label>
               <select class="form-select" v-model="formData.user" required>
                 <option disabled value="">Please select a user</option>
-                <option v-for="user in users" :key="user.id" :value="user.id">{{ user.name }}</option>
+                <option v-for="user in filteredUsers" :key="user.id" :value="user.id">{{ user.name }}</option>
               </select>
             </div>
             <div class="mb-3">
@@ -57,18 +55,31 @@ export default {
   data() {
     return {
       formData: {
-        level: "",
-        user: "",
+        assignRole: '',
+        user: '',
         remark: "",
         attachments: []
       },
-      users: [] 
+      roles: [],
+      users: [],
+      filteredUsers: []
     };
   },
   mounted() {
-    this.fetchUsers();
+    //this.fetchUsers();
+  },
+  computed: {
+    roles() {
+      return this.$store.getters["auth/getRoles"];
+    },
+    users() {
+      return this.$store.getters["users/getAll"];
+    }
   },
   methods: {
+    toUpperCase(value) {
+      return value.toUpperCase();
+    },
     closeModal() {
       this.$emit("close");
     },
@@ -77,7 +88,7 @@ export default {
     },
     async fetchUsers() {
       try {
-        const response = await fetch("http://127.0.0.1:8001/users"); 
+        const response = await fetch("http://127.0.0.1:8001/api/v1/users"); 
         if (!response.ok) {
           throw new Error("Network response was not ok");
         }
@@ -86,9 +97,21 @@ export default {
         console.error("There was a problem with the fetch operation:", error);
       }
     },
+   
     assignTicket() {
       console.log("Ticket assigned with data:", this.formData);
       this.closeModal();
+    },
+    fetchUsersWithRole() {
+      const selectedRole = this.formData.assignRole;
+      if (selectedRole) {
+        const allUsers = this.users;
+        const res = allUsers.filter(user => user.profile == this.formData.assignRole);
+        this.filteredUsers = res;
+      
+      } else {
+        this.filteredUsers = [];
+      }
     }
   }
 };

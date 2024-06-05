@@ -36,6 +36,9 @@ class RegisterController extends Controller
             'service'       => $request->service,
             'district_id'   => $request->district_id,
             'authority_id'  => $request->authority_id,
+            'category_id'  => $request->category_id,
+            'sub_category_id'  => $request->sub_category_id,
+            'child_sub_category_id'  => $request->child_sub_category_id,
         ]);
 
         $user->assignRole($request->profile);
@@ -58,7 +61,7 @@ class RegisterController extends Controller
     }
     public function getRoles()
     {
-        $data = Role::select('id','name')->get();
+        $data = Role::select('id','name')->where('id','!=','1')->orderBy('name','asc')->get();
         return $this->successResponse($data);
     }
    

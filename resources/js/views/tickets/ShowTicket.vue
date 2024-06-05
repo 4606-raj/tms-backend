@@ -202,7 +202,7 @@ export default {
         return;
       }
       try {
-        const response = await fetch(`http://127.0.0.1:8001/tickets/${ticketId}`);
+        const response = await fetch(`http://127.0.0.1:8001//api/v1tickets/${ticketId}`);
         if (!response.ok) {
           throw new Error('Network response was not ok');
         }
