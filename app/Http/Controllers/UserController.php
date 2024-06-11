@@ -94,6 +94,22 @@ class UserController extends Controller
     public function getPermissions() {
         return $this->successResponse(auth()->user()->getAllPermissions()->pluck('name'));
     }
+    public function ppaUsers(Request $request)
+    {
+        if(!empty($request->family_id)){
+            $familyId = $request->family_id;
+            $users = PpaUser::where('family_id',$familyId)->get(); 
+            if(empty($users)){
+                return $this->errorResponse($users);
+            }
+        }else{
+            $users = [];
+        }
+          
+        return $this->successResponse($users);
+
+
+    }
    
     
     

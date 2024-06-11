@@ -3,6 +3,8 @@
     <div class="d-flex justify-content-center bg-gradient-info">
       <h3>Ticking Tool Dashboard</h3>
     </div>
+ 
+   
     
     <div class="row my-4">
       <div class="col-lg-8 col-md-6 mb-md-0 mb-4">
@@ -42,281 +44,110 @@
         </timeline-list>
       </div>
     </div>
-    <!-- start -->
-    <div class="row">
-      <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
-        <mini-statistics-card
-          title="TOTAL TICKETS"
-          value="53,000"
-          :percentage="{
-            value: '+505%',
-            color: 'text-info',
-          }"
-          :icon="{
-            component: 'ni ni-money-coins',
-            background: iconBackground,
-          }"
-          direction-reverse
-        />
-      </div>
-      <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
-        <mini-statistics-card
-          title="TOTAL RESOLVED"
-          value="2,300"
-          :percentage="{
-            value: '+3%',
-            color: 'text-success',
-          }"
-          :icon="{
-            component: ' ni ni-world',
-            background: iconBackground,
-          }"
-          direction-reverse
-        />
-      </div>
-      <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
-        <mini-statistics-card
-          title="PENDING TICKETS"
-          value="+3,462"
-          :percentage="{
-            value: '-2%',
-            color: 'text-danger',
-          }"
-          :icon="{
-            component: 'ni ni-paper-diploma',
-            background: iconBackground,
-          }"
-          direction-reverse
-        />
-      </div>
-      <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
-        <mini-statistics-card
-          title="TOTAL DCRIM"
-          value="53,000"
-          :percentage="{
-            value: '+505%',
-            color: 'text-info',
-          }"
-          :icon="{
-            component: 'ni ni-money-coins',
-            background: iconBackground,
-          }"
-          direction-reverse
-        />
-      </div>
-      <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
-        <mini-statistics-card
-          title="RESOLVED  DCRIM"
-          value="2,300"
-          :percentage="{
-            value: '+3%',
-            color: 'text-success',
-          }"
-          :icon="{
-            component: ' ni ni-world',
-            background: iconBackground,
-          }"
-          direction-reverse
-        />
-      </div>
-      <div class="col-xl-2 col-sm-6 mb-xl-0 mb-4">
-        <mini-statistics-card
-          title="PENDING DCRIM"
-          value="+3,462"
-          :percentage="{
-            value: '-2%',
-            color: 'text-danger',
-          }"
-          :icon="{
-            component: 'ni ni-paper-diploma',
-            background: iconBackground,
-          }"
-          direction-reverse
-        />
-      </div>
-    </div>
-    <!---second row-->
-    <div class="row">
-      <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-        <mini-statistics-card
-          title="Total Tickets ON PROCESS"
-          value="53,000"
-          :percentage="{
-            value: '+505%',
-            color: 'text-success',
-          }"
-          :icon="{
-            component: 'ni ni-money-coins',
-            background: iconBackground,
-          }"
-          direction-reverse
-        />
-      </div>
-      <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-        <mini-statistics-card
-          title="RESOLVED TICKETS ON PROCESS"
-          value="2,300"
-          :percentage="{
-            value: '+3%',
-            color: 'text-success',
-          }"
-          :icon="{
-            component: ' ni ni-world',
-            background: iconBackground,
-          }"
-          direction-reverse
-        />
-      </div>
-      <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-        <mini-statistics-card
-          title="PENDING TICKET ON PROCESS"
-          value="+3,462"
-          :percentage="{
-            value: '-2%',
-            color: 'text-danger',
-          }"
-          :icon="{
-            component: 'ni ni-paper-diploma',
-            background: iconBackground,
-          }"
-          direction-reverse
-        />
-      </div>
-    </div>
-    <!--third row-->
-    <div class="row">
-      <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-        <mini-statistics-card
-          title="Total Tickets ON TECHNICAL"
-          value="53,000"
-          :percentage="{
-            value: '+505%',
-            color: 'text-success',
-          }"
-          :icon="{
-            component: 'ni ni-money-coins',
-            background: iconBackground,
-          }"
-          direction-reverse
-        />
-      </div>
-      <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-        <mini-statistics-card
-          title="RESOLVED TICKETS ON TECHNICAL"
-          value="2,300"
-          :percentage="{
-            value: '+3%',
-            color: 'text-success',
-          }"
-          :icon="{
-            component: ' ni ni-world',
-            background: iconBackground,
-          }"
-          direction-reverse
-        />
-      </div>
-      <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-        <mini-statistics-card
-          title="PENDING TICKET ON TECHNICAL"
-          value="+3,462"
-          :percentage="{
-            value: '-2%',
-            color: 'text-danger',
-          }"
-          :icon="{
-            component: 'ni ni-paper-diploma',
-            background: iconBackground,
-          }"
-          direction-reverse
-        />
-      </div>
-    </div>
-    <!---end third row-->
-    <!---4th row start-->
-    <div class="row">
-      <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-        <mini-statistics-card
-          title="Total Tickets ON ZCRIM"
-          value="53,000"
-          :percentage="{
-            value: '+505%',
-            color: 'text-success',
-          }"
-          :icon="{
-            component: 'ni ni-money-coins',
-            background: iconBackground,
-          }"
-          direction-reverse
-        />
-      </div>
-      <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-        <mini-statistics-card
-          title="RESOLVED TICKETS ON ZCRIM"
-          value="2,300"
-          :percentage="{
-            value: '+3%',
-            color: 'text-success',a
-          }"
-          :icon="{
-            component: ' ni ni-world',
-            background: iconBackground,
-          }"
-          direction-reverse
-        />
-      </div>
-      <div class="col-xl-4 col-sm-6 mb-xl-0 mb-4">
-        <mini-statistics-card
-          title="PENDING TICKET ON ZCRIM"
-          value="+3,462"
-          :percentage="{
-            value: '-2%',
-            color: 'text-danger',
-          }"
-          :icon="{
-            component: 'ni ni-paper-diploma',
-            background: iconBackground,
-          }"
-          direction-reverse
-        />
-      </div>
-    </div>
-    <!---end 4th row-->
-    <!-- start tab -->
-  
-    <div id="app" class="row">
-      <div class="col-12">
-        <div class="tabs">
-          <ul class="nav nav-tabs">
-            <li v-for="(tab, index) in tabs" :key="index" :class="['nav-item', { active: activeTab === index }]">
-              <a class="nav-link" @click="activeTab = index">{{ tab.name }}</a>
-            </li>
-          </ul>
-        </div>
-        <div class="tab-content">
-          <div v-for="(tab, index) in tabs" :key="index" v-show="activeTab === index" class="tab-pane">
-            <table class="table table-striped table-bordered">
-              <thead>
-                <tr>
-                  <th>#</th>
-                  <th>Name</th>
-                  <th>Status</th>
-                  <th>Details</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="(item, idx) in tab.tableData" :key="idx">
-                  <td>{{ idx + 1 }}</td>
-                  <td>{{ item.name }}</td>
-                  <td>{{ item.status }}</td>
-                  <td>{{ item.details }}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </div>
+       <!-- start tab -->
+  <div class="container-fluid">
+     <ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button class="nav-link active" id="dcrim-tab" data-bs-toggle="tab" data-bs-target="#dcrim" type="button" role="tab" aria-controls="dcrim" aria-selected="true">DCRIM</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="process-tab" data-bs-toggle="tab" data-bs-target="#process" type="button" role="tab" aria-controls="process" aria-selected="false">PROCESS</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="technical-tab" data-bs-toggle="tab" data-bs-target="#technical" type="button" role="tab" aria-controls="technical" aria-selected="false">TECHNICAL</button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button class="nav-link" id="zcrim-tab" data-bs-toggle="tab" data-bs-target="#zcrim" type="button" role="tab" aria-controls="zcrim" aria-selected="false">ZCRIM</button>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="dcrim" role="tabpanel" aria-labelledby="dcrim-tab">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr >
+          <td>1 </td>
+          <td>name </td>
+          <td>status</td>
+          <td>details</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane fade" id="process" role="tabpanel" aria-labelledby="process-tab">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr >
+          <td>1 </td>
+          <td>name </td>
+          <td>status</td>
+          <td>details</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane fade" id="technical" role="tabpanel" aria-labelledby="technical-tab">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr >
+          <td>1 </td>
+          <td>name </td>
+          <td>status</td>
+          <td>details</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="tab-pane fade" id="zcrim" role="tabpanel" aria-labelledby="zcrim-tab">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Name</th>
+          <th>Status</th>
+          <th>Details</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr >
+          <td>1 </td>
+          <td>name </td>
+          <td>status</td>
+          <td>details</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+</div>
+     
+
   <!---end-->
+   
+  
     
   </div>
 </template>

@@ -21,4 +21,10 @@ export default {
       return response.data.data;
     }
   },
+  async fetchPpaDetails() {
+    const response = await axios.get("/ppa_users");
+    if (response.status == 200) {
+      return response.data.data;
+    }
+  },
 };

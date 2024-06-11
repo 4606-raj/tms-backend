@@ -46,6 +46,7 @@ Route::prefix('v1')->middleware('json.api')->group(function () {
     Route::middleware(['auth:api', 'check.permission:ticket_management'])->apiResource('tickets', TicketController::class);
     Route::middleware('auth:api')->get('/assign-ticket', [TicketController::class, 'assignTicket']);
     Route::middleware('auth:api')->get('/user/permissions', [UserController::class, 'getPermissions']);
+    Route::middleware('auth:api')->get('/ppa_users', [UserController::class, 'ppaUsers']);
    
     
     Route::middleware('auth:api')->get('tickets/search-ticket', [TicketController::class,'search']);

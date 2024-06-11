@@ -7,18 +7,25 @@
             <div class="card-header">
               <h5>User Info</h5>
             </div>
-
-
             <div class="card-body pt-0">
               <div class="row mb-3">
-                <label class="form-label">Applicant Name</label>
+                <label class="form-label mt-2">Applicant FamilyId</label>
                 <soft-model-input
-                  id="name"
-                  name="name"
-                  v-model="ticket.name" 
+                  id="familyId"
+                  name="family_id"
+                  v-model="ticket.family_id"
                   type="text"
-                  placeholder="Alec"
+                  placeholder="7865RT66"
+                  @click="getApplicantUser"
                 />
+                <validation-error :errors="apiValidationErrors.familyId" />
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Applicant Name</label>
+                <select class="form-select"name="name" v-model="ticket.name">
+                <option disabled selected value="">Please select one</option>
+                <option v-for="item in getApplicantUsers" :value="item.id">{{ item.name }}</option>
+              </select>
                 <validation-error :errors="apiValidationErrors.name" />
               </div>
 
@@ -44,23 +51,17 @@
                 />
                 <validation-error :errors="apiValidationErrors.mobile" />
               </div> 
-              <div class="row mb-3">
-                <label class="form-label mt-2">Applicant FamilyId</label>
-                <soft-model-input
-                  id="familyId"
-                  name="family_id"
-                  v-model="ticket.family_id"
-                  type="text"
-                  placeholder="7865RT66"
-                />
-                <validation-error :errors="apiValidationErrors.familyId" />
-              </div>
+              
               <div class="mb-3">
                 <label class="form-label">District</label>
                 <select class="form-select" name="district" v-model="ticket.district">
                 <option disabled selected value="">Please select one</option>
                 <option v-for="item in district" :value="item.id" :key="item.id">{{ item.name }}</option>
               </select>
+              </div>
+              <div class="mb-3">
+                <label class="form-label">Attachment</label><br />
+                <input type="file" name="attachment" >
               </div>
               <div class="row mb-3">
                 <soft-checkbox
@@ -131,12 +132,17 @@
                 <option v-for="item in subcategories" :value="item.id">{{ item.name }}</option>
               </select>
               </div>
+              <div class="mb-3">
+                <label class="form-label">Assign User</label>
+                <select class="form-select" name="category_id" v-model="ticket.assign_to">
+                  <option disabled value="">Please select one</option>
+                  <option value="1" >ABX</option>
+                  <option value="2" >XYZ</option>
+                </select>
+              </div>
             
               
-              <div class="card-body pt-0">
-              <label class="form-label">Attachment</label><br />
-              <input type="file" name="attachment" >
-            </div>
+             
             </div>
           </div>
         </div>
@@ -202,6 +208,7 @@ export default {
     this.$store.dispatch("channels/fetchAll");
     this.$store.dispatch("district/fetchAll");
     this.$store.dispatch("sources/fetchAll");
+    this.$store.dispatch("users/fetchPpaDetails");
     //this.$store.dispatch("tickets/fetchAll");
   },
 
@@ -220,6 +227,12 @@ export default {
     },
     sources() {
       return this.$store.getters['sources/getAll'];
+    },
+    ppa_users() {
+      return this.$store.getters['users/getPpaAll'];
+    },
+    getApplicantUsers() {
+      return this.$store.getters['users/getCurrentPpaUsers'];
     },
   },
 
@@ -255,6 +268,12 @@ export default {
       const res = allCategories.filter(category => category.id == this.ticket.sub_category_id);
       await this.$store.dispatch("categories/setCurrentSubcategories", res[0].subcategories);
       return res[0].subcategories;
+    },
+    async getApplicantUser() {
+      const allUsers = await this.ppa_users;
+      const res = allUsers.filter(ppa_users => ppa_users.family_id == this.ticket.family_id);
+      await this.$store.dispatch("users/setCurrentPpaUsers", res[0].getApplicantUsers);
+      return res[0].getApplicantUsers;
     }
   },
 };

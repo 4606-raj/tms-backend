@@ -3,6 +3,7 @@ import showSwal from "@/mixins/showSwal.js";
 
 const initialState = {
   users: [],
+  ppaUsers: [],
   pagination: {
     current_page: 1,
     // Other pagination properties such as total_pages, per_page, etc.
@@ -37,6 +38,15 @@ export const users = {
       commit('setUsers', response);
 
       return { success: true };
+    },
+    async fetchPpaDetails({ commit }) {      
+      let response = await userService.fetchPpaDetails();
+      
+      commit("setPpaUsers", response);
+    },
+
+    async setCurrentPpaUsers({ commit }, payload) {
+      commit('setPpaCurrentUsers', payload)
     }
     
   },
@@ -47,6 +57,14 @@ export const users = {
       }
       else {
         state.users.push(payload)
+      }
+    },
+    setPpaUsers(state, payload) {
+      if (Array.isArray(payload)) {
+        state.ppaUsers = payload;
+      }
+      else {
+        state.ppaUsers.push(payload)
       }
     },
 
@@ -64,6 +82,12 @@ export const users = {
     },
     getPagination(state) {
       return state.pagination;
+    },
+    getPpaAll(state) {
+      return state.ppaUsers;
+    },
+    getCurrentPpaUsers(state) {
+      return state.PpaCurrentUsers;
     },
   },
 };

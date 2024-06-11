@@ -10,6 +10,7 @@
                     </div>
 
                     <div class="mb-3">
+                      <label class="form-label">Login</label>
                         <soft-input
                         id="name"
                         type="text"
@@ -20,6 +21,7 @@
                         />
                     </div>
                     <div class="mb-3">
+                      <label class="form-label">firstName</label>
                         <soft-input
                         id="firstName"
                         type="text"
@@ -30,6 +32,7 @@
                         />
                     </div>
                     <div class="mb-3">
+                      <label class="form-label">LastName</label>
                         <soft-input
                         id="lastName"
                         type="text"
@@ -40,6 +43,7 @@
                         />
                     </div>
                     <div class="mb-3">
+                      <label class="form-label">Email</label>
                         <soft-input
                         id="email"
                         type="email"
@@ -50,6 +54,7 @@
                         />
                     </div>
                     <div class="mb-3">
+                      <label class="form-label">Password</label>
                         <soft-input
                         id="password"
                         type="password"
@@ -60,6 +65,7 @@
                         />
                     </div>
                     <div class="mb-3">
+                      <label class="form-label">Pasword Confirmation</label>
                         <soft-input
                         id="password_confirmation"
                         type="password"
@@ -70,6 +76,7 @@
                         />
                     </div>
                     <div class="mb-3">
+                      <label class="form-label">Mobile</label>
                         <soft-input
                         id="mobile"
                         type="text"
@@ -81,14 +88,14 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Profile</label>
-                        <select class="form-select" name="profile"  v-model="formData.profile">
+                        <select class="form-select text-uppercase " name="profile"  v-model="formData.profile">
                         <option disabled selected value="">Please select one</option>
                         <option v-for="item in roles" :value="item.name" :key="item.id">{{ toUpperCase(item.name) }}</option>
                         </select>
                     </div>
                     <div class="mb-3">
                       <label class="form-label">Category</label>
-                      <select class="form-select" name="category_id" v-model="formData.category_id">
+                      <select class="form-select text-uppercase " name="category_id" v-model="formData.category_id">
                         <option disabled value="">Please select one</option>
                         <option value="1" >Management</option>
                         <option value="2" >Technical</option>
@@ -96,26 +103,33 @@
                     </div>
                     <div class="mb-3">
                       <label class="form-label">SubCategory</label>
-                      <select class="form-select"name="sub_category_id" v-model="formData.sub_category_id"  @change="getSubcategories">
+                      <select class="form-select text-uppercase"name="sub_category_id" v-model="formData.sub_category_id"  @change="getSubcategories">
                       <option disabled selected value="">Please select one</option>
                       <option v-for="item in categories" :value="item.id" :key="item.id">{{ item.name }}</option>
                     </select>
                     </div>
                     <div class="mb-3">
                       <label class="form-label">ChildSubCategory</label>
-                      <select class="form-select"name="child_sub_category_id" v-model="formData.child_sub_category_id">
+                      <select class="form-select text-uppercase"name="child_sub_category_id" v-model="formData.child_sub_category_id">
                       <option disabled selected value="">Please select one</option>
                       <option v-for="item in subcategories" :value="item.id">{{ item.name }}</option>
                     </select>
                     </div>
                     <div class="mb-3">
-                        <label class="form-label">Choose Service</label>
-                        <select class="form-select" name="service"  v-model="formData.service">
-                        <option disabled selected value="">Please select one</option>
-                        <option value="parivar_number">parivar number</option>
-                        
-                        </select>
+                      <label class="form-label">District</label>
+                      <select class="form-select text-uppercase" name="district_id" v-model="formData.district_id">
+                      <option disabled selected value="">Please select one</option>
+                      <option v-for="item in district" :value="item.id" :key="item.id">{{ item.name }}</option>
+                    </select>
                     </div>
+                    <div class="mb-3">
+                      <label class="form-label">Choose Service</label>
+                      <select class="form-select text-uppercase" name="service"  v-model="formData.service">
+                      <option disabled selected value="">Please select one</option>
+                      <option value="parivar number">parivar number</option>
+                      </select>
+                    </div>
+                  
 
                     <div class="text-center">
                         <soft-button
@@ -174,6 +188,7 @@ import curvedImage from '@/assets/img/curved-images/curved9.jpg';
         password_confirmation: '',
         profile:'',
         service:'',
+        district_id:'',
         category_id: '',
         sub_category_id:'',
         child_sub_category_id:'',
@@ -182,6 +197,7 @@ import curvedImage from '@/assets/img/curved-images/curved9.jpg';
   },
   mounted() {
     this.$store.dispatch("categories/fetchAll");
+    this.$store.dispatch("district/fetchAll");
     
   },
   computed: {
@@ -193,6 +209,9 @@ import curvedImage from '@/assets/img/curved-images/curved9.jpg';
     },
     subcategories() {
       return this.$store.getters['categories/getCurrentSubcategories'];
+    },
+    district() {
+      return this.$store.getters['district/getAll'];
     },
   },
   methods: {
