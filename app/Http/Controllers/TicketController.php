@@ -98,7 +98,7 @@ class TicketController extends Controller
      */
     public function show(string $id)
     {
-        $data = Ticket::find($id);
+        $data = Ticket::whereTicketNumber($id)->first();
 
         return $this->successResponse($data);
     }
@@ -128,18 +128,12 @@ class TicketController extends Controller
     }
     public function search(Request $request)
     {
-        $query = Ticket::with('users:id,name','category:id,name','subCategory:id,name','childSubcategory','districts','channels','sources');
-       
-        if($request->search == 'ticket_number'){
-            $query->where('ticket_number',"=",$request->ticket_number);
-        }
-        if($request->search == 'family_id'){
-            $query->where('family_id',"=",$request->family_id);
-        }
-        if($request->search == 'mobile'){
-            $query->where('mobile',"=",$request->mobile);
-        }
-        $ticket = $query->get(); 
+        $request->validate([
+            'searchBy' => 'in:ticket_number,family_id,mobile',
+        ]);
+        
+        $ticket = Ticket::with('users:id,name','category:id,name','subCategory:id,name','childSubcategory','districts','channels','sources')
+                    ->where($request->searchBy, $request->searchValue)->get();
 
         return $this->successResponse($ticket);
     }

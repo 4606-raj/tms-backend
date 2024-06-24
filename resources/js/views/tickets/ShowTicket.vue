@@ -57,9 +57,9 @@
               <div class="mb-3">
                 <label class="form-label">District</label>
                 <select class="form-select" name="district" v-model="ticket.district">
-                <option disabled selected value="">Please select one</option>
-                <option v-for="item in district" :value="item.id" :key="item.id">{{ item.name }}</option>
-              </select>
+                  <!-- <option disabled selected value="">Please select one</option> -->
+                  <option v-for="item in districts" :value="item.id" :key="item.id">{{ item.name }}</option>
+                </select>
               </div>
             </div>
 
@@ -182,34 +182,30 @@ export default {
   mixins: [formMixin],
   data() {
     return {
-      ticket: [],
       isAssignTicketModalVisible: false
     };
   },
   created() {
     this.fetchTicketDetail();
   },
-  // mounted() {
-  //     this.ticket =  this.$store.dispatch('tickets/ticketDetail', '1');//this.$route.params.id);
-  // },
 
-  
+  computed: {
+    ticket() {
+      const ticket = this.$store.getters['tickets/getOne'];
+      return ticket;
+    },
+
+    districts() {
+      const districts = this.$store.getters['district/getAll']
+      return districts;
+    },
+  },
   methods: {
     async fetchTicketDetail() {
-      const ticketId = this.$route.params.id;
-      if (!ticketId) {
-        console.error('Ticket ID is not defined.');
-        return;
-      }
-      try {
-        const response = await fetch(`http://127.0.0.1:8001//api/v1tickets/${ticketId}`);
-        if (!response.ok) {
-          throw new Error('Network response was not ok');
-        }
-        this.ticket = await response.json();
-      } catch (error) {
-        console.error('There was a problem with the fetch operation:', error);
-      }
+      const ticketNumber = this.$route.params.id;
+
+      this.$store.dispatch('district/fetchAll');
+      this.$store.dispatch('tickets/fetchOne', { ticketNumber });
     },
     showAssignTicketModal() {
       this.isAssignTicketModalVisible = true;

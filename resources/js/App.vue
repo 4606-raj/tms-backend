@@ -15,12 +15,10 @@
     <navbar
       :class="[navClasses]"
       :textWhite="this.$store.state.isAbsolute ? 'text-white opacity-8' : ''"
-      :minNav="navbarMinimize"
       v-if="this.$store.state.showNavbar"
     />
     <router-view />
     <configurator
-      :toggle="toggleConfigurator"
       :class="[
         this.$store.state.showConfig ? 'show' : '',
         this.$store.state.hideConfigButton ? 'd-none' : '',

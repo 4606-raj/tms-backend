@@ -99,7 +99,7 @@ export default {
     },
    
     assignTicket() {
-      console.log("Ticket assigned with data:", this.formData);
+      // console.log("Ticket assigned with data:", this.formData);
       this.closeModal();
     },
     fetchUsersWithRole() {

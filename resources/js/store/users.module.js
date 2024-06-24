@@ -34,7 +34,7 @@ export const users = {
 
     async create({ commit }, payload) {
       let response = await userService.create(payload);
-      console.log(response);
+      // console.log(response);
       commit('setUsers', response);
 
       return { success: true };

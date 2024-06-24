@@ -6,8 +6,8 @@
               <label class="form-label">search By: </label>
               <select  v-model="searchBy" class="form-select" name="search">
                   <option disabled selected value="">Please select one</option>
-                  <option value="familyId">FamilyId</option>
-                  <option value="mobile_number">Mobile Number</option>
+                  <option value="family_id">FamilyId</option>
+                  <option value="mobile">Mobile Number</option>
                   <option value="ticket_number">Ticket Number</option> 
               </select>
             </div>

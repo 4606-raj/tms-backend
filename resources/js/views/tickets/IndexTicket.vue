@@ -112,7 +112,7 @@
           </div>
           <div class="col-3 d-flex justify-content-end">
             <soft-button color="warning" variant="gradient" class="btn bg-gradient-info btn-sm mt-4 me-2"
-                size="sm" :is-disabled="loading ? true : false" @click="handlePassChange">
+                size="sm" :is-disabled="loading ? true : false">
                 <span v-if="loading" class="spinner-border spinner-border-sm"></span>
                 <span v-else>SEARCH</span>
             </soft-button>
@@ -127,7 +127,7 @@
       <div class="col-12">
 
         <router-link class="btn bg-gradient-warning btn-sm mt-4" :to="{name: 'CreateTicket'}" v-if="hasPermission('create_ticket')">Create Ticket</router-link>
-        <soft-button class="float-end btn bg-gradient-primary btn-sm mt-4" @click="downloadExcel"><i class="fa fa-download" aria-hidden="true"></i></soft-button>
+        <!-- <soft-button class="float-end btn bg-gradient-primary btn-sm mt-4" @click="downloadExcel"><i class="fa fa-download" aria-hidden="true"></i></soft-button> -->
         <soft-button class="float-end btn bg-gradient-dark btn-sm mt-4" @click="AssinedTicketExcel">
         <span>Download Assigned Ticket</span></soft-button>
         <router-link class="float-end btn bg-gradient-light btn-sm mt-4" :to="{name: 'CreateTicket'}">Assigned Ticket</router-link>
@@ -156,6 +156,7 @@ export default {
   },
   data() {
     return {
+      loading: false,
       formdata: {
         type: '',
         created_by: '',
@@ -184,23 +185,26 @@ export default {
         console.error('Tickets data is not properly initialized or is not an array.');
         return [];
       }
-      return allTickets.map(({ ticket_number, name, email, mobile, family_id, category, sub_category, child_subcategory, assign_to, districts, auto_close, channels, users, created_at, resolved_date }) => ({
-        ticket_number,
-        name_mob: `${name} - ${mobile}`,
-        email,
-        mobile,
-        family_id,
-        category_name: category.name,
-        subcategory_name: sub_category.name,
-        chidsubcategory_name: child_subcategory.name,
-        assign_to : users.name,
-        district_name: districts.name,
-        auto_close: auto_close === '0' ? 'Open' : 'close',
-        channel: channels.name,
-        logged: users.name,
-        created_at: this.formatDate(created_at),
-        resolved_date
+      let tickets = allTickets.map((ticket) => ({
+        ticket_number: ticket.ticket_number,
+        name_mob: `${ticket.name} - ${ticket.mobile}`,
+        email: ticket.email,
+        mobile: ticket.mobile,
+        family_id: ticket.family_id,
+        category_name: ticket.category.name,
+        subcategory_name: ticket.sub_category.name,
+        chidsubcategory_name: ticket.child_subcategory.name,
+        assign_to : ticket.users.name,
+        district_name: ticket.districts.name,
+        auto_close: ticket.auto_close === '0' ? 'Open' : 'close',
+        channel: ticket.channels.name,
+        logged: ticket.users.name,
+        created_at: this.formatDate(ticket.created_at),
+        resolved_date: ticket.resolved_date,
+        // action: 'view'
       }))
+      tickets.actions = ['view']
+      return tickets
     },
     permissions() {
       return this.$store.getters["auth/getPermissions"];
@@ -237,6 +241,9 @@ export default {
     hasPermission(value) {
       return this.permissions?.includes(value);
     },
+    AssinedTicketExcel() {
+      
+    }
 
   }
 

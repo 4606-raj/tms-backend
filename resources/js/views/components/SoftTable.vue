@@ -11,14 +11,22 @@
               <th v-for="header in headers" class="text-uppercase text-secondary text-m font-weight-bolder opacity-10">
                 {{ header }}
               </th>
+              <th v-if="data && data.length && data['actions'] && data['actions'].includes('view')">
+               Action
+            </th>
               
               <!-- <th class="text-secondary opacity-7"></th> -->
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in data" v-if="data.length">
+            <tr v-for="item in data" v-if="data && data.length">
               <td v-for="value in item">
                 <p class="text-s font-weight-bold mb-0">{{ value }}</p>
+              </td>
+              <td v-if="data && data.length && data['actions'] && data['actions'].includes('view')">
+                <router-link :to="{name: 'TicketDetail', params: { id: item.ticket_number }}">
+                  <soft-button>View</soft-button>
+                </router-link>
               </td>
             </tr>
             <tr v-else>
@@ -35,6 +43,7 @@
 import SoftAvatar from "@/components/SoftAvatar.vue";
 import SoftBadge from "@/components/SoftBadge.vue";
 import img1 from "../../assets/img/team-2.jpg";
+import SoftButton from "@/components/SoftButton.vue";
 
 export default {
   name: "soft-table",
@@ -46,6 +55,7 @@ export default {
   components: {
     SoftAvatar,
     SoftBadge,
+    SoftButton,
   },
 
   props: {

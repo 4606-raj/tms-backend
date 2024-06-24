@@ -8,9 +8,9 @@ export default {
       return response.data.data;
     }
   },
-  async ticketDetail(payload) {
-    const id = payload.id;
-    const response = await axios.get(`/tickets/${id}`);
+  async fetchOne(payload) {
+    const ticketNumber = payload.ticketNumber;
+    const response = await axios.get(`/tickets/${ticketNumber}`);
     if (response.status == 200) {
       return response.data.data;
     }

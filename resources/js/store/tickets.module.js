@@ -4,6 +4,7 @@ import showSwal from "@/mixins/showSwal.js";
 const initialState = {
   tickets: [],
   searchTicket: [],
+  currentTicket: {},
   pagination: {
     current_page: 1,
     // Other pagination properties such as total_pages, per_page, etc.
@@ -25,25 +26,19 @@ export const tickets = {
       commit("updatePagination", pagination);
     },
     /* ----------show ticket------------------*/
-    async ticketDetail({ commit }, payload) {      
-      let response = await ticketService.ticketDetail(payload);
+    async fetchOne({ commit }, payload) {      
+      let response = await ticketService.fetchOne(payload);
       
-      let {data} = response;
-      
-      commit("setTickets", data);
+      commit("setCurrentTicket", response);
      
     },
     /* ----------search ticket------------------*/
     async search({ commit }, searchParams) { 
-    // try {     
         const response = await ticketService.search(searchParams);
-        console.log(response,'ggg');
         commit('setSearchTicket', response);
-      // } catch (error) {
-      //   console.error('Error searching tickets:', error);
-      // }
      
     },
+    
     /* ----------create ticket------------------*/
     async createTicket({ commit }, ticket) {
       const response = await ticketService.createTicket(ticket);
@@ -53,8 +48,8 @@ export const tickets = {
         message: "Ticket created successfully!",
       });
     },
-
   },
+
   mutations: {
     setTickets(state, payload) {
       if (Array.isArray(payload)) {
@@ -64,17 +59,19 @@ export const tickets = {
         state.tickets.push(payload)
       }
     },
+
     setSearchTicket(state, tickets) {
       state.searchTicket = tickets;
     },
 
-  updatePagination(state, payload) {
-    state.pagination = payload;
+    setCurrentTicket(state, ticket) {
+      state.currentTicket = ticket;
+    },
+
+    updatePagination(state, payload) {
+      state.pagination = payload;
+    },
   },
-
-},
-
-
 
   getters: {
     getAll(state) {
@@ -85,6 +82,9 @@ export const tickets = {
     },
     searchTicket(state) {
       return state.searchTicket;
+    },
+    getOne(state) {
+      return state.currentTicket;
     },
     
   },
