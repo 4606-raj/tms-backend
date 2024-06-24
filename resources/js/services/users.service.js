@@ -3,7 +3,7 @@ import axios from "@/axios-config";
 export default {
   async fetchAll(payload) {
     const page = payload.page != undefined? payload.page: 1;
-    const response = await axios.get(`/users?page=${page}`);
+    const response = await axios.get(`/users?page=${page}`, {params: payload.params});
     if (response.status == 200) {
       return response.data.data;
     }

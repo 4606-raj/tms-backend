@@ -3,6 +3,7 @@
     class="btn mb-0" 
     :class="getClasses(variant, color, size, fullWidth, active)"
     :disabled="isDisabled"
+    :type="type"
   >
     <slot />
   </button>
@@ -35,6 +36,10 @@ export default {
     active: {
       type: Boolean,
       default: false,
+    },
+    type: {
+      type: String,
+      default: 'button',
     },
   },
   methods: {

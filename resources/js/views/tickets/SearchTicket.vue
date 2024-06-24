@@ -2,8 +2,11 @@
     <div class="py-4 container-fluid">
       <div class="row px-0 pt-0 pb-2">
         <div class="col-12 row d-flex align-items-center ">
+
+          <form id="search-form" class="d-flex align-items-center gap-5" @submit.prevent="handlePassChange">
+          
             <div class="col-4">
-              <label class="form-label">search By: </label>
+              <label class="form-label">Search By: </label>
               <select  v-model="searchBy" class="form-select" name="search">
                   <option disabled selected value="">Please select one</option>
                   <option value="family_id">FamilyId</option>
@@ -28,13 +31,16 @@
                   variant="gradient"
                   class="float-start btn bg-gradient-info btn-sm mt-4"
                   size="sm"
+                  type="submit"
                   :is-disabled="loading"
-                  @click="handlePassChange"
                 >
                   <span v-if="loading" class="spinner-border spinner-border-sm"></span>
                   <span v-else>SEARCH</span>
                 </soft-button>
             </div>
+            
+          </form>
+
           </div>
       </div>
       <div class="row">

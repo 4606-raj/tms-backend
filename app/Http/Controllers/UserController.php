@@ -20,7 +20,12 @@ class UserController extends Controller
      */
     public function index(Request $request)
     {
-        $users = User::paginate(10); 
+        $request->validate([
+            'searchBy' => 'in:email,name,mobile',
+        ]);
+        
+        // dd($request->all());
+        $users = User::where($request->searchBy, $request->searchValue)->paginate(10); 
           
         return $this->successResponse($users);
 

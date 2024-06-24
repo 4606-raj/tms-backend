@@ -2,24 +2,27 @@
   <div class="py-4 container-fluid">
     <div class="row px-0 pt-0 pb-2">
       <div class="col-12 row d-flex align-items-center ">
-        <div class="col-4">
-          <label class="form-label">Search By: </label>
-          <select class="form-select" name="search" v-model="selectedType">
-            <option disabled selected value="">Choose Search Type</option>
-            <option value="email">Email Id</option> 
-            <option value="text">Login</option>
-            <option value="number">Mobile Number</option> 
-          </select>
-        </div>
+
+        <form id="search-form" class="d-flex align-items-center gap-5" @submit.prevent="handleSearchForm">
+        
+          <div class="col-4">
+            <label class="form-label">Search By: </label>
+            <select class="form-select" name="search" v-model="searchBy">
+              <option disabled selected value="">Choose Search Type</option>
+              <option value="name">Name</option>
+              <option value="email">Email Id</option> 
+              <option value="mobile">Mobile Number</option> 
+            </select>
+          </div>
           <div class="col-4">
             <label class="form-label">Value</label>
             <input
                 id="value"
                 name="value"
-                :type="selectedType"
+                type="text"
                 class="form-control"
                 placeholder="enter search value here"
-                v-model="inputValue"
+                v-model="searchValue"
             />
           </div>
           <div class="col-4">
@@ -29,18 +32,19 @@
               class="float-start btn bg-gradient-info btn-sm mt-4"
               size="sm"
               :is-disabled="loading ? true : false"
-              @click="handlePassChange"
+              type="submit"
               ><span
                 v-if="loading"
                 class="spinner-border spinner-border-sm"
               ></span>
               <span v-else>SEARCH</span></soft-button
             >
-            <soft-button
-              color="warning"
+            <!-- <soft-button
+              color="info"
               variant="gradient"
               class="float-start btn bg-gradient-primary btn-sm mt-4"
               size="sm"
+              type="reset"
               :is-disabled="loading ? true : false"
               @click="resetForm"
               ><span
@@ -48,10 +52,13 @@
                 class="spinner-border spinner-border-sm"
               ></span>
               <span v-else>Clear</span></soft-button
-            >
+            > -->
           </div>
-        </div>
+
+        </form>
+
       </div>
+    </div>
     <div class="row">
       <div class="col-12">
         <div class="">
@@ -66,7 +73,7 @@
                   <!-- <a @click="alert" class="mb-0 btn bg-gradient-warning btn-sm"
                     >+&nbsp; New User</a
                   > -->
-                  <router-link class="mb-0 btn bg-gradient-warning btn-sm" :to="{name: 'UsersCreate'}">+&nbsp; New User</router-link>
+                  <router-link class="mb-0 btn bg-gradient-info btn-sm" :to="{name: 'UsersCreate'}">+&nbsp; New User</router-link>
                 </div>
               </div>
             </div>
@@ -110,21 +117,22 @@
 <script>
 import showSwal from "../mixins/showSwal.js";
 import SoftTable from "./components/SoftTable.vue";
-import SoftButton from "./components/SoftTable.vue";
+import SoftButton from "./components/SoftButton.vue";
 import SoftPagination from "./components/SoftPagination.vue";
 import SoftPaginationItem from "./components/SoftPaginationItem.vue";
 export default {
   name: "Users",
   components: {
     SoftTable,
-    // SoftButton,
+    SoftButton,
     SoftPagination,
     SoftPaginationItem,
   },
   data() {
     return {
-      selectedType: '', // Default selected input type from here
-      inputValue: '', // Initial value for the input field
+      searchBy: '',
+      searchValue: '',
+      loading: false,
       tableHeaders: [
         'Name', 'email', 'mobile', 'Services', 'Profile', 'CreatedAt', 'status'
       ],
@@ -155,31 +163,47 @@ export default {
     }
   },
   methods: {
-    resetForm() {
-      this.inputValue = ''; // Reset the input field value
-    },
     formatDate(dateString) {
       const date = new Date(dateString);
       return date.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
     },
-    fetchData() {
+    fetchData(searchParams = []) {
         // Check if pagination object exists before accessing its properties
         if (this.pagination && this.pagination.current_page) {
-          this.$store.dispatch('users/fetchAll', { page: this.pagination.current_page });
+          this.$store.dispatch('users/fetchAll', { page: this.pagination.current_page, params: searchParams });
         } else {
           // Handle the case where pagination object is not initialized
           console.error('Pagination object is null or undefined');
         }
       },
 
-
     changePage(page) {
       if (page < 1 || page > this.pagination.last_page) return;
 
       this.pagination.current_page = page;
       this.fetchData()
-    }
+    },
+
+    async handleSearchForm() {
+        if (!this.searchBy || !this.searchValue) {
+          alert("Please select a search criterion and enter a value.");
+          return;
+        }
+        this.loading = true;
+        try {
+          const searchParams = {
+            searchBy: this.searchBy,
+            searchValue: this.searchValue
+          };
+          await this.fetchData(searchParams);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+        } finally {
+          this.loading = false;
+        }
+    },
   },
+
 };
 </script>
 <style>
