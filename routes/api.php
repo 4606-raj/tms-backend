@@ -49,7 +49,7 @@ Route::prefix('v1')->middleware('json.api')->group(function () {
     Route::middleware('auth:api')->get('/ppa_users', [UserController::class, 'ppaUsers']);
    
     
-    Route::middleware('auth:api')->get('tickets/search-ticket', [TicketController::class,'search']);
+    Route::middleware('auth:api')->post('tickets/search-ticket', [TicketController::class,'search']);
    
     
 });

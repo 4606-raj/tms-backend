@@ -3,7 +3,7 @@
     <div class="row px-0 pt-0 pb-2">
       <div class="col-12 row d-flex align-items-center ">
         <div class="col-4">
-          <label class="form-label">search By: </label>
+          <label class="form-label">Search By: </label>
           <select class="form-select" name="search" v-model="selectedType">
             <option disabled selected value="">Choose Search Type</option>
             <option value="email">Email Id</option> 
@@ -58,9 +58,9 @@
           <!-- Card header -->
           <div class="pb-0 card-header">
             <div class="d-lg-flex">
-              <div>
+              <!-- <div>
                 <h5 class="mb-0">Users List</h5>
-              </div>
+              </div> -->
               <div class="my-auto mt-4 ms-auto mt-lg-0">
                 <div class="my-auto ms-auto">
                   <!-- <a @click="alert" class="mb-0 btn bg-gradient-warning btn-sm"
@@ -73,7 +73,7 @@
           </div>
           <div class="px-0 pb-0">
 
-            <soft-table :headers="tableHeaders" :data="users"/>
+            <soft-table :headers="tableHeaders" :data="users" heading="Users List"/>
 
             <div class="pagination justify-content-end">
               

@@ -40,7 +40,7 @@
       <div class="row">
         <div class="col-12">
           <div class="table-responsive">
-            <soft-table :headers="tableHeaders" :data="tickets"/>
+            <soft-table :headers="tableHeaders" :data="tickets" heading="Tickets Found"/>
           </div>
         </div>
       </div>
@@ -49,11 +49,13 @@
   
   <script>
 import SoftTable from "../components/SoftTable.vue";
+import SoftButton from "../components/SoftButton.vue";
 
 export default {
   name: "SearchTicket",
   components: {
     SoftTable,
+    SoftButton,
   },
 
   data() {
@@ -62,13 +64,13 @@ export default {
       searchValue: '',
       loading: false,
       tableHeaders: [
-        'ticket_number', 'name_mob', 'email', 'mobile', 'family_id', 'category_name', 'subcategory_name', 'chidsubcategory_name', 'assign_to', 'district_name', 'auto_close', 'channel', 'logged', 'created_at', 'resolved_date'
+        'ticket number', 'name mob', 'email', 'mobile', 'family id', 'category name', 'subcategory name', 'chidsubcategory name', 'assign to', 'district name', 'auto close', 'channel', 'logged', 'created at', 'resolved date'
       ],
       
     }
   },
   async mounted() {
-    this.fetchData();
+    // this.fetchData();
   },
   computed: {
     tickets() {

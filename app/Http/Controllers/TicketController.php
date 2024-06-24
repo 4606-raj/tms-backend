@@ -128,7 +128,6 @@ class TicketController extends Controller
     }
     public function search(Request $request)
     {
-        dd($request->all());
         $query = Ticket::with('users:id,name','category:id,name','subCategory:id,name','childSubcategory','districts','channels','sources');
        
         if($request->search == 'ticket_number'){
@@ -140,9 +139,8 @@ class TicketController extends Controller
         if($request->search == 'mobile'){
             $query->where('mobile',"=",$request->mobile);
         }
-        $ticket =     $query->first(); 
+        $ticket = $query->get(); 
+
         return $this->successResponse($ticket);
-
-
     }
 }

@@ -8,7 +8,7 @@
     v-if="this.$store.state.showSidenav"
   />
   <main
-    class="main-content position-relative max-height-vh-100 h-100 border-radius-lg"
+    class="main-content position-relative min-h-screen max-height-vh-100 h-100 border-radius-lg"
     :style="this.$store.state.isRTL ? 'overflow-x: hidden' : ''"
   >
     <!-- nav -->
@@ -19,7 +19,6 @@
       v-if="this.$store.state.showNavbar"
     />
     <router-view />
-    <app-footer v-show="this.$store.state.showFooter" />
     <configurator
       :toggle="toggleConfigurator"
       :class="[
@@ -28,6 +27,8 @@
       ]"
     />
   </main>
+  <app-footer v-show="this.$store.state.showFooter" />
+  
 </template>
 <script>
 import Sidenav from "./examples/Sidenav/index.vue";

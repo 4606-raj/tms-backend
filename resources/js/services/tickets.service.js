@@ -16,9 +16,7 @@ export default {
     }
   },
   async search(searchParams) {
-    console.log(searchParams);
-    const response = await axios.get(`/tickets/search-ticket`, searchParams);
-    console.log(response.data,"ererer");
+    const response = await axios.post(`/tickets/search-ticket`, searchParams);
     if (response.status == 200) {
       return response.data.data;
     }

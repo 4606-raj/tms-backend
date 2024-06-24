@@ -38,7 +38,7 @@ export const tickets = {
     // try {     
         const response = await ticketService.search(searchParams);
         console.log(response,'ggg');
-        commit('setSearchTicket', response.data);
+        commit('setSearchTicket', response);
       // } catch (error) {
       //   console.error('Error searching tickets:', error);
       // }

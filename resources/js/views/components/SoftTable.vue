@@ -1,7 +1,7 @@
 <template>
   <div class="card mb-4">
     <div class="card-header pb-0">
-      <h6>Ticket List</h6>
+      <h6>{{ heading ?? 'List' }}</h6>
     </div>
     <div class="card-body px-0 pt-0 pb-2">
       <div class="table-responsive p-0">
@@ -16,10 +16,13 @@
             </tr>
           </thead>
           <tbody>
-            <tr v-for="item in data">
+            <tr v-for="item in data" v-if="data.length">
               <td v-for="value in item">
                 <p class="text-s font-weight-bold mb-0">{{ value }}</p>
               </td>
+            </tr>
+            <tr v-else>
+              <td :colspan="headers.length"><h3>No data to display</h3></td>
             </tr>
           </tbody>
         </table>
@@ -53,6 +56,10 @@ export default {
     data: {
       type: Array,
       required: true
+    },
+    heading: {
+      type: String,
+      required: false
     },
   },
   mounted() {
